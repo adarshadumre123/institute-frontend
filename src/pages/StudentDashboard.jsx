@@ -15,6 +15,12 @@ import {
 
 
 const StudentDashboard = () => {
+  // const imageHandler = async(req,res)=>{
+  //   <select name="profile" id="profile">
+  //     <option value="profile">profile</option>
+  //     <option value="profile">Logout</option>
+  //   </select>
+  // }
   const courses = [
     {
       title: "Web Development",
@@ -96,11 +102,17 @@ const StudentDashboard = () => {
           </div>
 
           <div className="flex items-center gap-3">
+
             <img
               src="https://i.pravatar.cc/100"
               alt="profile"
               className="w-12 h-12 rounded-full border-2 border-indigo-500"
             />
+            <select name="" id="" defaultValue=''>
+
+              <option value="">profile</option>
+              <option value="">logout</option>
+            </select>
           </div>
         </div>
 
@@ -203,11 +215,10 @@ const StudentDashboard = () => {
                   </div>
 
                   <span
-                    className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                      assignment.status === "Pending"
+                    className={`px-3 py-1 rounded-full text-sm font-semibold ${assignment.status === "Pending"
                         ? "bg-red-100 text-red-600"
                         : "bg-green-100 text-green-600"
-                    }`}
+                      }`}
                   >
                     {assignment.status}
                   </span>
