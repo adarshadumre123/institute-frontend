@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import {
   BookOpen,
@@ -12,15 +12,26 @@ import {
   ShoppingBag,
 } from "lucide-react";
 
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+
 
 
 const StudentDashboard = () => {
-  // const imageHandler = async(req,res)=>{
-  //   <select name="profile" id="profile">
-  //     <option value="profile">profile</option>
-  //     <option value="profile">Logout</option>
-  //   </select>
-  // }
+  const [exams, setExam] = useState([]);
+
+  const navigate = useNavigate()
+
+  const ProfileImageHandler = (e) => {
+    if (e.target.value === 'profile') {
+      navigate('/profile')
+    }
+    if (e.target.value === 'logout') {
+
+      navigate('/login')
+    }
+  }
   const courses = [
     {
       title: "Web Development",
@@ -38,6 +49,8 @@ const StudentDashboard = () => {
       progress: 90,
     },
   ];
+
+
 
   const assignments = [
     {
@@ -108,10 +121,15 @@ const StudentDashboard = () => {
               alt="profile"
               className="w-12 h-12 rounded-full border-2 border-indigo-500"
             />
-            <select name="" id="" defaultValue=''>
-
-              <option value="">profile</option>
-              <option value="">logout</option>
+            <select
+              defaultValue=""
+              onChange={ProfileImageHandler}
+            >
+              <option value="" disabled>
+                Select
+              </option>
+              <option value="profile">Profile</option>
+              <option value="logout">Logout</option>
             </select>
           </div>
         </div>
@@ -216,8 +234,8 @@ const StudentDashboard = () => {
 
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-semibold ${assignment.status === "Pending"
-                        ? "bg-red-100 text-red-600"
-                        : "bg-green-100 text-green-600"
+                      ? "bg-red-100 text-red-600"
+                      : "bg-green-100 text-green-600"
                       }`}
                   >
                     {assignment.status}
