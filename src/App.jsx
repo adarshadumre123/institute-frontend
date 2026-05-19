@@ -8,6 +8,7 @@ import Assignment from "./pages/Assignment";
 import Profile from "./pages/Profile";
 import Notes from "./pages/Notes";
 import ExamDetails from "./pages/ExamDetails";
+import CreateExam from "./components/CreateExam";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
   { path: "/assignment", element: <Assignment /> },
   { path: "/profile", element: <Profile /> },
   { path: "/notes", element: <Notes/> },
+  { path: "/createExam", element: <CreateExam/> },
   { path: "/examdetails/:id", element: <ExamDetails/> },
   { path: "/student/dashboard", element: < StudentDashboard/> },
 ]);
