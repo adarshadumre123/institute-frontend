@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
-import { Loader, BookOpen, Clock3, FileText, Trophy } from 'lucide-react';
+import { Loader, BookOpen, Clock3, FileText, Trophy, Pencil } from 'lucide-react';
 
 const ExamDetails = () => {
 
@@ -53,6 +53,11 @@ const ExamDetails = () => {
                             <h1 className="text-4xl font-extrabold mb-3">
                                 {exam.title}
                             </h1>
+
+                            <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2 relative left-180 bottom-10 cursor-pointer">
+                                <Pencil size={20}  />
+                                Edit
+                            </button>
 
                             <p className="text-blue-100 text-lg">
                                 {exam.description}
@@ -148,10 +153,17 @@ const ExamDetails = () => {
 
                             </div>
 
+
+
                             {/* BUTTON */}
+                            <div className='flex gap-4'>
                             <button className="w-full mt-8 bg-linear-to-r from-blue-600 to-indigo-700 hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 text-white py-4 rounded-2xl text-xl font-bold">
                                 Join Exam
                             </button>
+                            <button className="w-full mt-8 bg-linear-to-r from-red-600 to-red-900 hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 text-white py-4 rounded-2xl text-xl font-bold">
+                                Delete Exam
+                            </button>
+                            </div>
 
                         </div>
 
