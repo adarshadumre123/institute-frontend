@@ -29,8 +29,8 @@ const TeacherDashboard = () => {
 
         <nav className="flex-1 p-4 space-y-2">
           <SidebarItem icon={<LayoutDashboard size={20} />} title="Dashboard" active />
-          <SidebarItem icon={<BookOpen size={20} />} title="Courses" />
-          <SidebarItem icon={<ClipboardList size={20} />} title="Exams" />
+          <SidebarItem icon={<BookOpen size={20} />} title="Courses"  />
+          <SidebarItem icon={<ClipboardList size={20} />} title="Exams" to={'/exam'} />
           <SidebarItem icon={<Users size={20} />} title="Students" />
           <SidebarItem icon={<FileText size={20} />} title="Assignments" />
           <SidebarItem icon={<Bell size={20} />} title="Notifications" />
@@ -185,17 +185,19 @@ export default TeacherDashboard;
 
 /* ================= COMPONENTS ================= */
 
-const SidebarItem = ({ icon, title, active }) => {
+const SidebarItem = ({ icon, title, active, to = "#" }) => {
   return (
-    <button
-      className={`flex items-center gap-3 w-full p-3 rounded-xl transition ${active
+    <Link
+      to={to}
+      className={`flex items-center gap-3 w-full p-3 rounded-xl transition ${
+        active
           ? "bg-indigo-600 text-white"
           : "hover:bg-gray-100 text-gray-700"
-        }`}
+      }`}
     >
       {icon}
       <span className="font-medium">{title}</span>
-    </button>
+    </Link>
   );
 };
 
