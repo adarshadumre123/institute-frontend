@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   LayoutDashboard,
   BookOpen,
@@ -13,6 +13,8 @@ import {
   Calendar,
   Clock,
 } from "lucide-react";
+import { Link } from "react-router-dom";
+
 
 const TeacherDashboard = () => {
   return (
@@ -57,10 +59,10 @@ const TeacherDashboard = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-xl flex items-center gap-2 transition">
+            <Link to={'/createExam'} className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-xl flex items-center gap-2 transition">
               <Plus size={18} />
               Create Exam
-            </button>
+            </Link>
 
             <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-lg">
               T
@@ -186,11 +188,10 @@ export default TeacherDashboard;
 const SidebarItem = ({ icon, title, active }) => {
   return (
     <button
-      className={`flex items-center gap-3 w-full p-3 rounded-xl transition ${
-        active
+      className={`flex items-center gap-3 w-full p-3 rounded-xl transition ${active
           ? "bg-indigo-600 text-white"
           : "hover:bg-gray-100 text-gray-700"
-      }`}
+        }`}
     >
       {icon}
       <span className="font-medium">{title}</span>

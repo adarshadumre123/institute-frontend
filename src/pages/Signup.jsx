@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { GraduationCap, Mail, Lock, Phone, User, Shield } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Login from './Login';
-import { toast } from 'react-toastify';
 import  axios  from 'axios';
+import { Toaster, toast } from "sonner";
 
 
 const SignupPage = () => {

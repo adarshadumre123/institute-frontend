@@ -9,6 +9,9 @@ import Profile from "./pages/Profile";
 import Notes from "./pages/Notes";
 import ExamDetails from "./pages/ExamDetails";
 import CreateExam from "./components/CreateExam";
+import TeacherDashboard from "./pages/TeacherDashboard";
+import { Toaster } from "sonner";
+
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -21,10 +24,24 @@ const router = createBrowserRouter([
   { path: "/createExam", element: <CreateExam/> },
   { path: "/examdetails/:id", element: <ExamDetails/> },
   { path: "/student/dashboard", element: < StudentDashboard/> },
+  { path: "/teacher/dashboard", element: < TeacherDashboard/> },
 ]);
 
-const App = () => {
-  return <RouterProvider router={router} />;
-};
+// const App = () => {
+//   return <RouterProvider router={router} />;
+// };
 
+const App = () => {
+  return (
+    <>
+      <RouterProvider router={router} />
+
+      <Toaster
+        position="bottom-right"
+        richColors
+        closeButton
+      />
+    </>
+  );
+};
 export default App;

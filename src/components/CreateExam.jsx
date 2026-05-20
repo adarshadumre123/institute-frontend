@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
-
+import { Toaster, toast } from "sonner";
 const CreateExam = () => {
   const [loading, setLoading] = useState(false);
 
@@ -27,6 +26,8 @@ const CreateExam = () => {
   const createExam = async (e) => {
     e.preventDefault();
     try {
+         const token = localStorage.getItem("token");
+
       setLoading(true);
 
       const res = await axios.post(
@@ -34,6 +35,7 @@ const CreateExam = () => {
         data,
         {
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -53,10 +55,10 @@ const CreateExam = () => {
           endTime: "",
         });
       } else {
-        toast.error("Something went wrong");
+        alert("Something went wrong");
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Server error");
+    toast.error(error.response?.data?.message || "Server error");
     } finally {
       setLoading(false);
     }
@@ -149,7 +151,7 @@ const CreateExam = () => {
             className="p-3 border rounded-lg md:col-span-2 h-28 resize-none"
           />
 
-          <button onClick={createExam}
+          <button
             type="submit"
             disabled={loading}
             className="md:col-span-2 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
