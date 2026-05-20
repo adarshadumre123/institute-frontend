@@ -6,6 +6,7 @@ import {
   BookOpen,
   CalendarDays,
   PlayCircle,
+  Pencil,
 } from "lucide-react";
 import axios from "axios";
 
@@ -112,6 +113,10 @@ const Exam = () => {
               <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
                 <PlayCircle size={20} />
                 Join Exam
+              </button>
+              <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                <Pencil size={20} />
+                Edit
               </button>
 
               <Link  to={`/examdetails/${exams._id}`} className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl font-semibold transition"> 
