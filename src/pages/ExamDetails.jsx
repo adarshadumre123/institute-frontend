@@ -38,10 +38,11 @@ const ExamDetails = () => {
             getData();
         }
     }, [id]);
+    
 
     return (
         <div className="min-h-screen bg-linear-to-br from-blue-100 via-white to-indigo-100 flex justify-center items-center p-6">
-
+            
             {
                 exam ? (
 
