@@ -32,6 +32,7 @@ const Exam = () => {
        
     }
     console.log(exams)
+    
   }
   useEffect(() => {
     getAllExams();

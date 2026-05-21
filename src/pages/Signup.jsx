@@ -27,7 +27,7 @@ const SignupPage = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
-    console.log(formData);
+    // console.log(formData);
 
    try {
     const res = await  axios.post("http://localhost:8000/api/v1/users/register", formData,{
@@ -35,6 +35,9 @@ const SignupPage = () => {
          "Content-type":"application/json"
        }
      })  
+
+     localStorage.setItem("role",formData.role)
+     console.log(formData.role)
      if(res.data.success){
        toast.success(res.data.message || "registered successfully")
        navigate("/")
