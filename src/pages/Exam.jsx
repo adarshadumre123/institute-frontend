@@ -39,6 +39,8 @@ const Exam = () => {
   }, []);
 
 
+  const role = localStorage.getItem("role")
+
 
 
   return (
@@ -109,19 +111,23 @@ const Exam = () => {
             </div>
 
             {/* Buttons */}
-            <div className="flex gap-3">
-              <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+            <div className="flex gap-2">
+              <button className="flex-1  bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
                 <PlayCircle size={20} />
                 Join Exam
               </button>
-              <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+              <Link  to={`/examdetails/${exams._id}`} className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl font-semibold transition"> 
+              Details 
+               </Link> 
+              <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
                 <Pencil size={20} />
                 Edit
               </button>
 
-              <Link  to={`/examdetails/${exams._id}`} className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl font-semibold transition"> 
-              Details 
-               </Link> 
+              <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-evenly gap-1">
+              Delete Exam
+              </button>
+
             </div>
           </div>
         )
