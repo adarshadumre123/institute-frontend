@@ -14,6 +14,7 @@ import axios from "axios";
 const Exam = () => {
   const [exams, setExam] = useState([]);
 
+
   const getAllExams = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -29,10 +30,10 @@ const Exam = () => {
       setExam(res.data.exam)
     } catch (error) {
       console.log(error);
-       
+
     }
     console.log(exams)
-    
+
   }
   useEffect(() => {
     getAllExams();
@@ -41,6 +42,7 @@ const Exam = () => {
 
 
   const role = localStorage.getItem("role")
+  console.log(role)
 
 
 
@@ -59,7 +61,7 @@ const Exam = () => {
 
       {/* Exam Cards */}
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-        { exams? exams.map((exams) => (
+        {exams ? exams.map((exams) => (
           <div
             key={exams.id}
             className="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition"
@@ -68,10 +70,10 @@ const Exam = () => {
             <div className="flex justify-between items-center mb-5">
               <span
                 className={`px-4 py-1 rounded-full text-sm font-semibold ${exams.status === "Live"
-                    ? "bg-green-100 text-green-600"
-                    : exams.status === "Scheduled"
-                      ? "bg-yellow-100 text-yellow-700"
-                      : "bg-gray-200 text-gray-600"
+                  ? "bg-green-100 text-green-600"
+                  : exams.status === "Scheduled"
+                    ? "bg-yellow-100 text-yellow-700"
+                    : "bg-gray-200 text-gray-600"
                   }`}
               >
                 {exams.status}
@@ -117,26 +119,31 @@ const Exam = () => {
                 <PlayCircle size={20} />
                 Join Exam
               </button>
-              <Link  to={`/examdetails/${exams._id}`} className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl font-semibold transition"> 
-              Details 
-               </Link> 
-              <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
-                <Pencil size={20} />
-                Edit
-              </button>
+              <Link to={`/examdetails/${exams._id}`} className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl font-semibold transition">
+                Details
+              </Link>
+             {
+  (role === "teacher" || role === "admin") && (
+    <div>
+      <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+        <Pencil size={20} />
+        Edit
+      </button>
 
-              <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-evenly gap-1">
-              Delete Exam
-              </button>
-
+      <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-evenly gap-1">
+        Delete Exam
+      </button>
+    </div>
+  )
+}
             </div>
           </div>
         )
-      ): <p>
-                loading...
-                <Loader className='animate-spin rounded-full h-10 w-10  border-t-transparent'/>
-                </p>
-    }
+        ) : <p>
+          loading...
+          <Loader className='animate-spin rounded-full h-10 w-10  border-t-transparent' />
+        </p>
+        }
       </div>
     </div>
   );
