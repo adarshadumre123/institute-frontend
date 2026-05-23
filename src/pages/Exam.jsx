@@ -41,7 +41,7 @@ const Exam = () => {
   }, []);
 
 
-  const role = localStorage.getItem("role")
+  const role = localStorage.getItem("role")?.trim().toLowerCase();
   console.log(role)
 
 
@@ -63,7 +63,7 @@ const Exam = () => {
       <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
         {exams ? exams.map((exams) => (
           <div
-            key={exams.id}
+            key={exams._id}
             className="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition"
           >
             {/* Status */}
@@ -122,20 +122,19 @@ const Exam = () => {
               <Link to={`/examdetails/${exams._id}`} className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl font-semibold transition">
                 Details
               </Link>
-             {
-  (role === "teacher" || role === "admin") && (
-    <div>
-      <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
-        <Pencil size={20} />
-        Edit
-      </button>
+              {(role === "teacher" || role === "admin") && (
+                <>
+                  <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                    <Pencil size={20} />
+                    Edit
+                  </button>
 
-      <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-evenly gap-1">
-        Delete Exam
-      </button>
-    </div>
-  )
-}
+                  <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                    Delete Exam
+                  </button>
+                </>
+              )
+              }
             </div>
           </div>
         )
