@@ -36,8 +36,6 @@ const SignupPage = () => {
        }
      })  
 
-     localStorage.setItem("role",formData.role)
-     console.log(formData.role)
      if(res.data.success){
        toast.success(res.data.message || "registered successfully")
        navigate("/")
