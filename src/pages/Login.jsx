@@ -46,20 +46,21 @@ const Login = () => {
       );
 
       if (res.data.success) {
-        // ── 1. Save BOTH token and user to localStorage ──
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user)); // ← was "data.user" (bug)
+        localStorage.setItem("user", JSON.stringify(res.data.user)); 
+
+        const role = res.data.user?.role?.toLowerCase();
+        localStorage.setItem("role",role)
+
 
         toast.success(res.data.message || "Login successful");
 
-        // ── 2. Redirect based on role (use return to stop further execution) ──
-        const role = res.data.user?.role?.toLowerCase();
 
         if (role === "student") return navigate("/student/dashboard");
         if (role === "teacher") return navigate("/teacher/dashboard");
         if (role === "admin")   return navigate("/admin/dashboard");
 
-        navigate("/"); // fallback
+        navigate("/"); 
       }
     } catch (error) {
       console.log(error);
