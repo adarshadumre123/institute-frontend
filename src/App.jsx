@@ -11,6 +11,7 @@ import ExamDetails from "./pages/ExamDetails";
 import CreateExam from "./components/CreateExam";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import { Toaster } from "sonner";
+import Students from "./pages/Students";
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
   { path: "/assignment", element: <Assignment /> },
   { path: "/profile", element: <Profile /> },
   { path: "/notes", element: <Notes/> },
+  { path: "/students", element: <Students/> },
   { path: "/createExam", element: <CreateExam/> },
   { path: "/examdetails/:id", element: <ExamDetails/> },
   { path: "/student/dashboard", element: < StudentDashboard/> },

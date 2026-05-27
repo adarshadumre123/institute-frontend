@@ -31,8 +31,8 @@ const TeacherDashboard = () => {
           <SidebarItem icon={<LayoutDashboard size={20} />} title="Dashboard" active />
           <SidebarItem icon={<BookOpen size={20} />} title="Courses"  />
           <SidebarItem icon={<ClipboardList size={20} />} title="Exams" to={'/exam'} />
-          <SidebarItem icon={<Users size={20} />} title="Students" />
-          <SidebarItem icon={<FileText size={20} />} title="Assignments" />
+          <SidebarItem icon={<Users size={20} />} title="Students" to={'/students'} />
+          <SidebarItem icon={<FileText size={20} />} title="Assignments" to={'/assignment'} />
           <SidebarItem icon={<Bell size={20} />} title="Notifications" />
           <SidebarItem icon={<Settings size={20} />} title="Settings" />
         </nav>

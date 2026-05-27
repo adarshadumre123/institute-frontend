@@ -26,6 +26,7 @@ const CreateExam = () => {
 
   const createExam = async (e) => {
     e.preventDefault();
+    
     try {
          const token = localStorage.getItem("token");
 
