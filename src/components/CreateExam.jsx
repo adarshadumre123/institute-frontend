@@ -57,7 +57,7 @@ const CreateExam = () => {
           endTime: "",
         });
       } else {
-        alert("Something went wrong");
+        toast.error("Something went wrong");
       }
     } catch (error) {
     toast.error(error.response?.data?.message || "Server error");

@@ -15,6 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Courses from "./Courses";
 
 
 
@@ -176,7 +177,7 @@ const StudentDashboard = () => {
           </div>
         </div>
 
-        {/* Courses */}
+        Courses
         <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
           <h2 className="text-2xl font-bold mb-5">My Courses</h2>
 
@@ -208,6 +209,7 @@ const StudentDashboard = () => {
             ))}
           </div>
         </div>
+        <Courses/>
 
         {/* Assignments + Schedule */}
         <div className="grid md:grid-cols-2 gap-6">

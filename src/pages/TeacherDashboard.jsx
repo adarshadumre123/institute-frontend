@@ -29,7 +29,7 @@ const TeacherDashboard = () => {
 
         <nav className="flex-1 p-4 space-y-2">
           <SidebarItem icon={<LayoutDashboard size={20} />} title="Dashboard" active />
-          <SidebarItem icon={<BookOpen size={20} />} title="Courses"  />
+          <SidebarItem icon={<BookOpen size={20} />} title="Courses" to={'/course'} />
           <SidebarItem icon={<ClipboardList size={20} />} title="Exams" to={'/exam'} />
           <SidebarItem icon={<Users size={20} />} title="Students" to={'/students'} />
           <SidebarItem icon={<FileText size={20} />} title="Assignments" to={'/assignment'} />
