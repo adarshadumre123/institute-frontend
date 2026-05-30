@@ -53,7 +53,7 @@ const Login = () => {
         localStorage.setItem("role",role)
 
 
-        toast.success(res.data.message || "Login successful");
+        toast.success(res.data.message || "Login successfully");
 
 
         if (role === "student") return navigate("/student/dashboard");

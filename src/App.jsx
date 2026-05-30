@@ -13,6 +13,8 @@ import TeacherDashboard from "./pages/TeacherDashboard";
 import { Toaster } from "sonner";
 import Students from "./pages/Students";
 import Courses from "./pages/Courses";
+import Teachers from "./pages/Teachers";
+import Admin from "./pages/AdminDashboard";
 
 
 const router = createBrowserRouter([
@@ -24,10 +26,12 @@ const router = createBrowserRouter([
   { path: "/profile", element: <Profile /> },
   { path: "/notes", element: <Notes/> },
   { path: "/students", element: <Students/> },
+  { path: "/teachers", element: <Teachers/> },
   { path: "/course", element: <Courses/> },
   { path: "/createExam", element: <CreateExam/> },
   { path: "/examdetails/:id", element: <ExamDetails/> },
   { path: "/student/dashboard", element: < StudentDashboard/> },
+  { path: "/admin/dashboard", element: < Admin/> },
   { path: "/teacher/dashboard", element: < TeacherDashboard/> },
 ]);
 
