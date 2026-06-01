@@ -37,7 +37,11 @@ const SignupPage = () => {
      })  
 
      if(res.data.success){
-       toast.success(res.data.message || "registered successfully")
+      //  toast.success(res.data.message || "registered successfully")
+      //  if (role === "student") return navigate("/student/dashboard");
+      //   if (role === "teacher") return navigate("/teacher/dashboard");
+      //   if (role === "admin")   return navigate("/admin/dashboard");
+
        navigate("/")
      }
    } catch (error) {
