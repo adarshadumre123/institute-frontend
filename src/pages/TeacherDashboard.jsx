@@ -17,6 +17,11 @@ import { Link } from "react-router-dom";
 
 
 const TeacherDashboard = () => {
+
+  const getDetails=async()=>{
+    
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 flex">
       {/* Sidebar */}
