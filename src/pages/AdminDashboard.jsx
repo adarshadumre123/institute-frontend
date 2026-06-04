@@ -71,6 +71,7 @@ const Admin = () => {
           <SidebarItem
             icon={<Database size={20} />}
             title="Database"
+            to="/database"
           />
 
           <SidebarItem

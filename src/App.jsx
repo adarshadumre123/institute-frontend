@@ -15,6 +15,7 @@ import Students from "./pages/Students";
 import Courses from "./pages/Courses";
 import Teachers from "./pages/Teachers";
 import Admin from "./pages/AdminDashboard";
+import Database from "./pages/Database";
 
 
 const router = createBrowserRouter([
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
   { path: "/students", element: <Students/> },
   { path: "/teachers", element: <Teachers/> },
   { path: "/course", element: <Courses/> },
+  { path: "/database", element: <Database/> },
   { path: "/createExam", element: <CreateExam/> },
   { path: "/examdetails/:id", element: <ExamDetails/> },
   { path: "/student/dashboard", element: < StudentDashboard/> },
