@@ -20,8 +20,8 @@ const CreateCourses = () => {
             if(res.data.success){
                 toast.success(res.data.success || "courses created successfully")
             }
-            setCourses({
-                course:"",
+        setCourses({
+        course:"",
         subject:"",
         price:"",
         description:""

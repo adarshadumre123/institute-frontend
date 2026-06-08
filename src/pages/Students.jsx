@@ -3,6 +3,7 @@
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { Loader } from 'lucide-react';
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -94,14 +95,12 @@ const Students = () => {
                   </h2>
                 </div>
 
-                <div className="flex items-center justify-between pt-2">
-                  <span className="bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-semibold">
+                <div className="flex items-center justify-center pt-2">
+                  <span className="bg-green-100 text-green-700 px-4 py-1  rounded-full text-sm font-semibold">
                     Active Student
                   </span>
 
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-medium transition duration-300">
-                    View
-                  </button>
+                 
                 </div>
               </div>
             </div>
@@ -110,9 +109,15 @@ const Students = () => {
       ) : (
         <div className="flex items-center justify-center h-[60vh]">
           <div className="bg-white shadow-lg rounded-3xl p-10 text-center">
-            <h1 className="text-2xl font-bold text-gray-700">
-              No Students Available
-            </h1>
+            <div className="flex flex-col items-center gap-5">
+
+              <Loader className="animate-spin h-16 w-16 text-blue-600" />
+
+              <p className="text-2xl font-bold text-gray-700">
+                Loading Exam...
+              </p>
+
+            </div>
             <p className="text-gray-500 mt-2">
               Students data will appear here.
             </p>
