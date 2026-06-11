@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
-const CreateExam = () => {
+const CreateExam = ({mode="create",examId}) => {
   const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState({
@@ -15,6 +15,19 @@ const CreateExam = () => {
     startTime: "",
     endTime: "",
   });
+
+ 
+   useEffect(() => {
+   if(mode==="update" && examId){
+    const fetchExam = async()=>{
+      try {
+        
+      } catch (error) {
+        
+      }
+    }
+   }
+   }, [input])
 
 
   const handleChange = (e) => {
