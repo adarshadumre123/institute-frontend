@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { toast } from "sonner";
 import {
   Clock,
   BookOpen,
@@ -14,7 +15,38 @@ const Exam = () => {
   const [exams, setExam] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const {id}=useParams();
+
+
+
   const role = localStorage.getItem("role")?.trim().toLowerCase();
+
+
+  const deleteExam=async(id)=>{
+    
+    try {
+      const token = localStorage.getItem("token")
+      const res = await axios.delete(`http://localhost:8000/api/v1/exams/delete/${id}`,{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      })
+      if (res.data.success){
+        toast.success("exam delete successfully")
+        setExam(prev=>prev.filter(exams=>exams._id!==id))
+      }
+    } catch (error) {
+       toast.error(error.response?.data?.message || "Delete failed");
+
+    }
+  }
+
+  const handleDelete=(id)=>{
+    const confirm=window.confirm("Are you sure to delete");
+    if(confirm){
+      deleteExam(id)
+    }
+  }
 
   const getAllExams = async () => {
     try {
@@ -74,13 +106,12 @@ const Exam = () => {
               {/* Status */}
               <div className="flex justify-between items-center mb-5">
                 <span
-                  className={`px-4 py-1 rounded-full text-sm font-semibold ${
-                    exam.status === "Live"
+                  className={`px-4 py-1 rounded-full text-sm font-semibold ${exam.status === "Live"
                       ? "bg-green-100 text-green-600"
                       : exam.status === "Scheduled"
-                      ? "bg-yellow-100 text-yellow-700"
-                      : "bg-gray-200 text-gray-600"
-                  }`}
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-gray-200 text-gray-600"
+                    }`}
                 >
                   {exam.status}
                 </span>
@@ -133,12 +164,14 @@ const Exam = () => {
 
                 {(role === "teacher" || role === "admin") && (
                   <>
-                    <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
-                      <Pencil size={20} />
+                    <Link
+                      to={`/updateExam/${exam._id}`}
+                      className="bg-green-600 text-white px-4 py-2 rounded-lg"
+                    >
                       Edit
-                    </button>
+                    </Link>
 
-                    <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                    <button onClick={()=>handleDelete(exam._id)} className="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
                       Delete
                     </button>
                   </>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
-const CreateExam = ({mode="create",examId}) => {
+const CreateExam = ({ mode = "create", examId }) => {
   const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState({
@@ -16,18 +16,8 @@ const CreateExam = ({mode="create",examId}) => {
     endTime: "",
   });
 
- 
-   useEffect(() => {
-   if(mode==="update" && examId){
-    const fetchExam = async()=>{
-      try {
-        
-      } catch (error) {
-        
-      }
-    }
-   }
-   }, [input])
+
+
 
 
   const handleChange = (e) => {
@@ -37,11 +27,47 @@ const CreateExam = ({mode="create",examId}) => {
     }));
   };
 
-  const createExam = async (e) => {
-    e.preventDefault();
-    
+  const updateExam = async () => {
+
+    setLoading(true)
     try {
-         const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token");
+      const res = await axios.put(`http://localhost:8000/api/v1/exams/update/${examId}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      })
+      if (res.data.success) {
+        toast.success(res.data.message || "Data updated successfully");
+        setData({
+          title: "",
+          subject: "",
+          description: "",
+          duration: "",
+          totalQuestions: "",
+          totalMarks: "",
+          passingMarks: "",
+          startTime: "",
+          endTime: "",
+        })
+      }
+      else {
+        toast.error("exam is not updated")
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Server error");
+
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const createExam = async () => {
+  
+
+    try {
+      const token = localStorage.getItem("token");
 
       setLoading(true);
 
@@ -73,20 +99,33 @@ const CreateExam = ({mode="create",examId}) => {
         toast.error("Something went wrong");
       }
     } catch (error) {
-    toast.error(error.response?.data?.message || "Server error");
+      toast.error(error.response?.data?.message || "Server error");
     } finally {
       setLoading(false);
     }
   };
 
+  
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    if(mode==='create'){
+      createExam();
+    }
+    else{
+      updateExam();
+    }
+  }
+
+  
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-8">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-          Create New Exam
+          {mode==='update'?"update exam":"create new exam"}
         </h2>
 
-        <form onSubmit={createExam} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
           <input
             type="text"
@@ -171,7 +210,15 @@ const CreateExam = ({mode="create",examId}) => {
             disabled={loading}
             className="md:col-span-2 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
           >
-            {loading ? "Creating..." : "Create Exam"}
+            {
+  loading
+    ? mode === "update"
+      ? "Updating..."
+      : "Creating..."
+    : mode === "update"
+    ? "Update Exam"
+    : "Create Exam"
+}
           </button>
         </form>
       </div>

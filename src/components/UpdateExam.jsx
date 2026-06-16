@@ -1,5 +1,6 @@
 import React from 'react'
 import CreateExam from './CreateExam';
+import { useParams } from "react-router-dom";
 
 const UpdateExam = () => {
     const {id}=useParams();

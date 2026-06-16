@@ -8,6 +8,7 @@ const Assignment = () => {
   const getAssignment = async () => {
     try {
       const token = localStorage.getItem("token");
+      console.log(token)
 
       const res = await axios.get(
         "http://localhost:8000/api/v1/assignment/get-assignment",
@@ -21,7 +22,7 @@ const Assignment = () => {
       console.log(res.data);
 
       // Change this according to your API response
-      setAssignments(res.data.assignments || res.data.data || []);
+      setAssignments(res.data.assignments || res.data.message || []);
     } catch (error) {
       console.log(error);
     } finally {
@@ -32,6 +33,7 @@ const Assignment = () => {
   useEffect(() => {
     getAssignment();
   }, []);
+
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
