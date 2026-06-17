@@ -61,6 +61,7 @@ const Admin = () => {
           <SidebarItem
             icon={<BookOpen size={20} />}
             title="Courses"
+            to={'/course'}
           />
 
           <SidebarItem

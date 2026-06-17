@@ -17,6 +17,8 @@ import Teachers from "./pages/Teachers";
 import Admin from "./pages/AdminDashboard";
 import Database from "./pages/Database";
 import UpdateExam from "./components/updateExam";
+import CreateCourses from "./components/CreateCourses";
+import CreateAssignment from "./components/CreateAssignment";
 
 
 const router = createBrowserRouter([
@@ -30,6 +32,8 @@ const router = createBrowserRouter([
   { path: "/students", element: <Students/> },
   { path: "/teachers", element: <Teachers/> },
   { path: "/course", element: <Courses/> },
+  { path: "/create-course", element: <CreateCourses/> },
+  { path: "/create-assignment", element: <CreateAssignment/> },
   { path: "/database", element: <Database/> },
   { path: "/createExam", element: <CreateExam/> },
   { path: "/examdetails/:id", element: <ExamDetails/> },

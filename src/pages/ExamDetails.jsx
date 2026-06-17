@@ -1,5 +1,3 @@
-
-
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
@@ -10,7 +8,7 @@ const ExamDetails = () => {
 
     const { id } = useParams();
 
-    const [exam, setExam] = useState(null);
+    const [exam, setExam] = useState("");
 
     const getData = async () => {
         try {

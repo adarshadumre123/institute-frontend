@@ -1,10 +1,14 @@
 import axios from "axios";
+import { Plus } from "lucide-react";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 
 const Assignment = () => {
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const role = localStorage.getItem("role").trim().toLowerCase()
   const getAssignment = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -37,10 +41,18 @@ const Assignment = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-center mb-8">
+      <div className="max-w-6xl mx-auto mt-10">
+        <h1 className="text-3xl font-bold text-center mb-8 ">
           Assignments
         </h1>
+        {(role === "admin" || role === "teacher") && (
+
+          <Link to={'/create-assignment'} className=" flex absolute top-15 right-50 font-bold bg-blue-700 w-45 h-15 items-center rounded-xl text-shadow-white justify-center cursor-pointer">
+            <Plus className="text-white" />
+            <p className="text-white">Add Assignment</p>
+          </Link>
+
+        )}
 
         {loading ? (
           <div className="text-center text-lg font-semibold">
@@ -82,6 +94,10 @@ const Assignment = () => {
                     <span className="font-semibold">Created By:</span>{" "}
                     {item.createdBy?.firstName}{" "}
                     {item.createdBy?.lastName}
+                  </p>
+                  <p>
+                    <span className="font-semibold">Created By:</span>{" "}
+                    {item.createdBy?.email}{" "}
                   </p>
                 </div>
 

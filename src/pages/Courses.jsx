@@ -5,10 +5,16 @@ import {
   DollarSign,
   FileText,
   GraduationCap,
+  Plus,
+  Loader
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
+
+  const role = localStorage.getItem("role")?.trim().toLowerCase();
+
 
   const getAllCourses = async () => {
     try {
@@ -35,12 +41,20 @@ const Courses = () => {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-100 via-blue-50 to-indigo-100 py-10 px-4">
-      
+
       {/* Heading */}
       <div className="max-w-7xl mx-auto mb-10">
         <h1 className="text-4xl font-extrabold text-gray-800 text-center">
           Explore Courses
         </h1>
+        {(role === "admin" || role === "teacher") && (
+
+          <Link to={'/create-course'} className=" flex absolute top-10 right-40 font-bold bg-blue-700 w-35 h-10 items-center rounded-xl text-shadow-white justify-center cursor-pointer">
+            <Plus className="text-white" />
+            <p className="text-white">Add Courses</p>
+          </Link>
+
+        )}
 
         <p className="text-center text-gray-500 mt-3 text-lg">
           Learn new skills and grow your knowledge
@@ -48,14 +62,16 @@ const Courses = () => {
       </div>
 
       {/* Courses Grid */}
+
+
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        
+
         {courses.map((course) => (
           <div
             key={course._id}
             className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 group hover:-translate-y-2"
           >
-            
+
             {/* Top Banner */}
             <div className="bg-linear-to-r from-blue-600 to-indigo-600 h-32 flex items-center justify-center">
               <GraduationCap
@@ -66,7 +82,7 @@ const Courses = () => {
 
             {/* Content */}
             <div className="p-6">
-              
+
               {/* Course Name */}
               <div className="flex items-center gap-2 mb-4">
                 <BookOpen className="text-blue-600" size={22} />
@@ -97,7 +113,7 @@ const Courses = () => {
                   </span>
                 </div>
 
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
+                <button className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
                   Enroll
                 </button>
               </div>
@@ -108,14 +124,14 @@ const Courses = () => {
 
       {/* Empty State */}
       {courses.length === 0 && (
-        <div className="text-center mt-20">
-          <h2 className="text-2xl font-bold text-gray-700">
-            No Courses Available
-          </h2>
+        <div className="flex flex-col items-center gap-5">
 
-          <p className="text-gray-500 mt-2">
-            Please add some courses first.
+          <Loader className="animate-spin h-16 w-16 text-blue-600" />
+
+          <p className="text-2xl font-bold text-gray-700">
+            Loading Courses...
           </p>
+
         </div>
       )}
     </div>
