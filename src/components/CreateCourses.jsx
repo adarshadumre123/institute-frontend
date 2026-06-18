@@ -22,6 +22,8 @@ const CreateCourses = () => {
     "price":"",
 })
 
+
+
 const[loading,setLoading]=useState(false)
 
 const createCourses=async()=>{
@@ -119,10 +121,10 @@ const createCourses=async()=>{
             {/* Price */}
             <div>
               <label className="block text-gray-200 mb-2 font-medium">
-                Price ($)
+                Price ()
               </label>
               <input
-                type="number"
+                type="text"
                 name="price"
                 value={courses.price}
                 onChange={handleChange}

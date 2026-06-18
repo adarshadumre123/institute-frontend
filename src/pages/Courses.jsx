@@ -8,9 +8,13 @@ import {
   Plus,
   Loader
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+
 
 const Courses = () => {
+  const navigate=useNavigate();
+
   const [courses, setCourses] = useState([]);
 
   const role = localStorage.getItem("role")?.trim().toLowerCase();
@@ -38,6 +42,14 @@ const Courses = () => {
   useEffect(() => {
     getAllCourses();
   }, []);
+
+  const enrollChange=(course)=>{
+    if(course.price===0 || course.price==="free"){
+      navigate(`/main-course/${course._id}`)
+    }else{
+      toast.error("Pay your courses")
+    }
+  }
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-100 via-blue-50 to-indigo-100 py-10 px-4">
@@ -109,11 +121,11 @@ const Courses = () => {
                 <div className="flex items-center gap-2">
                   <DollarSign className="text-green-600" size={20} />
                   <span className="text-2xl font-bold text-green-600">
-                    Rs. {course.price}
+                     {course.price}
                   </span>
                 </div>
 
-                <button className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
+                <button onClick={()=>enrollChange(course)} className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
                   Enroll
                 </button>
               </div>
