@@ -46,6 +46,7 @@ const Courses = () => {
   const enrollChange=(course)=>{
     if(course.price===0 || course.price==="free"){
       navigate(`/main-course/${course._id}`)
+      toast.success("Course enrolled successfully")
     }else{
       toast.error("Pay your courses")
     }
@@ -110,6 +111,18 @@ const Courses = () => {
                   {course.subject}
                 </p>
               </div>
+              <div className="flex items-center gap-2 mb-3">
+                <FileText className="text-indigo-500" size={18} />
+                <p className="text-gray-700 font-medium">
+                Created By :  {course.createdBy.firstName} { course.createdBy.lastName}
+                </p>
+              </div>
+              <div className="flex items-center gap-2 mb-3">
+                <FileText className="text-indigo-500" size={18} />
+                <p className="text-gray-700 font-medium">
+                email :  {course.createdBy.email}
+                </p>
+              </div>
 
               {/* Description */}
               <p className="text-gray-500 text-sm leading-relaxed mb-5">
@@ -127,6 +140,9 @@ const Courses = () => {
 
                 <button onClick={()=>enrollChange(course)} className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
                   Enroll
+                </button>
+                <button  className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
+                  View Details
                 </button>
               </div>
             </div>

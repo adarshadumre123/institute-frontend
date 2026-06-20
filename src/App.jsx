@@ -20,6 +20,7 @@ import UpdateExam from "./components/updateExam";
 import CreateCourses from "./components/CreateCourses";
 import CreateAssignment from "./components/CreateAssignment";
 import MainCourse from "./pages/MainCourse";
+import Subject from "./pages/Subject";
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
   { path: "/teacher/dashboard", element: < TeacherDashboard/> },
   {path: "/updateExam/:id",element: <UpdateExam /> },
   {path: "/main-course/:id",element: <MainCourse /> },
+  {path: "/main-course/:id/create-subject",element: <Subject /> },
 ]);
 
 // const App = () => {
