@@ -75,7 +75,7 @@ const StudentDashboard = () => {
             <span>Games</span>            
           </Link>
 
-          <Link to={'/notes'} className="flex items-center gap-3 hover:bg-gray-600 p-3 rounded-lg cursor-pointer">
+          <Link to={'/update'} className="flex items-center gap-3 hover:bg-gray-600 p-3 rounded-lg cursor-pointer">
             <ClipboardList />
             <span>Notices</span>
           </Link>

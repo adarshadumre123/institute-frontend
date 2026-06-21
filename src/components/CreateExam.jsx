@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
+import { useParams } from "react-router-dom";
 const CreateExam = ({ mode = "create", examId }) => {
   const [loading, setLoading] = useState(false);
 
@@ -30,6 +31,7 @@ const CreateExam = ({ mode = "create", examId }) => {
   const updateExam = async () => {
 
     setLoading(true)
+   
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(`http://localhost:8000/api/v1/exams/update/${examId}`, data, {
