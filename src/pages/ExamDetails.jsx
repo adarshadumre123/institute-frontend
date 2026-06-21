@@ -36,11 +36,11 @@ const ExamDetails = () => {
             getData();
         }
     }, [id]);
-    
+
 
     return (
         <div className="min-h-screen bg-linear-to-br from-blue-100 via-white to-indigo-100 flex justify-center items-center p-6">
-            
+
             {
                 exam ? (
 
@@ -54,7 +54,7 @@ const ExamDetails = () => {
                             </h1>
 
                             <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2 relative left-180 bottom-10 cursor-pointer">
-                                <Pencil size={20}  />
+                                <Pencil size={20} />
                                 Edit
                             </button>
 
@@ -156,12 +156,12 @@ const ExamDetails = () => {
 
                             {/* BUTTON */}
                             <div className='flex gap-4'>
-                            <button className="w-full mt-8 bg-linear-to-r from-blue-600 to-indigo-700 hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 text-white py-4 rounded-2xl text-xl font-bold">
-                                Join Exam
-                            </button>
-                            <button className="w-full mt-8 bg-linear-to-r from-red-600 to-red-900 hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 text-white py-4 rounded-2xl text-xl font-bold">
-                                Delete Exam
-                            </button>
+                                <button className="w-full mt-8 bg-linear-to-r from-blue-600 to-indigo-700 hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 text-white py-4 rounded-2xl text-xl font-bold">
+                                    Join Exam
+                                </button>
+                                <button className="w-full mt-8 bg-linear-to-r from-red-600 to-red-900 hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 text-white py-4 rounded-2xl text-xl font-bold">
+                                    Delete Exam
+                                </button>
                             </div>
 
                         </div>

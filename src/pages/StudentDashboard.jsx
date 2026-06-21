@@ -34,36 +34,13 @@ const StudentDashboard = () => {
     }
   }
   const courses = [
-    {
-      title: "Web Development",
-      teacher: "Mr. Sharma",
-      progress: 75,
-    },
-    {
-      title: "Database Management",
-      teacher: "Mrs. Karki",
-      progress: 55,
-    },
-    {
-      title: "Computer Networking",
-      teacher: "Mr. Rai",
-      progress: 90,
-    },
+  
   ];
 
 
 
   const assignments = [
-    {
-      title: "React Assignment",
-      due: "Tomorrow",
-      status: "Pending",
-    },
-    {
-      title: "MongoDB Project",
-      due: "2 Days Left",
-      status: "Submitted",
-    },
+
   ];
 
   return (
@@ -88,6 +65,14 @@ const StudentDashboard = () => {
           <Link to={'/exam'} className="flex items-center gap-3 hover:bg-gray-600 p-3 rounded-lg cursor-pointer">
             <ClipboardList />
             <span>Online Exam</span>
+          </Link>
+          <Link to={'/course'} className="flex items-center gap-3 hover:bg-gray-600 p-3 rounded-lg cursor-pointer">
+            <BookOpen />
+            <span>Courses</span>            
+          </Link>
+          <Link to={'/game'} className="flex items-center gap-3 hover:bg-gray-600 p-3 rounded-lg cursor-pointer">
+            <BookOpen />
+            <span>Games</span>            
           </Link>
 
           <Link to={'/notes'} className="flex items-center gap-3 hover:bg-gray-600 p-3 rounded-lg cursor-pointer">
@@ -117,21 +102,7 @@ const StudentDashboard = () => {
 
           <div className="flex items-center gap-3">
 
-            <img
-              src="https://i.pravatar.cc/100"
-              alt="profile"
-              className="w-12 h-12 rounded-full border-2 border-indigo-500"
-            />
-            <select
-              defaultValue=""
-              onChange={ProfileImageHandler}
-            >
-              <option value="" disabled>
-                Select
-              </option>
-              <option value="profile">Profile</option>
-              <option value="logout">Logout</option>
-            </select>
+            
           </div>
         </div>
 

@@ -18,7 +18,8 @@ const CreateCourses = () => {
   const[courses,setCourses]=useState({
     "course":"",
     "subject":"",
-    "description":"",
+    "longDescription":"",
+    "shortDescription":"",
     "price":"",
 })
 
@@ -39,9 +40,10 @@ const createCourses=async()=>{
   if(res.data.success){
     toast.success("course created successfully")
     setCourses({
-       "course":"",
+    "course":"",
     "subject":"",
-    "description":"",
+    "longDescription":"",
+    "shortDescription":"",
     "price":"",
     })
   }else{
@@ -102,16 +104,29 @@ const createCourses=async()=>{
                 className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
               />
             </div>
+            <div>
+              <label className="block text-gray-200 mb-2 font-medium">
+                shortDescription
+              </label>
+              <input
+                type="text"
+                name="shortDescription"
+                value={courses.shortDescription}
+                onChange={handleChange}
+                placeholder="Web Development"
+                className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+              />
+            </div>
 
             {/* Description */}
             <div>
               <label className="block text-gray-200 mb-2 font-medium">
-                Description
+                LongDescription
               </label>
               <textarea
                 rows="5"
-                name="description"
-                value={courses.description}
+                name="longDescription"
+                value={courses.longDescription}
                 onChange={handleChange}
                 placeholder="Write a detailed description about your course..."
                 className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all resize-none"

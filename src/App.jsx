@@ -21,6 +21,8 @@ import CreateCourses from "./components/CreateCourses";
 import CreateAssignment from "./components/CreateAssignment";
 import MainCourse from "./pages/MainCourse";
 import Subject from "./pages/Subject";
+import CourseDetails from "./pages/CourseDetails";
+import Game from "./pages/Game";
 
 
 const router = createBrowserRouter([
@@ -28,6 +30,7 @@ const router = createBrowserRouter([
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
   { path: "/exam", element: <Exam/> },
+  { path: "/game", element: <Game/> },
   { path: "/assignment", element: <Assignment /> },
   { path: "/profile", element: <Profile /> },
   { path: "/notes", element: <Notes/> },
@@ -45,6 +48,7 @@ const router = createBrowserRouter([
   {path: "/updateExam/:id",element: <UpdateExam /> },
   {path: "/main-course/:id",element: <MainCourse /> },
   {path: "/main-course/:id/create-subject",element: <Subject /> },
+  {path: "/course-details/:id",element: <CourseDetails /> },
 ]);
 
 // const App = () => {
