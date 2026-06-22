@@ -150,10 +150,10 @@ const Exam = () => {
 
               {/* Buttons */}
               <div className="flex gap-2 flex-wrap">
-                <button className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                <Link to={`/join-exam/${exam._id}`} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
                   <PlayCircle size={20} />
                   Join Exam
-                </button>
+                </Link>
 
                 <Link
                   to={`/examdetails/${exam._id}`}

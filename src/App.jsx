@@ -23,6 +23,7 @@ import MainCourse from "./pages/MainCourse";
 import Subject from "./pages/Subject";
 import CourseDetails from "./pages/CourseDetails";
 import Game from "./pages/Game";
+import JoinExam from "./pages/JoinExam";
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
   { path: "/admin/dashboard", element: < Admin/> },
   { path: "/teacher/dashboard", element: < TeacherDashboard/> },
   {path: "/updateExam/:id",element: <UpdateExam /> },
+  {path: "/join-exam/:id",element: <JoinExam /> },
   {path: "/main-course/:id",element: <MainCourse /> },
   {path: "/main-course/:id/create-subject",element: <Subject /> },
   {path: "/course-details/:id",element: <CourseDetails /> },

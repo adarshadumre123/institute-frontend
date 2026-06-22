@@ -23,6 +23,7 @@ const ExamDetails = () => {
                     }
                 }
             );
+                console.log(res.data);
 
             setExam(res.data.exam);
 
