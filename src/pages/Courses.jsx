@@ -43,14 +43,77 @@ const Courses = () => {
     getAllCourses();
   }, []);
 
-  const enrollChange=(course)=>{
-    if(course.price===0 || course.price==="free"){
-      navigate(`/main-course/${course._id}`)
-      toast.success("Course enrolled successfully")
-    }else{
-      toast.error("Pay your courses")
+ const enrollChange = async (course) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    // Free Course
+    if (Number(course.price) === 0) {
+      const { data } = await axios.post(
+        "http://localhost:8000/api/v1/enrollment/enroll",
+        {
+          courseId: course._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      toast.success(data.message);
+
+      navigate(`/main-course/${course._id}`);
+
+      return;
     }
+
+    // Paid Course
+    const { data } = await axios.post(
+      "http://localhost:8000/api/v1/payment/create-payment",
+      {
+        courseId: course._id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const paymentData = data.paymentData;
+
+    const form = document.createElement("form");
+
+    form.method = "POST";
+
+    form.action =
+      "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
+
+    Object.keys(paymentData).forEach((key) => {
+      const input = document.createElement("input");
+
+      input.type = "hidden";
+
+      input.name = key;
+
+      input.value = paymentData[key];
+
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(form);
+
+    form.submit();
+
+  } catch (error) {
+    console.log(error);
+
+    toast.error(
+      error.response?.data?.message || "Something went wrong"
+    );
   }
+};
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-100 via-blue-50 to-indigo-100 py-10 px-4">

@@ -38,6 +38,7 @@ export default function App() {
     }
   };
 
+
   const resetGame = () => {
     setUserChoice(null);
     setComputerChoice(null);
@@ -47,6 +48,7 @@ export default function App() {
   };
 
   return (
+
     <div className="min-h-screen bg-linear-to-br from-indigo-600 via-purple-600 to-pink-600 flex items-center justify-center p-5">
       <div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-xl">
 
@@ -54,12 +56,17 @@ export default function App() {
           ✊ Rock Paper Scissors ✂️
         </h1>
 
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <p className="flex items-center justify-center pb-4">Select one</p>
+
+       
+          
+          
+          <div className="grid grid-cols-3 gap-4 mb-8">
           {choices.map((item) => (
             <button
-              key={item.name}
-              onClick={() => playGame(item)}
-              className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl p-5 transition text-xl font-semibold"
+            key={item.name}
+            onClick={() => playGame(item)}
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl p-5 transition text-xl font-semibold"
             >
               <div className="text-5xl">{item.emoji}</div>
               <div>{item.name}</div>
@@ -71,19 +78,19 @@ export default function App() {
           <div className="text-center space-y-4">
 
             <div className="grid grid-cols-2 gap-5">
+            
+            <div className="bg-gray-100 rounded-xl p-4">
+            <h2 className="font-bold mb-2">You</h2>
+            <div className="text-6xl">{userChoice?.emoji}</div>
+            <p>{userChoice?.name}</p>
+            </div>
 
-              <div className="bg-gray-100 rounded-xl p-4">
-                <h2 className="font-bold mb-2">You</h2>
-                <div className="text-6xl">{userChoice?.emoji}</div>
-                <p>{userChoice?.name}</p>
-              </div>
-
-              <div className="bg-gray-100 rounded-xl p-4">
-                <h2 className="font-bold mb-2">Computer</h2>
-                <div className="text-6xl">{computerChoice?.emoji}</div>
-                <p>{computerChoice?.name}</p>
-              </div>
-
+            <div className="bg-gray-100 rounded-xl p-4">
+            <h2 className="font-bold mb-2">Computer</h2>
+            <div className="text-6xl">{computerChoice?.emoji}</div>
+            <p>{computerChoice?.name}</p>
+            </div>
+            
             </div>
 
             <h2 className="text-2xl font-bold text-purple-700">
