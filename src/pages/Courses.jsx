@@ -12,7 +12,10 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 
+
+
 const Courses = () => {
+
   const navigate=useNavigate();
 
   const [courses, setCourses] = useState([]);

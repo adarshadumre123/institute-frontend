@@ -24,7 +24,9 @@ import Subject from "./pages/Subject";
 import CourseDetails from "./pages/CourseDetails";
 import Game from "./pages/Game";
 import JoinExam from "./pages/JoinExam";
-
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentFailed from "./pages/PaymentFailed";
+import StudentSidebar from "./components/CoursesSidebar";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -51,11 +53,15 @@ const router = createBrowserRouter([
   {path: "/main-course/:id",element: <MainCourse /> },
   {path: "/main-course/:id/create-subject",element: <Subject /> },
   {path: "/course-details/:id",element: <CourseDetails /> },
+  {path: "/course-details/:id",element: <CourseDetails /> },
+  {path:"/payment-success" ,element:<PaymentSuccess />},
+  {path:"/courses-student" ,element:<StudentSidebar/>},
+  {path:"/payment-failed", element:<PaymentFailed />}
+  
+  
 ]);
 
-// const App = () => {
-//   return <RouterProvider router={router} />;
-// };
+
 
 const App = () => {
   return (
