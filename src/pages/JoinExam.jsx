@@ -3,9 +3,11 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 const JoinExam = () => {
+  const{id}=useParams()
   const [data, setData] = useState([]);
   const [answers, setAnswers] = useState({});
 

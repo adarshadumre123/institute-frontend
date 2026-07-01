@@ -11,16 +11,22 @@ import {
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-
-
-
 const Courses = () => {
 
   const navigate=useNavigate();
 
   const [courses, setCourses] = useState([]);
 
+
   const role = localStorage.getItem("role")?.trim().toLowerCase();
+
+
+
+const handleViewCourse = () => {
+  navigate(`/main-course/${courseDetails._id}`, {
+    state: courseDetails,
+  });
+};
 
 
   const getAllCourses = async () => {
@@ -51,7 +57,7 @@ const Courses = () => {
     const token = localStorage.getItem("token");
 
     // Free Course
-    if (Number(course.price) === 0) {
+    if (Number(course.amount) === 0) {
       const { data } = await axios.post(
         "http://localhost:8000/api/v1/enrollment/enroll",
         {
@@ -203,13 +209,24 @@ const Courses = () => {
                      {course.price}
                   </span>
                 </div>
-
-                <button onClick={()=>enrollChange(course)} className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
-                  Enroll
-                </button>
-                <Link to={`/course-details/${course._id}`} className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
+{
+  course.isEnrolled?(
+    <button className="bg-blue-600 text-white px-5 py-2 rounded-xl" onClick={()=>navigate(`/main-course/${course._id}`)}>view Course</button>
+  ):(
+     <button
+        onClick={() => enrollChange(course)}
+        className="bg-red-900 text-white px-5 py-2 rounded-xl"
+    >
+        Enroll
+    </button>
+  )
+}
+                
+                <Link to={'/main-course/${course._id}'} className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
                   View Details
                 </Link>
+
+ 
               </div>
             </div>
           </div>

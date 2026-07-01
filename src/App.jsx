@@ -27,10 +27,12 @@ import JoinExam from "./pages/JoinExam";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentFailed from "./pages/PaymentFailed";
 import StudentSidebar from "./components/CoursesSidebar";
+import Class from "./pages/Class";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
+  { path: "/class", element: <Class /> },
   { path: "/signup", element: <Signup /> },
   { path: "/exam", element: <Exam/> },
   { path: "/game", element: <Game/> },

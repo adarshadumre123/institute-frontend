@@ -1,208 +1,9 @@
-// import axios from 'axios'
-// import React, { useEffect, useState } from 'react'
-// import { useParams } from 'react-router-dom'
-// import { toast } from 'sonner'
-// import {
-//   BookOpen,
-//   User,
-//   DollarSign,
-//   Clock,
-//   Award,
-//   CheckCircle,
-// } from "lucide-react";
 
-// const CourseDetails = () => {
-//     const[courseDetails,setCourseDetails]=useState(null)
-
-//     const {id}=useParams()
-//     const getCourseDetails=async()=>{
-//         try {
-//             const token = localStorage.getItem("token")
-//               const res = await axios.get(
-//                 `http://localhost:8000/api/v1/course/get-course-id/${id}`,
-//                 {
-//                     headers: {
-//                         Authorization: `Bearer ${token}`
-//                     }
-//                 }
-//             );
-//             setCourseDetails(res.data.course)
-
-//         } catch (error) {
-
-//   toast.error(error.response?.data?.message || "Server error");
-//         }
-//     }
-
-//     useEffect(() => {
-//         if(id){
-//             getCourseDetails()
-//         }
-//     }, [id])
-
-//     if (!courseDetails) {
-//     return (
-//       <div className="h-screen flex items-center justify-center">
-//         <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-//       </div>
-//     );
-//   }
-
-//   return (
-//         <div className="min-h-screen bg-slate-100">
-//       {/* Hero */}
-//       <div className="bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 py-20">
-//         <div className="max-w-7xl mx-auto px-6">
-//           <div className="text-white">
-//             <h1 className="text-5xl font-bold mb-4">
-//               {courseDetails.title}
-//             </h1>
-
-//             <p className="text-xl text-blue-100 max-w-3xl">
-//               {courseDetails.shortDescription}
-//             </p>
-
-//             <div className="flex flex-wrap gap-6 mt-8">
-//               <div className="flex items-center gap-2">
-//                 <User size={20} />
-//                 <span>{courseDetails.createdBy}</span>
-//               </div>
-
-//               <div className="flex items-center gap-2">
-//                 <BookOpen size={20} />
-//                 <span>{courseDetails.category}</span>
-//               </div>
-
-//               <div className="flex items-center gap-2">
-//                 <DollarSign size={20} />
-//                 <span>${courseDetails.price}</span>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Main Section */}
-//       <div className="max-w-7xl mx-auto px-6 py-12">
-//         <div className="grid lg:grid-cols-3 gap-8">
-          
-//           {/* Left Side */}
-//           <div className="lg:col-span-2 space-y-8">
-            
-//             {/* Description */}
-//             <div className="bg-white rounded-3xl shadow-lg p-8">
-//               <h2 className="text-3xl font-bold mb-6">
-//                 Course Overview
-//               </h2>
-
-//               <p className="text-gray-600 leading-8 text-lg whitespace-pre-line">
-//                 {courseDetails.longDescription}
-//               </p>
-//             </div>
-
-//             {/* Learning Outcomes */}
-//             <div className="bg-white rounded-3xl shadow-lg p-8">
-//               <h2 className="text-3xl font-bold mb-6">
-//                 What You'll Learn
-//               </h2>
-
-//               <div className="grid md:grid-cols-2 gap-4">
-//                 {[
-//                   "Build Real Projects",
-//                   "Learn Industry Practices",
-//                   "Master Modern Development",
-//                   "Deploy Applications",
-//                   "Authentication & Security",
-//                   "Database Design",
-//                 ].map((item, index) => (
-//                   <div
-//                     key={index}
-//                     className="flex items-center gap-3"
-//                   >
-//                     <CheckCircle
-//                       className="text-green-500"
-//                       size={20}
-//                     />
-//                     <span>{item}</span>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* Right Side */}
-//           <div>
-//             <div className="sticky top-8">
-//               <div className="bg-white rounded-3xl shadow-xl p-8">
-//                 <div className="text-center">
-//                   <h2 className="text-5xl font-bold text-green-600">
-//                     ${courseDetails.price}
-//                   </h2>
-
-//                   <p className="text-gray-500 mt-2">
-//                     One Time Payment
-//                   </p>
-//                 </div>
-
-//                 <button className="w-full mt-8 bg-linear-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl text-lg font-semibold hover:scale-105 transition">
-//                   Enroll Now
-//                 </button>
-
-//                 <div className="border-t mt-8 pt-8 space-y-5">
-//                   <div className="flex items-center gap-3">
-//                     <Clock className="text-blue-600" />
-//                     <span>Lifetime Access</span>
-//                   </div>
-
-//                   <div className="flex items-center gap-3">
-//                     <Award className="text-blue-600" />
-//                     <span>Certificate Included</span>
-//                   </div>
-
-//                   <div className="flex items-center gap-3">
-//                     <BookOpen className="text-blue-600" />
-//                     <span>Project Based Learning</span>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* Instructor Card */}
-//               <div className="bg-white rounded-3xl shadow-xl p-6 mt-6">
-//                 <h3 className="text-xl font-bold mb-4">
-//                   Instructor
-//                 </h3>
-
-//                 <div className="flex items-center gap-4">
-//                   <div className="h-14 w-14 rounded-full bg-linear-to-r from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
-//                     {courseDetails.createdBy.firstName}
-//                   </div>
-
-//                   <div>
-//                     <h4 className="font-semibold">
-//                       {courseDetails.createdBy.email}
-//                     </h4>
-//                     <p className="text-gray-500 text-sm">
-//                       Course Instructor
-//                     </p>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//         </div>
-//       </div>
-//     </div>
-
-//   )
-// }
-
-// export default CourseDetails
 
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation,useParams } from "react-router-dom";
 import { toast } from "sonner";
 import {
   BookOpen,
@@ -212,6 +13,7 @@ import {
   Award,
   CheckCircle,
 } from "lucide-react";
+
 
 const CourseDetails = () => {
   const [courseDetails, setCourseDetails] = useState(null);
@@ -237,6 +39,8 @@ const CourseDetails = () => {
     }
   };
 
+  
+
   useEffect(() => {
     if (id) {
       getCourseDetails();
@@ -251,156 +55,138 @@ const CourseDetails = () => {
     );
   }
 
+
+
   return (
-    <div className="min-h-screen bg-slate-100">
-      {/* Hero */}
-      <div className="bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-white">
-            <h1 className="text-5xl font-bold mb-4">
-              {courseDetails.title}
-            </h1>
+  <div className="min-h-screen bg-slate-100">
+    {/* Hero */}
+    <div className="bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-b-3xl">
+  <div className="max-w-7xl mx-auto px-6 py-14">
+    <span className="bg-white/20 px-3 py-1 rounded-full text-sm">
+      {courseDetails.subject}
+    </span>
 
-            <p className="text-xl text-blue-100 max-w-3xl">
-              {courseDetails.shortDescription}
-            </p>
+    <h1 className="text-5xl font-bold mt-4">
+      {courseDetails.course}
+    </h1>
 
-            <div className="flex flex-wrap gap-6 mt-8">
-              <div className="flex items-center gap-2">
-                <User size={20} />
-                <span>
-                  {courseDetails.createdBy?.firstName}{" "}
-                  {courseDetails.createdBy?.lastName}
-                </span>
-              </div>
+    <p className="mt-5 text-lg text-indigo-100 max-w-3xl">
+      {courseDetails.shortDescription}
+    </p>
+  </div>
+</div>
 
-              <div className="flex items-center gap-2">
-                <BookOpen size={20} />
-                <span>{courseDetails.category}</span>
-              </div>
+    {/* Body */}
+    <div className="max-w-7xl mx-auto grid lg:grid-cols-3 gap-8 py-10 px-6">
 
-              <div className="flex items-center gap-2">
-                <DollarSign size={20} />
-                <span>${courseDetails.price}</span>
-              </div>
-            </div>
-          </div>
+  {/* Left */}
+  <div className="lg:col-span-2 space-y-8">
+
+    <div className="bg-white rounded-2xl shadow p-8">
+      <h2 className="text-2xl font-bold mb-5">
+        Course Description
+      </h2>
+
+      <p className="text-gray-600 leading-8">
+        {courseDetails.longDescription}
+      </p>
+    </div>
+
+    <div className="bg-white rounded-2xl shadow p-8">
+      <h2 className="text-2xl font-bold mb-5">
+        Course Information
+      </h2>
+
+      <div className="grid md:grid-cols-2 gap-6">
+
+        <div>
+          <p className="text-gray-500">Course Name</p>
+          <h3 className="font-semibold text-lg">
+            {courseDetails.course}
+          </h3>
         </div>
-      </div>
 
-      {/* Main */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Left */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Description */}
-            <div className="bg-white rounded-3xl shadow-lg p-8">
-              <h2 className="text-3xl font-bold mb-6">
-                Course Overview
-              </h2>
-
-              <p className="text-gray-600 leading-8 text-lg whitespace-pre-line">
-                {courseDetails.longDescription}
-              </p>
-            </div>
-
-            {/* Learning */}
-            <div className="bg-white rounded-3xl shadow-lg p-8">
-              <h2 className="text-3xl font-bold mb-6">
-                What You'll Learn
-              </h2>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                {[
-                  "Build Real Projects",
-                  "Learn Industry Practices",
-                  "Master Modern Development",
-                  "Deploy Applications",
-                  "Authentication & Security",
-                  "Database Design",
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3"
-                  >
-                    <CheckCircle
-                      className="text-green-500"
-                      size={20}
-                    />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right */}
-          <div>
-            <div className="sticky top-8">
-              <div className="bg-white rounded-3xl shadow-xl p-8">
-                <div className="text-center">
-                  <h2 className="text-5xl font-bold text-green-600">
-                    ${courseDetails.price}
-                  </h2>
-
-                  <p className="text-gray-500 mt-2">
-                    One Time Payment
-                  </p>
-                </div>
-
-                <button className="w-full mt-8 bg-linear-to-r from-blue-600 to-purple-600 text-white py-4 rounded-xl text-lg font-semibold hover:scale-105 transition">
-                  Enroll Now
-                </button>
-
-                <div className="border-t mt-8 pt-8 space-y-5">
-                  <div className="flex items-center gap-3">
-                    <Clock className="text-blue-600" />
-                    <span>Lifetime Access</span>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <Award className="text-blue-600" />
-                    <span>Certificate Included</span>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <BookOpen className="text-blue-600" />
-                    <span>Project Based Learning</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Instructor */}
-              <div className="bg-white rounded-3xl shadow-xl p-6 mt-6">
-                <h3 className="text-xl font-bold mb-4">
-                  Instructor
-                </h3>
-
-                <div className="flex items-center gap-4">
-                  <div className="h-14 w-14 rounded-full bg-linear-to-r from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
-                    {courseDetails.createdBy?.firstName?.charAt(0)}
-                    {courseDetails.createdBy?.lastName?.charAt(0)}
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold">
-                      {courseDetails.createdBy?.firstName}{" "}
-                      {courseDetails.createdBy?.lastName}
-                    </h4>
-
-                    <p className="text-gray-500 text-sm">
-                      {courseDetails.createdBy?.email}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {/* End Instructor */}
-            </div>
-          </div>
+        <div>
+          <p className="text-gray-500">Subject</p>
+          <h3 className="font-semibold text-lg">
+            {courseDetails.subject}
+          </h3>
         </div>
+
+        <div>
+          <p className="text-gray-500">Instructor</p>
+          <h3 className="font-semibold text-lg">
+            {courseDetails.createdBy?.firstName}{" "}
+            {courseDetails.createdBy?.lastName}
+          </h3>
+        </div>
+
+        <div>
+          <p className="text-gray-500">Students</p>
+          <h3 className="font-semibold text-lg">
+            {courseDetails.enrolledStudents?.length || 0}
+          </h3>
+        </div>
+
       </div>
     </div>
-  );
+
+  </div>
+
+  {/* Right Sidebar */}
+
+  <div>
+
+    <div className="bg-white rounded-2xl shadow-lg sticky top-6 p-8">
+
+      <h2 className="text-4xl font-bold text-indigo-600">
+        Rs. {courseDetails.price}
+      </h2>
+
+      <button className="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition">
+        Enroll Now
+      </button>
+
+      <div className="border-t mt-8 pt-8 space-y-5">
+
+        <div className="flex justify-between">
+          <span>Subject</span>
+          <span className="font-medium">
+            {courseDetails.subject}
+          </span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Instructor</span>
+          <span>
+            {courseDetails.createdBy?.firstName}
+          </span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Students</span>
+          <span>
+            {courseDetails.enrolledStudents?.length || 0}
+          </span>
+        </div>
+
+        <div className="flex justify-between">
+          <span>Created</span>
+          <span>
+            {new Date(courseDetails.createdAt).toLocaleDateString()}
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+  </div>
+
+  )
 };
 
 export default CourseDetails;
