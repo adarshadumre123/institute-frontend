@@ -12,6 +12,7 @@ const Class = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [newClass, setNewClass] = useState([]);
 
   const handleChange = (e) => {
     setClassItem((prev) => ({
@@ -20,10 +21,10 @@ const Class = () => {
     }));
   };
 
+  const token = localStorage.getItem("token");
   const createClass = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
 
     setLoading(true);
 
@@ -58,6 +59,8 @@ const Class = () => {
       setLoading(false);
     }
   };
+
+  
 
   return (
     <div className="max-w-2xl mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">

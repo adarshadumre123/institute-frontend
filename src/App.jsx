@@ -28,11 +28,12 @@ import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentFailed from "./pages/PaymentFailed";
 import StudentSidebar from "./components/CoursesSidebar";
 import Class from "./pages/Class";
+import GetClass from "./components/GetClass";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
-  { path: "/class", element: <Class /> },
+  { path: "/class", element: <GetClass /> },
   { path: "/signup", element: <Signup /> },
   { path: "/exam", element: <Exam/> },
   { path: "/game", element: <Game/> },
@@ -53,8 +54,7 @@ const router = createBrowserRouter([
   {path: "/updateExam/:id",element: <UpdateExam /> },
   {path: "/join-exam/:id",element: <JoinExam /> },
   {path: "/main-course/:id",element: <MainCourse /> },
-  {path: "/main-course/:id/create-subject",element: <Subject /> },
-  {path: "/course-details/:id",element: <CourseDetails /> },
+  {path: "/class-create",element: <Class /> },
   {path: "/course-details/:id",element: <CourseDetails /> },
   {path:"/payment-success" ,element:<PaymentSuccess />},
   {path:"/courses-student" ,element:<StudentSidebar/>},
