@@ -56,6 +56,8 @@ const createCourses=async()=>{
     setLoading(false)
   }
 }
+
+
     
   return (
    <div className="min-h-screen bg-linear-to-br from-indigo-950 via-slate-900 to-black flex items-center justify-center px-4 py-10">

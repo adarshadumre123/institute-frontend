@@ -44,6 +44,14 @@ const MainCourse = () => {
             to="/student/notes"
             active={location.pathname === "/student/notes"}
           />
+          <SidebarItem
+            icon={<FileText size={20} />}
+            title="Exams"
+            to={`/course/:courseId/exam`}
+            active={location.pathname === "/student/notes"}
+          />
+
+
 
           <SidebarItem
             icon={<ClipboardList size={20} />}

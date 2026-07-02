@@ -12,10 +12,10 @@ import {
 import axios from "axios";
 
 const Exam = () => {
+  const {courseId}=useParams()
   const [exams, setExam] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const {id}=useParams();
 
 
 

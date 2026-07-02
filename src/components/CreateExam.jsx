@@ -4,6 +4,8 @@ import { Toaster, toast } from "sonner";
 import { useParams } from "react-router-dom";
 const CreateExam = ({ mode = "create", examId }) => {
   const [loading, setLoading] = useState(false);
+    const {id}=useParams();
+  
 
   const [data, setData] = useState({
     title: "",
@@ -13,13 +15,10 @@ const CreateExam = ({ mode = "create", examId }) => {
     totalQuestions: "",
     totalMarks: "",
     passingMarks: "",
+      course: courseId,
     startTime: "",
     endTime: "",
   });
-
-
-
-
 
   const handleChange = (e) => {
     setData((prev) => ({
