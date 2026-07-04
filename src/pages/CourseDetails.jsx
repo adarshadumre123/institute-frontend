@@ -58,7 +58,7 @@ const CourseDetails = () => {
 
 
   return (
-  <div className="min-h-screen bg-slate-100">
+  <div className="h-fit bg-slate-100">
     {/* Hero */}
     <div className="bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-b-3xl">
   <div className="max-w-7xl mx-auto px-6 py-14">

@@ -33,9 +33,9 @@ import GetClass from "./components/GetClass";
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
-  { path: "/class", element: <GetClass /> },
+  { path: "/class/:id", element: <GetClass /> },
   { path: "/signup", element: <Signup /> },
-  { path: "/course/:id/exam", element: <Exam/> },
+  { path: "/exams/:id", element: <Exam/> },
   { path: "/game", element: <Game/> },
   { path: "/assignment", element: <Assignment /> },
   { path: "/profile", element: <Profile /> },
@@ -46,20 +46,18 @@ const router = createBrowserRouter([
   { path: "/create-assignment", element: <CreateAssignment/> },
   { path: "/database", element: <Database/> },
   { path: "/createExam", element: <CreateExam/> },
-  { path: "/examdetails/:id", element: <ExamDetails/> },
+  { path: "/examdetails", element: <ExamDetails/> },
   { path: "/student/dashboard", element: < StudentDashboard/> },
   { path: "/admin/dashboard", element: < Admin/> },
   { path: "/teacher/dashboard", element: < TeacherDashboard/> },
   {path: "/updateExam/:id",element: <UpdateExam /> },
   {path: "/join-exam/:id",element: <JoinExam /> },
-  {path: "/main-course/:id",element: <MainCourse /> },
+  {path: "/main-course/:courseId",element: <MainCourse /> },
   {path: "/class-create",element: <Class /> },
   {path: "/course-details/:id",element: <CourseDetails /> },
   {path:"/payment-success" ,element:<PaymentSuccess />},
   {path:"/courses-student" ,element:<StudentSidebar/>},
   {path:"/payment-failed", element:<PaymentFailed />}
-  
-  
 ]);
 
 

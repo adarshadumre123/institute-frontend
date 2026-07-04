@@ -1,5 +1,9 @@
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { toast } from "sonner";
 import { SidebarItem } from "../components/SidebarItem";
+import { useLocation } from "react-router-dom";
 import CourseDetails from "./CourseDetails";
 
 import {
@@ -9,17 +13,66 @@ import {
   ClipboardList,
 } from "lucide-react";
 
+
+
 const MainCourse = () => {
+  const [course, setCourse] = useState(null);
+
+  console.log("MainCourse Rendered");
+
+  const { courseId } = useParams();
+
+  console.log("courseId:", courseId);
+
+
+
   const location = useLocation();
+
+  const getCourseById = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const res = await axios.get(
+        `http://localhost:8000/api/v1/course/get-course-id/${courseId}`,
+    
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(res.data.course);
+
+
+     setCourse(res.data.course);
+
+      console.log(course);
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "Something went wrong"
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (courseId) {
+      console.log("hello")
+      getCourseById();
+    }
+  }, [courseId]);
+
 
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r shadow-md flex flex-col">
         {/* Header */}
+
+
         <div className="p-6 border-b">
           <h2 className="text-2xl font-bold text-indigo-600">
-            Student Panel
+            {course?.subject}
           </h2>
         </div>
 
@@ -28,14 +81,14 @@ const MainCourse = () => {
           <SidebarItem
             icon={<BookOpen size={20} />}
             title="Classes"
-          to={'/class'}
+            to={`/class/{course._id}`}
             active={location.pathname === "/student/classes"}
           />
 
           <SidebarItem
             icon={<LayoutDashboard size={20} />}
             title="Overview"
-          
+
           />
 
           <SidebarItem
@@ -76,5 +129,4 @@ const MainCourse = () => {
     </div>
   );
 };
-
 export default MainCourse;

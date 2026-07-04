@@ -3,9 +3,11 @@
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const Teachers = () => {
   const [teachers, setTeachers] = useState([]);
+  const [teachersId, setTeachersId] = useState([]);
 
   const getTeachers = async () => {
     try {
@@ -29,6 +31,29 @@ const Teachers = () => {
       console.log(error);
     }
   };
+
+  const getTeacherById=async()=>{
+    const{id}=useParams();
+    const token = await localStorage.getItem("token")
+    try {
+      const res = await axios.get("",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        
+      })
+
+    if(res.data.success){
+      toast.success("teachers fetched successfully")
+      setTeachersId(res.data.user)
+    }
+    } catch (error) {
+            console.log(error);
+    }
+  }
+
+
 
   useEffect(() => {
     getTeachers();

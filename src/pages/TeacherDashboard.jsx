@@ -329,11 +329,11 @@ import { Link } from "react-router-dom";
 
 const TeacherDashboard = () => {
   const [dashboard, setDashboard] = useState({
-    totalCourses: 0,
-    totalStudents: 0,
-    totalClasses: 0,
-    totalAssignments: 0,
-    totalExams: 0,
+    totalCourses: "-",
+    totalStudents: "-",
+    totalClasses: "-",
+    totalAssignments: "-",
+    totalExams: "-",
   });
 
   const token = localStorage.getItem("token");
@@ -403,12 +403,7 @@ const TeacherDashboard = () => {
           </h1>
         </div>
 
-          <div className="flex items-center gap-4">
-          <Link to={'/createExam'} className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-xl flex items-center gap-2 transition ">
-              <Plus size={18} />
-              Create Exam
-             </Link>
-             </div>
+         
 
         <nav className="flex-1 p-4 space-y-2">
           <SidebarItem
@@ -466,7 +461,9 @@ const TeacherDashboard = () => {
         <div className="mb-8">
           <h1 className="text-3xl font-bold">Teacher Dashboard</h1>
           <p className="text-gray-500 mt-2">
-            Welcome back! Here's your teaching overview.
+            Welcome back{
+              
+            }
           </p>
         </div>
 
@@ -490,6 +487,8 @@ const TeacherDashboard = () => {
             </div>
           ))}
         </div>
+
+        
 
         {/* Quick Actions */}
 
