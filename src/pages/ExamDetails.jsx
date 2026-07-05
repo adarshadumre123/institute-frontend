@@ -6,7 +6,7 @@ import { Loader, BookOpen, Clock3, FileText, Trophy, Pencil } from 'lucide-react
 
 const ExamDetails = () => {
 
-    const { id } = useParams();
+    const { examId } = useParams();
 
     const [exam, setExam] = useState("");
 
@@ -16,7 +16,7 @@ const ExamDetails = () => {
             const token = localStorage.getItem("token");
 
             const res = await axios.get(
-                `http://localhost:8000/api/v1/exams/getExamsById/${id}`,
+                `http://localhost:8000/api/v1/exams/getExamsById/${examId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -33,10 +33,10 @@ const ExamDetails = () => {
     };
 
     useEffect(() => {
-        if (id) {
+        if (examId) {
             getData();
         }
-    }, [id]);
+    }, [examId]);
 
 
     return (

@@ -220,7 +220,7 @@ const Courses = () => {
   )
 }
                 
-                <Link to={`/course-details/${course._id}`} className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
+                <Link to={`/main-course/${course._id}`} className="bg-blue-600 cursor-pointer hover:bg-blue-700 text-white px-5 py-2 rounded-xl font-semibold transition duration-300">
                   View Details
                 </Link>
 

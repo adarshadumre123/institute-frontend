@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 const CreateExam = ({ mode = "create", examId }) => {
   const [loading, setLoading] = useState(false);
     const {id}=useParams();
+    const{courseId}=useParams()
   
 
   const [data, setData] = useState({

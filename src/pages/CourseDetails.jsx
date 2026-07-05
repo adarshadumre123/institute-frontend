@@ -18,14 +18,14 @@ import {
 const CourseDetails = () => {
   const [courseDetails, setCourseDetails] = useState(null);
 
-  const { id } = useParams();
+  const { courseId } = useParams();
 
   const getCourseDetails = async () => {
     try {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        `http://localhost:8000/api/v1/course/get-course-id/${id}`,
+        `http://localhost:8000/api/v1/course/get-course-id/${courseId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -42,10 +42,10 @@ const CourseDetails = () => {
   
 
   useEffect(() => {
-    if (id) {
+    if (courseId){
       getCourseDetails();
     }
-  }, [id]);
+  }, [courseId]);
 
   if (!courseDetails) {
     return (
@@ -142,10 +142,14 @@ const CourseDetails = () => {
       <h2 className="text-4xl font-bold text-indigo-600">
         Rs. {courseDetails.price}
       </h2>
-
+{
+  courseDetails?.isEnrolled?(
+    null
+      ):
       <button className="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition">
         Enroll Now
       </button>
+}
 
       <div className="border-t mt-8 pt-8 space-y-5">
 

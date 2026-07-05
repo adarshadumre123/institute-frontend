@@ -34,7 +34,7 @@ const MainCourse = () => {
 
       const res = await axios.get(
         `http://localhost:8000/api/v1/course/get-course-id/${courseId}`,
-    
+
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ const MainCourse = () => {
       console.log(res.data.course);
 
 
-     setCourse(res.data.course);
+      setCourse(res.data.course);
 
       console.log(course);
     } catch (error) {
@@ -64,61 +64,70 @@ const MainCourse = () => {
 
 
   return (
+    
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r shadow-md flex flex-col">
-        {/* Header */}
+
+      {
+        course?.isEnrolled ? (
 
 
-        <div className="p-6 border-b">
-          <h2 className="text-2xl font-bold text-indigo-600">
-            {course?.subject}
-          </h2>
-        </div>
-
-        {/* Navigation */}
-        <nav className="flex-1 p-4 space-y-2">
-          <SidebarItem
-            icon={<BookOpen size={20} />}
-            title="Classes"
-            to={`/class/{course._id}`}
-            active={location.pathname === "/student/classes"}
-          />
-
-          <SidebarItem
-            icon={<LayoutDashboard size={20} />}
-            title="Overview"
-
-          />
-
-          <SidebarItem
-            icon={<FileText size={20} />}
-            title="Notes"
-            to="/student/notes"
-            active={location.pathname === "/student/notes"}
-          />
-          <SidebarItem
-            icon={<FileText size={20} />}
-            title="Exams"
-            to={`/course/:courseId/exam`}
-            active={location.pathname === "/student/notes"}
-          />
+          <aside className="w-64 bg-white border-r shadow-md flex flex-col">
+            {/* Header */}
 
 
+            <div className="p-6 border-b">
+              <h2 className="text-2xl font-bold text-indigo-600">
+                {course?.subject}
+              </h2>
+            </div>
 
-          <SidebarItem
-            icon={<ClipboardList size={20} />}
-            title="Assignments"
-            to="/student/assignments"
-            active={location.pathname === "/student/assignments"}
-          />
-        </nav>
+            {/* Navigation */}
+            <nav className="flex-1 p-4 space-y-2">
+              <SidebarItem
+                icon={<BookOpen size={20} />}
+                title="Classes"
+                to={`/class/${course?._id}`}
+                active={location.pathname === "/student/classes"}
+              />
 
-        {/* Footer */}
-        <div className="p-4 border-t text-sm text-gray-500">
-          Learning Management System
-        </div>
-      </aside>
+              <SidebarItem
+                icon={<LayoutDashboard size={20} />}
+                title="Overview"
+
+              />
+
+              <SidebarItem
+                icon={<FileText size={20} />}
+                title="Notes"
+                to="/student/notes"
+                active={location.pathname === "/student/notes"}
+              />
+              <SidebarItem
+                icon={<FileText size={20} />}
+                title="Exams"
+                to={`/exam/${course._id}`}
+                active={location.pathname === "/student/notes"}
+              />
+
+
+
+              <SidebarItem
+                icon={<ClipboardList size={20} />}
+                title="Assignments"
+                to="/student/assignments"
+                active={location.pathname === "/student/assignments"}
+              />
+            </nav>
+
+            {/* Footer */}
+            <div className="p-4 border-t text-sm text-gray-500">
+              Learning Management System
+            </div>
+          </aside>
+
+        ):null
+      }
 
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-y-auto">

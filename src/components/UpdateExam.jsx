@@ -3,7 +3,7 @@ import CreateExam from './CreateExam';
 import { useParams } from "react-router-dom";
 
 const UpdateExam = () => {
-    const {id}=useParams();
+    const {examId}=useParams();
   return (
     <div>
         <CreateExam mode='update' examId={id}/>

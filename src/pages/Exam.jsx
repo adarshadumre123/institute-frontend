@@ -156,7 +156,7 @@ const Exam = () => {
                 </Link>
 
                 <Link
-                  to={`/examdetails/${exam._id}`}
+                  to={`/exam-details/${exam._id}`}
                   className="flex-1 text-center bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl font-semibold transition"
                 >
                   Details
