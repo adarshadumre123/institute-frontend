@@ -1,219 +1,194 @@
-// import axios from 'axios';
-// import React, { useState } from 'react'
-// import { toast } from 'sonner';
+// import React from 'react'
 
 // const Subject = () => {
-//     const [subject, setSubject] = useState({
-//         "subjectName": "",
-//         "description": "",
+//   return (
+//     <div>
+//       <main className="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full overflow-x-hidden">
         
-//     });
+//         {/* Top Header / Navbar: Dark Chocolate background (#26140A) */}
+//         <header className="bg-[#26140A] rounded-2xl border border-[#4A2C11]/30 p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 shadow-md">
+//           <div>
+//             <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white">
+//               Welcome Back 👋
+//             </h2>
+//             <p className="text-amber-100/60 text-sm mt-0.5">
+//               Here is your learning progress for today.
+//             </p>
+//           </div>
 
-//     const [loading, setLoading] = useState(false)
-//     const handleChange = (e) => {
-//         setSubject((prev) => ({
-//             ...prev,
-//             [e.target.name]: e.target.value
-//         }))
-//     }
+//           {/* Actions & Profile */}
+//           <div className="flex items-center gap-4 self-end sm:self-auto">
+//             <button className="p-2 text-amber-100/70 hover:text-white hover:bg-[#3D220F] rounded-full transition-all relative">
+//               <Bell size={20} />
+//               <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-[#D4AF37] rounded-full ring-2 ring-[#26140A]"></span>
+//             </button>
 
-//     const subjectSubmit = async() => {
-//         setLoading(true)
-//         try {
-//             const token = localStorage.getItem("token");
-//             const res = await axios.post("", subject, {
-//                 headers: {
-//                     Authorization: `Bearer ${token}`,
-//                     "Content-Type": "application/json",
-//                 }
-//             })
-//             if (res.data.success) {
-//                 toast("subject created successfully")
-//                 setSubject({
-//                     "subjectName": "",
-//                     "description": ""
-//                 })
-//             } else {
-//                 toast.error("Not able to create subject")
-//             }
-//         } catch (error) {
-//             toast.error(error.response?.data?.message || "Server error");
+//             <div className="relative">
+//               <button 
+//                 onClick={() => setShowProfileMenu(!showProfileMenu)}
+//                 className="flex items-center gap-2 p-1.5 pr-3 rounded-full border border-[#4A2C11] transition-all bg-[#3D220F] text-white"
+//               >
+//                 {/* Profile Badge icon context using Gold background */}
+//                 <div className="w-8 h-8 rounded-full bg-[#D4AF37] text-[#2B1810] flex items-center justify-center font-extrabold text-sm shadow-inner">
+//                   S
+//                 </div>
+//                 <span className="text-sm font-semibold hidden sm:inline text-amber-50">Student</span>
+//                 <ChevronDown size={16} className="text-amber-200/60" />
+//               </button>
 
-//         }finally {
-//             setLoading(false)
-//         }
-//     }
-//     return (
-//         <div>Subject</div>
-//     )
+//               {showProfileMenu && (
+//                 <div className="absolute right-0 mt-2 w-48 bg-[#3D220F] border border-[#4A2C11] rounded-xl shadow-2xl py-1 z-50 text-amber-50">
+//                   <Link to="/profile" className="block px-4 py-2.5 text-sm hover:bg-[#4D2A12] font-medium">Your Profile</Link>
+//                   <Link to="/settings" className="block px-4 py-2.5 text-sm hover:bg-[#4D2A12] font-medium">Settings</Link>
+//                   <hr className="border-[#4A2C11] my-1" />
+//                   <button onClick={handleLogout} className="w-full text-left block px-4 py-2.5 text-sm text-rose-300 hover:bg-rose-950/40 font-medium">Log Out</button>
+//                 </div>
+//               )}
+//             </div>
+//           </div>
+//         </header>
+
+//         {/* Quick Stats Grid - Chocolate Cards (#3D220F) */}
+//         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+          
+//           <div className="bg-[#3D220F] text-white p-6 rounded-2xl border border-[#4A2C11] shadow-md hover:shadow-lg transition-all">
+//             <div className="flex justify-between items-center">
+//               <div>
+//                 <p className="text-xs font-bold text-amber-100/60 uppercase tracking-wider">Enrolled Courses</p>
+//                 <h3 className="text-3xl font-extrabold mt-2 text-white">6</h3>
+//               </div>
+//               {/* Badges/Important actions in Gold */}
+//               <div className="bg-[#D4AF37] p-3.5 rounded-xl text-[#2B1810]">
+//                 <BookOpen size={24} />
+//               </div>
+//             </div>
+//           </div>
+
+//           <div className="bg-[#3D220F] text-white p-6 rounded-2xl border border-[#4A2C11] shadow-md hover:shadow-lg transition-all">
+//             <div className="flex justify-between items-center">
+//               <div>
+//                 <p className="text-xs font-bold text-amber-100/60 uppercase tracking-wider">Assignments</p>
+//                 <h3 className="text-3xl font-extrabold mt-2 text-white">12</h3>
+//               </div>
+//               <div className="bg-[#D4AF37] p-3.5 rounded-xl text-[#2B1810]">
+//                 <ClipboardList size={24} />
+//               </div>
+//             </div>
+//           </div>
+
+//           <div className="bg-[#3D220F] text-white p-6 rounded-2xl border border-[#4A2C11] shadow-md hover:shadow-lg transition-all sm:col-span-2 lg:col-span-1">
+//             <div className="flex justify-between items-center">
+//               <div>
+//                 <p className="text-xs font-bold text-amber-100/60 uppercase tracking-wider">Attendance</p>
+//                 <h3 className="text-3xl font-extrabold mt-2 text-white">92%</h3>
+//               </div>
+//               <div className="bg-[#D4AF37] p-3.5 rounded-xl text-[#2B1810]">
+//                 <CheckCircle size={24} />
+//               </div>
+//             </div>
+//           </div>
+//         </section>
+
+//         {/* Content Splitting Grid */}
+//         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          
+//           {/* Progress Bars Column: Chocolate Card Container */}
+//           <section className="lg:col-span-2 bg-[#3D220F] text-white rounded-2xl border border-[#4A2C11] p-6 shadow-md space-y-6">
+//             <div>
+//               <h2 className="text-xl font-bold text-white">Course Progress Overview</h2>
+//               <p className="text-amber-100/60 text-sm">Track your dynamic pacing metrics.</p>
+//             </div>
+
+//             <div className="space-y-5">
+//               {courses.map((course, index) => (
+//                 <div key={index} className="group p-4 rounded-xl bg-[#26140A]/40 border border-[#4A2C11]/40 hover:border-[#D4AF37]/40 transition-colors">
+//                   <div className="flex justify-between mb-2">
+//                     <div>
+//                       <h4 className="font-semibold text-amber-50 group-hover:text-[#D4AF37] transition-colors">
+//                         {course.title}
+//                       </h4>
+//                       <p className="text-amber-100/50 text-xs mt-0.5">
+//                         Instructor: {course.teacher}
+//                       </p>
+//                     </div>
+//                     {/* Important stats highlight tags in Gold */}
+//                     <span className="font-bold text-xs text-[#2B1810] bg-[#D4AF37] px-2 py-1 rounded-md self-start shadow-sm">
+//                       {course.progress}% Complete
+//                     </span>
+//                   </div>
+
+//                   {/* Track line: Dark Chocolate background */}
+//                   <div className="w-full bg-[#26140A] h-2.5 rounded-full overflow-hidden p-0.5 border border-[#4A2C11]">
+//                     {/* Active Bar fills with Terracotta highlight (#C25A3F / deep warm burnt tone) */}
+//                     <div
+//                       className="bg-[#C25A3F] h-full rounded-full transition-all duration-500 shadow"
+//                       style={{ width: `${course.progress}%` }}
+//                     ></div>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           </section>
+
+//           {/* Offline Schedule Column: Chocolate Container */}
+//           <section className="bg-[#3D220F] text-white rounded-2xl border border-[#4A2C11] p-6 shadow-md">
+//             <div className="mb-6">
+//               <h2 className="text-xl font-bold text-white">Offline Schedule</h2>
+//               <p className="text-amber-100/60 text-sm">Today's physical on-campus classes.</p>
+//             </div>
+
+//             <div className="space-y-4">
+//               {/* Left border emphasizes highlight utilizing high-impact Terracotta (#C25A3F) */}
+//               <div className="flex items-start gap-4 border-l-4 border-[#C25A3F] pl-4 py-1 bg-[#26140A]/30 rounded-r-lg">
+//                 <div className="text-[#D4AF37] mt-0.5 shrink-0">
+//                   <Clock size={18} />
+//                 </div>
+//                 <div>
+//                   <h4 className="font-semibold text-sm text-white">Korean Language Class</h4>
+//                   <p className="text-amber-100/50 text-xs mt-0.5">10:00 AM - 11:30 AM</p>
+//                 </div>
+//               </div>
+
+//               <div className="flex items-start gap-4 border-l-4 border-[#C25A3F] pl-4 py-1 bg-[#26140A]/30 rounded-r-lg">
+//                 <div className="text-[#D4AF37] mt-0.5 shrink-0">
+//                   <Clock size={18} />
+//                 </div>
+//                 <div>
+//                   <h4 className="font-semibold text-sm text-white">Grade 12 Tuition Class</h4>
+//                   <p className="text-amber-100/50 text-xs mt-0.5">1:00 PM - 3:00 PM</p>
+//                 </div>
+//               </div>
+
+//               <div className="flex items-start gap-4 border-l-4 border-[#C25A3F] pl-4 py-1 bg-[#26140A]/30 rounded-r-lg">
+//                 <div className="text-[#D4AF37] mt-0.5 shrink-0">
+//                   <Clock size={18} />
+//                 </div>
+//                 <div>
+//                   <h4 className="font-semibold text-sm text-white">Japanese Language Class</h4>
+//                   <p className="text-amber-100/50 text-xs mt-0.5">4:00 PM - 5:00 PM</p>
+//                 </div>
+//               </div>
+//             </div>
+//           </section>
+//         </div>
+
+//         {/* External Imported Component Section */}
+//         <section className="mt-8">
+//           <Courses />
+//         </section>
+//       </main>
+//     </div>
+//   )
 // }
 
 // export default Subject
 
-
-import axios from "axios";
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { toast } from "sonner";
-import { BookOpen, FileText, ArrowLeft } from "lucide-react";
+import React from 'react'
 
 const Subject = () => {
-  const { courseId } = useParams();
-
-  const [subject, setSubject] = useState({
-    subjectName: "",
-    description: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    setSubject((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const subjectSubmit = async (e) => {
-    e.preventDefault();
-
-    setLoading(true);
-
-    try {
-      const token = localStorage.getItem("token");
-
-      const res = await axios.post(
-        "http://localhost:5000/api/subject/create", // Change to your API
-        {
-          ...subject,
-          course: courseId,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (res.data.success) {
-        toast.success("Subject created successfully");
-
-        setSubject({
-          subjectName: "",
-          description: "",
-        });
-      }
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Server Error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-slate-100 flex justify-center items-center p-6">
+    <div>Subject</div>
+  )
+}
 
-      <div className="w-full max-w-3xl bg-white rounded-3xl shadow-xl overflow-hidden">
-
-        {/* Header */}
-
-        <div className="bg-linear-to-r from-blue-600 to-indigo-700 p-8 text-white">
-
-          <button className="flex items-center gap-2 text-sm hover:text-gray-200">
-            <ArrowLeft size={18} />
-            Back to Course
-          </button>
-
-          <h1 className="text-4xl font-bold mt-5">
-            Create New Subject
-          </h1>
-
-          <p className="mt-2 text-blue-100">
-            Add a new subject to this course.
-          </p>
-
-        </div>
-
-        {/* Form */}
-
-        <form
-          onSubmit={subjectSubmit}
-          className="p-8 space-y-6"
-        >
-
-          {/* Subject Name */}
-
-          <div>
-
-            <label className="font-semibold text-gray-700 mb-2 block">
-              Subject Name
-            </label>
-
-            <div className="relative">
-
-              <BookOpen
-                className="absolute left-4 top-4 text-gray-400"
-                size={20}
-              />
-
-              <input
-                type="text"
-                name="subjectName"
-                value={subject.subjectName}
-                onChange={handleChange}
-                placeholder="Enter subject name"
-                className="w-full border rounded-xl pl-12 pr-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
-              />
-
-            </div>
-
-          </div>
-
-          {/* Description */}
-
-          <div>
-
-            <label className="font-semibold text-gray-700 mb-2 block">
-              Description
-            </label>
-
-            <div className="relative">
-
-              <FileText
-                className="absolute left-4 top-4 text-gray-400"
-                size={20}
-              />
-
-              <textarea
-                rows={6}
-                name="description"
-                value={subject.description}
-                onChange={handleChange}
-                placeholder="Write subject description..."
-                className="w-full border rounded-xl pl-12 pr-4 py-3 resize-none focus:ring-2 focus:ring-blue-500 outline-none"
-              />
-
-            </div>
-
-          </div>
-
-          {/* Button */}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-linear-to-r from-blue-600 to-indigo-600 text-white py-4 rounded-xl font-semibold text-lg hover:scale-[1.02] transition duration-300 disabled:opacity-50"
-          >
-            {loading ? "Creating Subject..." : "Create Subject"}
-          </button>
-
-        </form>
-
-      </div>
-
-    </div>
-  );
-};
-
-export default Subject;
+export default Subject

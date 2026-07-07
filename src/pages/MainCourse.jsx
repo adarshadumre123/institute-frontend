@@ -6,17 +6,24 @@ import { SidebarItem } from "../components/SidebarItem";
 import { useLocation } from "react-router-dom";
 import CourseDetails from "./CourseDetails";
 
+
+import Class from './Class';
 import {
   BookOpen,
   LayoutDashboard,
   FileText,
   ClipboardList,
 } from "lucide-react";
+import Assignment from "./Assignment";
+import Notes from './Notes';
+import Exam from './Exam';
 
 
 
 const MainCourse = () => {
   const [course, setCourse] = useState(null);
+
+  const[activeTab,setActiveTab]=useState("Overview")
 
   console.log("MainCourse Rendered");
 
@@ -82,32 +89,30 @@ const MainCourse = () => {
               </h2>
             </div>
 
-            {/* Navigation */}
             <nav className="flex-1 p-4 space-y-2">
-              <SidebarItem
-                icon={<BookOpen size={20} />}
-                title="Classes"
-                to={`/class/${course?._id}`}
-                active={location.pathname === "/student/classes"}
-              />
-
-              <SidebarItem
+            <SidebarItem
                 icon={<LayoutDashboard size={20} />}
                 title="Overview"
-
+                onClick={() => setActiveTab("Overview")}
               />
+
+              <SidebarItem
+                icon={<BookOpen size={20} />}
+                title="Class"
+                onClick={() => setActiveTab("Class")}
+              />
+
+              
 
               <SidebarItem
                 icon={<FileText size={20} />}
                 title="Notes"
-                to="/student/notes"
-                active={location.pathname === "/student/notes"}
+                onClick={() => setActiveTab("Notes")}
               />
               <SidebarItem
                 icon={<FileText size={20} />}
                 title="Exams"
-                to={`/exam/${course._id}`}
-                active={location.pathname === "/student/notes"}
+                onClick={() => setActiveTab("Exams")}
               />
 
 
@@ -115,8 +120,8 @@ const MainCourse = () => {
               <SidebarItem
                 icon={<ClipboardList size={20} />}
                 title="Assignments"
-                to="/student/assignments"
-                active={location.pathname === "/student/assignments"}
+                onClick={() => setActiveTab("Assigments")}
+                
               />
             </nav>
 
@@ -129,10 +134,16 @@ const MainCourse = () => {
         ):null
       }
 
+     
+
       {/* Main Content */}
       <main className="flex-1 p-8 overflow-y-auto">
         <div className="bg-white rounded-2xl shadow-sm p-6 min-h-[90vh]">
-          <CourseDetails />
+          {activeTab === "Overview" && <CourseDetails/>}
+        {activeTab === "Class" && <Class/>}
+        {activeTab === "Exams" && <Exam/>}
+        {activeTab === "notes" && <Notes/>}
+        {activeTab === "Assignments" && <Assignment/>}
         </div>
       </main>
     </div>
