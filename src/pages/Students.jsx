@@ -1,15 +1,157 @@
 
 
 
-import axios from "axios";
+// import axios from "axios";
+// import React, { useState, useEffect } from "react";
+// import { Loader } from 'lucide-react';
+
+// const Students = () => {
+//   const [students, setStudents] = useState([]);
+
+//   const getStudents = async () => {
+//     try {
+//       const token = localStorage.getItem("token");
+
+//       const res = await axios.get(
+//         "http://localhost:8000/api/v1/users/get",
+//         {
+//           headers: {
+//             authorization: `Bearer ${token}`,
+//           },
+//         }
+//       );
+
+//       const studentUsers = res.data.users.filter(
+//         (user) => user.role.toLowerCase() === "student"
+//       );
+
+//       setStudents(studentUsers);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   useEffect(() => {
+//     getStudents();
+//   }, []);
+
+//   return (
+//     <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-100 p-8">
+//       {/* Header */}
+//       <div className="flex flex-col md:flex-row items-center justify-between mb-10">
+//         <div>
+//           <h1 className="text-4xl font-extrabold text-gray-800">
+//             Students Dashboard
+//           </h1>
+//           <p className="text-gray-500 mt-2">
+//             Manage and view all student details
+//           </p>
+//         </div>
+
+//         <div className="mt-4 md:mt-0 bg-blue-600 text-white px-6 py-3 rounded-2xl shadow-lg">
+//           <h2 className="text-lg font-semibold">
+//             Total Students: {students.length}
+//           </h2>
+//         </div>
+//       </div>
+
+//       {/* Students Cards */}
+//       {students.length > 0 ? (
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+//           {students.map((student) => (
+//             <div
+//               key={student._id}
+//               className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100"
+//             >
+//               {/* Top Section */}
+//               <div className="bg-linear-to-r from-blue-600 to-indigo-600 p-6 flex flex-col items-center">
+//                 <div className="w-24 h-24 rounded-full bg-white text-blue-700 flex items-center justify-center text-3xl font-bold shadow-lg border-4 border-white">
+//                   {student.firstName?.charAt(0)}
+//                   {student.lastName?.charAt(0)}
+//                 </div>
+
+//                 <h1 className="text-2xl font-bold text-white mt-4">
+//                   {student.firstName} {student.lastName}
+//                 </h1>
+
+//                 <p className="text-blue-100 capitalize mt-1">
+//                   {student.role}
+//                 </p>
+//               </div>
+
+//               {/* Info Section */}
+//               <div className="p-6 space-y-4">
+//                 <div className="bg-gray-50 rounded-xl p-4">
+//                   <p className="text-sm text-gray-500">Phone Number</p>
+//                   <h2 className="text-lg font-semibold text-gray-800">
+//                     {student.phone}
+//                   </h2>
+//                 </div>
+
+//                 <div className="bg-gray-50 rounded-xl p-4">
+//                   <p className="text-sm text-gray-500">Email Address</p>
+//                   <h2 className="text-lg font-semibold text-gray-800 wrap-break-word">
+//                     {student.email}
+//                   </h2>
+//                 </div>
+
+//                 <div className="flex items-center justify-center pt-2">
+//                   <span className="bg-green-100 text-green-700 px-4 py-1  rounded-full text-sm font-semibold">
+//                     Active Student
+//                   </span>
+
+                 
+//                 </div>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       ) : (
+//         <div className="flex items-center justify-center h-[60vh]">
+//           <div className="bg-white shadow-lg rounded-3xl p-10 text-center">
+//             <div className="flex flex-col items-center gap-5">
+
+//               <Loader className="animate-spin h-16 w-16 text-blue-600" />
+
+//               <p className="text-2xl font-bold text-gray-700">
+//                 Loading Exam...
+//               </p>
+
+//             </div>
+//             <p className="text-gray-500 mt-2">
+//               Students data will appear here.
+//             </p>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Students;
+
+
 import React, { useState, useEffect } from "react";
-import { Loader } from 'lucide-react';
+import axios from "axios";
+import { 
+  Loader2, 
+  Phone, 
+  Mail, 
+  Users, 
+  GraduationCap, 
+  Search,
+  CheckCircle2
+} from 'lucide-react';
+import { toast } from "sonner";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getStudents = async () => {
     try {
+      setLoading(true);
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
@@ -21,13 +163,16 @@ const Students = () => {
         }
       );
 
-      const studentUsers = res.data.users.filter(
-        (user) => user.role.toLowerCase() === "student"
+      const studentUsers = (res.data.users || []).filter(
+        (user) => user.role?.toLowerCase() === "student"
       );
 
       setStudents(studentUsers);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching students:", error);
+      toast.error("Failed to load students data");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,93 +180,141 @@ const Students = () => {
     getStudents();
   }, []);
 
+  const filteredStudents = students.filter(student => {
+    const fullName = `${student.firstName} ${student.lastName}`.toLowerCase();
+    return fullName.includes(searchTerm.toLowerCase()) || 
+           student.email?.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-100 p-8">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row items-center justify-between mb-10">
+    <div className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
+      
+      {/* Upper Header Section */}
+      <div className="max-w-7xl mx-auto mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-b border-slate-200 pb-6">
         <div>
-          <h1 className="text-4xl font-extrabold text-gray-800">
-            Students Dashboard
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+            Students Directory
           </h1>
-          <p className="text-gray-500 mt-2">
-            Manage and view all student details
+          <p className="text-slate-500 mt-1 font-medium">
+            Manage, verify, and view all registered student records.
           </p>
         </div>
 
-        <div className="mt-4 md:mt-0 bg-blue-600 text-white px-6 py-3 rounded-2xl shadow-lg">
-          <h2 className="text-lg font-semibold">
-            Total Students: {students.length}
-          </h2>
+        <div className="flex items-center gap-3 bg-white border border-slate-200 px-5 py-3 rounded-xl shadow-xs self-start md:self-auto">
+          <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+            <Users size={20} />
+          </div>
+          <div>
+            <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Total Enrolled</p>
+            <h2 className="text-xl font-bold text-slate-800">{students.length}</h2>
+          </div>
         </div>
       </div>
 
-      {/* Students Cards */}
-      {students.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {students.map((student) => (
+      {/* Control Panel (Search Bar) */}
+      {!loading && students.length > 0 && (
+        <div className="max-w-7xl mx-auto mb-8">
+          <div className="relative max-w-md">
+            <Search className="absolute left-4 top-3.5 h-5 w-5 text-slate-400" />
+            <input
+              type="text"
+              placeholder="Search by student name or email..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-sm shadow-xs placeholder-slate-400"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Loading Block */}
+      {loading && (
+        <div className="flex flex-col items-center justify-center py-24 gap-4">
+          <Loader2 className="animate-spin h-12 w-12 text-indigo-600" />
+          <p className="text-lg font-semibold text-slate-600">
+            Retrieving student records...
+          </p>
+        </div>
+      )}
+
+      {/* Cards Display Grid */}
+      {!loading && filteredStudents.length > 0 && (
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredStudents.map((student) => (
             <div
               key={student._id}
-              className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100"
+              className="bg-white rounded-2xl shadow-xs hover:shadow-xl transition-all duration-300 border border-slate-200/80 overflow-hidden flex flex-col group"
             >
-              {/* Top Section */}
-              <div className="bg-linear-to-r from-blue-600 to-indigo-600 p-6 flex flex-col items-center">
-                <div className="w-24 h-24 rounded-full bg-white text-blue-700 flex items-center justify-center text-3xl font-bold shadow-lg border-4 border-white">
-                  {student.firstName?.charAt(0)}
-                  {student.lastName?.charAt(0)}
+              {/* Graphic Banner Element */}
+              <div className="bg-linear-to-r from-indigo-600 via-blue-600 to-cyan-600 p-6 flex flex-col items-center text-center relative">
+                {/* Avatar */}
+                <div className="w-20 h-20 rounded-full bg-white text-indigo-700 flex items-center justify-center text-2xl font-extrabold shadow-md uppercase tracking-wider border-4 border-white/40 group-hover:scale-105 transition-transform duration-300">
+                  {student.firstName?.charAt(0) || ""}
+                  {student.lastName?.charAt(0) || ""}
                 </div>
 
-                <h1 className="text-2xl font-bold text-white mt-4">
+                <h3 className="text-xl font-bold text-white mt-4 tracking-tight">
                   {student.firstName} {student.lastName}
-                </h1>
+                </h3>
 
-                <p className="text-blue-100 capitalize mt-1">
-                  {student.role}
-                </p>
+                <span className="inline-flex items-center gap-1 mt-1 bg-white/20 backdrop-blur-xs text-white text-xs font-semibold px-2.5 py-0.5 rounded-full capitalize">
+                  <GraduationCap size={12} />
+                  {student.role || "Student"}
+                </span>
               </div>
 
-              {/* Info Section */}
-              <div className="p-6 space-y-4">
-                <div className="bg-gray-50 rounded-xl p-4">
-                  <p className="text-sm text-gray-500">Phone Number</p>
-                  <h2 className="text-lg font-semibold text-gray-800">
-                    {student.phone}
-                  </h2>
+              {/* Data Content Block */}
+              <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <div className="text-slate-400">
+                      <Phone size={16} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Phone</p>
+                      <p className="text-sm font-semibold text-slate-700 truncate">
+                        {student.phone || "Not provided"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                    <div className="text-slate-400">
+                      <Mail size={16} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Email Address</p>
+                      <p className="text-sm font-semibold text-slate-700 truncate" title={student.email}>
+                        {student.email}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-xl p-4">
-                  <p className="text-sm text-gray-500">Email Address</p>
-                  <h2 className="text-lg font-semibold text-gray-800 wrap-break-word">
-                    {student.email}
-                  </h2>
-                </div>
-
-                <div className="flex items-center justify-center pt-2">
-                  <span className="bg-green-100 text-green-700 px-4 py-1  rounded-full text-sm font-semibold">
-                    Active Student
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-center">
+                  <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">
+                    <CheckCircle2 size={14} />
+                    Active Account
                   </span>
-
-                 
                 </div>
               </div>
             </div>
           ))}
         </div>
-      ) : (
-        <div className="flex items-center justify-center h-[60vh]">
-          <div className="bg-white shadow-lg rounded-3xl p-10 text-center">
-            <div className="flex flex-col items-center gap-5">
+      )}
 
-              <Loader className="animate-spin h-16 w-16 text-blue-600" />
-
-              <p className="text-2xl font-bold text-gray-700">
-                Loading Exam...
-              </p>
-
-            </div>
-            <p className="text-gray-500 mt-2">
-              Students data will appear here.
-            </p>
-          </div>
+      {/* Missing/Empty State Handler */}
+      {!loading && filteredStudents.length === 0 && (
+        <div className="max-w-md mx-auto text-center py-16 bg-white rounded-2xl shadow-xs border border-slate-200 p-8">
+          <Users className="mx-auto h-14 w-14 text-slate-300 mb-4" />
+          <h3 className="text-xl font-bold text-slate-800 mb-1">
+            {students.length === 0 ? "No Students Registered" : "No Matches Found"}
+          </h3>
+          <p className="text-slate-500 text-sm">
+            {students.length === 0 
+              ? "When new student profiles are created, they will populate here dynamically." 
+              : "Try verifying the spelling or clearing out your search input text criteria."}
+          </p>
         </div>
       )}
     </div>
