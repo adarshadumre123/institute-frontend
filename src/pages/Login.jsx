@@ -47,7 +47,7 @@ const Login = () => {
 
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user)); 
+        localStorage.setItem("user", JSON.stringify(res.data.user._id)); 
 
         const role = res.data.user?.role?.toLowerCase();
         localStorage.setItem("role",role)

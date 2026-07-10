@@ -54,6 +54,7 @@ const router = createBrowserRouter([
   {path: "/join-exam/:id",element: <JoinExam /> },
   {path: "/main-course/:courseId",element: <MainCourse /> },
   {path: "/class-create",element: <Class /> },
+  {path: "/course-details/:courseId",element: <CourseDetails /> },
   // {path: "/main-course/:courseId",element: <MainCourse /> },
   {path:"/payment-success" ,element:<PaymentSuccess />},
   {path:"/courses-student" ,element:<StudentSidebar/>},

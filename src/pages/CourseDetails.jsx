@@ -1,6 +1,3 @@
-
-
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
@@ -49,8 +46,8 @@ const CourseDetails = () => {
 
   if (!courseDetails) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+      <div className="h-screen flex items-center justify-center bg-[#F8F6F2]">
+        <div className="w-12 h-12 border-4 border-[#8C3E1A] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -58,19 +55,19 @@ const CourseDetails = () => {
 
 
   return (
-    <div className="h-fit bg-slate-100">
+    <div className="h-fit bg-[#F8F6F2] text-[#2E1A11]">
       {/* Hero */}
-      <div className="bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-b-3xl">
+      <div className="bg-[#f7f5f5] text-[#2E1A11] rounded-b-3xl shadow-md">
         <div className="max-w-7xl mx-auto px-6 py-14">
-          <span className="bg-white/20 px-3 py-1 rounded-full text-sm">
+          <span className="bg-[#8C3E1A] text-[#f7f5f5] px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wider">
             {courseDetails.subject}
           </span>
 
-          <h1 className="text-5xl font-bold mt-4">
+          <h1 className="text-5xl font-bold mt-4 text-[#8C3E1A]">
             {courseDetails.course}
           </h1>
 
-          <p className="mt-5 text-lg text-indigo-100 max-w-3xl">
+          <p className="mt-5 text-lg text-[#FAF6F0]/80 max-w-3xl">
             {courseDetails.shortDescription}
           </p>
         </div>
@@ -82,48 +79,48 @@ const CourseDetails = () => {
         {/* Left */}
         <div className="lg:col-span-2 space-y-8">
 
-          <div className="bg-white rounded-2xl shadow p-8">
-            <h2 className="text-2xl font-bold mb-5">
+          <div className="bg-white rounded-2xl shadow-xs border border-[#EFE9DF] p-8">
+            <h2 className="text-2xl font-bold mb-5 text-[#2E1A11]">
               Course Description
             </h2>
 
-            <p className="text-gray-600 leading-8">
+            <p className="text-[#65534A] leading-8">
               {courseDetails.longDescription}
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl shadow p-8">
-            <h2 className="text-2xl font-bold mb-5">
+          <div className="bg-white rounded-2xl shadow-xs border border-[#EFE9DF] p-8">
+            <h2 className="text-2xl font-bold mb-5 text-[#2E1A11]">
               Course Information
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6">
 
               <div>
-                <p className="text-gray-500">Course Name</p>
-                <h3 className="font-semibold text-lg">
+                <p className="text-[#65534A]/70 text-sm">Course Name</p>
+                <h3 className="font-semibold text-lg text-[#2E1A11]">
                   {courseDetails.course}
                 </h3>
               </div>
 
               <div>
-                <p className="text-gray-500">Subject</p>
-                <h3 className="font-semibold text-lg">
+                <p className="text-[#65534A]/70 text-sm">Subject</p>
+                <h3 className="font-semibold text-lg text-[#2E1A11]">
                   {courseDetails.subject}
                 </h3>
               </div>
 
               <div>
-                <p className="text-gray-500">Instructor</p>
-                <h3 className="font-semibold text-lg">
+                <p className="text-[#65534A]/70 text-sm">Instructor</p>
+                <h3 className="font-semibold text-lg text-[#2E1A11]">
                   {courseDetails.createdBy?.firstName}{" "}
                   {courseDetails.createdBy?.lastName}
                 </h3>
               </div>
 
               <div>
-                <p className="text-gray-500">Students</p>
-                <h3 className="font-semibold text-lg">
+                <p className="text-[#65534A]/70 text-sm">Students</p>
+                <h3 className="font-semibold text-lg text-[#2E1A11]">
                   {courseDetails.enrolledStudents?.length || 0}
                 </h3>
               </div>
@@ -137,46 +134,46 @@ const CourseDetails = () => {
 
         <div>
 
-          <div className="bg-white rounded-2xl shadow-lg sticky top-6 p-8">
+          <div className="bg-white rounded-2xl shadow-md border border-[#EFE9DF] sticky top-6 p-8">
 
-            <h2 className="text-4xl font-bold text-indigo-600">
+            <h2 className="text-4xl font-black text-[#8C3E1A]">
               Rs. {courseDetails.price}
             </h2>
             {
               courseDetails?.isEnrolled ? (
                 null
               ) :
-                <button className="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition">
+                <button className="mt-6 w-full bg-[#8C3E1A] hover:bg-[#733214] text-white py-3 rounded-xl font-semibold transition shadow-sm">
                   Enroll Now
                 </button>
             }
 
-            <div className="border-t mt-8 pt-8 space-y-5">
+            <div className="border-t border-[#EFE9DF] mt-8 pt-8 space-y-5">
 
               <div className="flex justify-between">
-                <span>Subject</span>
-                <span className="font-medium">
+                <span className="text-[#65534A]">Subject</span>
+                <span className="font-medium text-[#2E1A11]">
                   {courseDetails.subject}
                 </span>
               </div>
 
               <div className="flex justify-between">
-                <span>Instructor</span>
-                <span>
+                <span className="text-[#65534A]">Instructor</span>
+                <span className="font-medium text-[#2E1A11]">
                   {courseDetails.createdBy?.firstName}
                 </span>
               </div>
 
               <div className="flex justify-between">
-                <span>Students</span>
-                <span>
+                <span className="text-[#65534A]">Students</span>
+                <span className="font-medium text-[#2E1A11]">
                   {courseDetails.enrolledStudents?.length || 0}
                 </span>
               </div>
 
               <div className="flex justify-between">
-                <span>Created</span>
-                <span>
+                <span className="text-[#65534A]">Created</span>
+                <span className="font-medium text-[#2E1A11]">
                   {new Date(courseDetails.createdAt).toLocaleDateString()}
                 </span>
               </div>

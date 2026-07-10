@@ -261,7 +261,7 @@ const Exam = () => {
 
   return (
     // Outer layout shell managing screen limits
-    <div className="flex w-full min-h-screen bg-gray-100 overflow-hidden">
+    <div className="flex w-full min-h-screen bg-[#F8F6F2] overflow-hidden">
       
       
 
@@ -344,7 +344,7 @@ const Exam = () => {
                 <div className="flex gap-2 flex-wrap pt-4 border-t border-gray-50 mt-auto">
                   <Link 
                     to={`/join-exam/${exam._id}`} 
-                    className="flex-1 min-w-25 bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2"
+                    className="flex-1 min-w-25 bg-[#8C3E1A] hover:bg-[#5e2004] text-white py-2.5 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2"
                   >
                     <PlayCircle size={16} />
                     Join
