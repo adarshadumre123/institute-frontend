@@ -25,6 +25,8 @@ import Database from './Database';
 import Courses from "./Courses";
 import Class from './Class';
 import Subject from "./Subject";
+import Notice from "./Notice";
+
 
 
 const Admin = () => {
@@ -72,6 +74,12 @@ const Admin = () => {
             onClick={() => setActiveTab("Courses")}
           />
           <SidebarItem
+                      icon={<Bell size={20} />}
+                      title="Notices"
+                      active={activeTab === "Notices"}
+                      onClick={() => setActiveTab("Notices")}
+                    />
+          <SidebarItem
             icon={<ClipboardList size={20} />}
             title="Database"
             onClick={() => setActiveTab("Database")}
@@ -94,6 +102,7 @@ const Admin = () => {
           {activeTab === "Courses" && <Courses />}
           {activeTab === "Teachers" && <Teachers/>}
           {activeTab === "Students" && <Students />}
+          {activeTab === "Notices" && <Notice />}
           {activeTab === "Database" && <Database />}
           {activeTab === "Setting" && <Setting />}
         </div>

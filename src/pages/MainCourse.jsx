@@ -15,8 +15,9 @@ import {
   ClipboardList,
 } from "lucide-react";
 import Assignment from "./Assignment";
-import Notes from './Notes';
+import Notes from './Notice';
 import Exam from './Exam';
+import GetNotes from "../components/GetNotes";
 
 
 
@@ -25,11 +26,9 @@ const MainCourse = () => {
 
   const[activeTab,setActiveTab]=useState("Overview")
 
-  console.log("MainCourse Rendered");
 
   const { courseId } = useParams();
 
-  console.log("courseId:", courseId);
 
 
 
@@ -49,12 +48,9 @@ const MainCourse = () => {
         }
       );
 
-      console.log(res.data.course);
 
 
       setCourse(res.data.course);
-
-      console.log(course);
     } catch (error) {
       toast.error(
         error.response?.data?.message || "Something went wrong"
@@ -64,7 +60,6 @@ const MainCourse = () => {
 
   useEffect(() => {
     if (courseId) {
-      console.log("hello")
       getCourseById();
     }
   }, [courseId]);
@@ -107,7 +102,7 @@ const MainCourse = () => {
               <SidebarItem
                 icon={<FileText size={20} />}
                 title="Notes"
-                onClick={() => setActiveTab("Notes")}
+                onClick={() => setActiveTab("notes")}
               />
               <SidebarItem
                 icon={<FileText size={20} />}
@@ -119,7 +114,7 @@ const MainCourse = () => {
 
               <SidebarItem
                 icon={<ClipboardList size={20} />}
-                title="Assignments"
+                title="Assignment"
                 onClick={() => setActiveTab("Assigments")}
                 
               />
@@ -142,8 +137,8 @@ const MainCourse = () => {
           {activeTab === "Overview" && <CourseDetails/>}
         {activeTab === "Class" && <Class/>}
         {activeTab === "Exams" && <Exam/>}
-        {activeTab === "notes" && <Notes/>}
-        {activeTab === "Assignments" && <Assignment/>}
+        {activeTab === "notes" && <GetNotes/>}
+        {activeTab === "Assigments" && <Assignment/>}
         </div>
       </main>
     </div>

@@ -6,7 +6,6 @@ import StudentDashboard from "./pages/StudentDashboard";
 import Exam from "./pages/Exam";
 import Assignment from "./pages/Assignment";
 import Profile from "./pages/Profile";
-import Notes from "./pages/Notes";
 import ExamDetails from "./pages/ExamDetails";
 import CreateExam from "./components/CreateExam";
 import TeacherDashboard from "./pages/TeacherDashboard";
@@ -29,6 +28,8 @@ import PaymentFailed from "./pages/PaymentFailed";
 import StudentSidebar from "./components/CoursesSidebar";
 import Class from "./pages/Class";
 import GetClass from "./components/GetClass";
+import Note from "./components/Note";
+import GetNotes from "./components/GetNotes";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
   { path: "/signup", element: <Signup /> },
   { path: "/exam/:courseId", element: <Exam/> },
   { path: "/game", element: <Game/> },
-  { path: "/assignment", element: <Assignment /> },
+  { path: "/course/:courseId/assignment", element: <Assignment /> },
   { path: "/profile", element: <Profile /> },
   { path: "/students", element: <Students/> },
   { path: "/teachers", element: <Teachers/> },
@@ -53,6 +54,8 @@ const router = createBrowserRouter([
   {path: "/updateExam/:id",element: <UpdateExam /> },
   {path: "/join-exam/:id",element: <JoinExam /> },
   {path: "/main-course/:courseId",element: <MainCourse /> },
+  {path: "/course/:courseId/note",element: <GetNotes /> },
+  {path: "/course/:courseId/create-note",element: <Note /> },
   {path: "/class-create",element: <Class /> },
   {path: "/course-details/:courseId",element: <CourseDetails /> },
   // {path: "/main-course/:courseId",element: <MainCourse /> },

@@ -1,12 +1,13 @@
 import axios from "axios";
 import { Plus } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 const Assignment = () => {
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const{courseId}=useParams();
 
   const role = localStorage.getItem("role").trim().toLowerCase()
   const getAssignment = async () => {

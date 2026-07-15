@@ -28,10 +28,10 @@ import {
 
 import Courses from "./Courses";
 import Subject from "./Subject";
-import Notes from "./Notes";
 import Game from "./Game";
 import Profile from './Profile';
 import { SidebarItem } from "../components/SidebarItem";
+import Notice from "./Notice";
 
 const StudentDashboard = () => {
   const [activeTab, setActiveTab] = useState("Dashboard");
@@ -151,7 +151,7 @@ const StudentDashboard = () => {
         <div className="bg-white rounded-2xl shadow-xs p-4 sm:p-6 min-h-full transition-all duration-300">
           {activeTab === "Dashboard" && <StudentComponent />}
           {activeTab === "Courses" && <Courses />}
-          {activeTab === "Notices" && <Notes />}
+          {activeTab === "Notices" && <Notice />}
           {activeTab === "Games" && <Game />}
           {activeTab === "Profile" && <Profile />}
         </div>
