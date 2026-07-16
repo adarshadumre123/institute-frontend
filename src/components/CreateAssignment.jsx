@@ -1,169 +1,191 @@
-import axios from 'axios'
-import React, { useState } from 'react'
-import { toast } from 'sonner'
-import { FileText, BookOpen, Layers, Hash } from "lucide-react";
-
+import axios from 'axios';
+import React, { useState } from 'react';
+import { toast } from 'sonner';
+import { FileText, BookOpen, Hash, ArrowLeft, Loader2 } from "lucide-react";
+import { useParams, useNavigate } from 'react-router-dom';
 
 const CreateAssignment = () => {
+  const { courseId } = useParams();
+  const navigate = useNavigate();
 
-    
-  const handleChange=(e)=>{
-     SetAssignment((prev) => ({
+  const [loading, setLoading] = useState(false);
+  const [assignment, setAssignment] = useState({
+    title: "",
+    subject: "",
+    course: "",
+    description: "",
+    totalQuestions: "",
+  });
+
+  const handleChange = (e) => {
+    setAssignment((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  }
+  };
 
-    const[loading,setLoading]=useState(false)
-    const [assignment, SetAssignment] = useState({
-        "title": "",
-        "subject": "",
-        "course": "",
-        "description": "",
-        "totalQuestions": "",
-    })
-    const createAssignment = async () => {
-        try {
-            setLoading(true)
-            const token = localStorage.getItem("token");
-            const res = await axios.post("http://localhost:8000/api/v1/assignment/create-assignment", assignment, {
-                headers: {
-                    authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json"
-                }
-            })
-            if (res.data.success) {
-                toast.success("assignment created successfully")
-                SetAssignment({
-                    "title": "",
-                    "subject": "",
-                    "course": "",
-                    "description": "",
-                    "totalQuestions": "",
-                })
-            }
-        } catch (error) {
-            toast.error("something went wrong")
-        }finally{
-            setLoading(false)
-        }
+  const createAssignment = async () => {
+    // Basic validation check
+    if (!assignment.title || !assignment.subject || !assignment.totalQuestions) {
+      toast.error("Please fill in all mandatory fields.");
+      return;
     }
-    return (
-        <div className="min-h-screen bg-linear-to-br from-slate-100 via-blue-50 to-indigo-100 flex justify-center items-center p-6">
-      <div className="w-full max-w-3xl bg-white rounded-3xl shadow-xl p-8">
 
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-800">
+    try {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      const res = await axios.post(
+        `http://localhost:8000/api/v1/assignment/generate-assignment/${courseId}`, 
+        assignment, 
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      if (res.data.success) {
+        toast.success("Assignment created successfully");
+        setAssignment({
+          title: "",
+          subject: "",
+          course: "",
+          description: "",
+          totalQuestions: "",
+        });
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something went wrong structuralizing the task");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#FAF9F6] text-[#2E1A11] p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center">
+      <div className="w-full max-w-2xl bg-white rounded-2xl border border-[#EFE9DF] p-6 sm:p-8 shadow-sm">
+        
+        {/* Back Button & Header */}
+        <div className="mb-8">
+          <button 
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-1.5 text-xs font-bold text-[#65534A] hover:text-[#8C3E1A] mb-4 transition-colors group"
+          >
+            <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
+            Back to Dashboard
+          </button>
+          
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-[#2E1A11]">
             Create Assignment
           </h1>
-          <p className="text-gray-500 mt-2">
-            Generate assignments for your students
+          <p className="text-[#65534A] text-sm mt-1 font-medium">
+            Generate customized academic assessments and reviews for your course tracks.
           </p>
         </div>
 
-        <div className="space-y-6">
+        {/* Input Configuration Grid */}
+        <div className="space-y-5">
 
-          {/* Title */}
+          {/* Title input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Assignment Title
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#65534A] mb-2">
+              Assignment Title <span className="text-[#8C3E1A]">*</span>
             </label>
             <div className="relative">
-              <FileText className="absolute left-3 top-3 text-gray-400" size={18} />
+              <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#65534A]/50">
+                <FileText size={18} />
+              </div>
               <input
                 type="text"
                 name="title"
                 value={assignment.title}
                 onChange={handleChange}
-                placeholder="JavaScript DOM Assignment"
-                className="w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                placeholder="e.g., JavaScript DOM Manipulation Basics"
+                className="w-full pl-11 pr-4 py-3 bg-[#FAF6F0]/30 border border-[#EFE9DF] rounded-xl text-sm text-[#2E1A11] placeholder-[#65534A]/40 focus:outline-none focus:border-[#8C3E1A]/60 focus:bg-white transition"
               />
             </div>
           </div>
 
-          {/* Subject */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Subject
-            </label>
-            <div className="relative">
-              <BookOpen className="absolute left-3 top-3 text-gray-400" size={18} />
-              <input
-                type="text"
-                name="subject"
-                value={assignment.subject}
-                onChange={handleChange}
-                placeholder="Web Development"
-                className="w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
+          {/* Subject & Questions Twin Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#65534A] mb-2">
+                Subject Stream <span className="text-[#8C3E1A]">*</span>
+              </label>
+              <div className="relative">
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#65534A]/50">
+                  <BookOpen size={18} />
+                </div>
+                <input
+                  type="text"
+                  name="subject"
+                  value={assignment.subject}
+                  onChange={handleChange}
+                  placeholder="e.g., Web Development"
+                  className="w-full pl-11 pr-4 py-3 bg-[#FAF6F0]/30 border border-[#EFE9DF] rounded-xl text-sm text-[#2E1A11] placeholder-[#65534A]/40 focus:outline-none focus:border-[#8C3E1A]/60 focus:bg-white transition"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#65534A] mb-2">
+                Total Questions <span className="text-[#8C3E1A]">*</span>
+              </label>
+              <div className="relative">
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#65534A]/50">
+                  <Hash size={18} />
+                </div>
+                <input
+                  type="number"
+                  name="totalQuestions"
+                  value={assignment.totalQuestions}
+                  onChange={handleChange}
+                  placeholder="e.g., 10"
+                  min="1"
+                  className="w-full pl-11 pr-4 py-3 bg-[#FAF6F0]/30 border border-[#EFE9DF] rounded-xl text-sm text-[#2E1A11] placeholder-[#65534A]/40 focus:outline-none focus:border-[#8C3E1A]/60 focus:bg-white transition"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Course */}
+          {/* Description Textarea */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Course
-            </label>
-            <div className="relative">
-              <Layers className="absolute left-3 top-3 text-gray-400" size={18} />
-              <input
-                type="text"
-                name="course"
-                value={assignment.course}
-                onChange={handleChange}
-                placeholder="MERN Stack"
-                className="w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Total Questions */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Total Questions
-            </label>
-            <div className="relative">
-              <Hash className="absolute left-3 top-3 text-gray-400" size={18} />
-              <input
-                type="number"
-                name="totalQuestions"
-                value={assignment.totalQuestions}
-                onChange={handleChange}
-                placeholder="10"
-                className="w-full pl-10 pr-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
-            </div>
-          </div>
-
-          {/* Description */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Description
+            <label className="block text-xs font-bold uppercase tracking-wider text-[#65534A] mb-2">
+              Assignment Guidelines & Scope
             </label>
             <textarea
               rows="5"
               name="description"
               value={assignment.description}
               onChange={handleChange}
-              placeholder="Describe the assignment..."
-              className="w-full p-4 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+              placeholder="Provide clean execution metrics, grading matrices, or context guidelines for this batch submission..."
+              className="w-full p-4 bg-[#FAF6F0]/30 border border-[#EFE9DF] rounded-xl text-sm text-[#2E1A11] placeholder-[#65534A]/40 focus:outline-none focus:border-[#8C3E1A]/60 focus:bg-white transition resize-none leading-relaxed"
             />
           </div>
 
-          {/* Button */}
-          <button
-            onClick={createAssignment}
-            disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition duration-300 disabled:opacity-60"
-          >
-            {loading ? "Creating Assignment..." : "Create Assignment"}
-          </button>
+          {/* Bottom Submit Trigger */}
+          <div className="pt-2">
+            <button
+              onClick={createAssignment}
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-2 bg-[#8C3E1A] hover:bg-[#733214] text-white font-bold text-sm py-3.5 px-4 rounded-xl shadow-sm transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <>
+                  <Loader2 size={16} className="animate-spin" />
+                  Generating Structural Assignment...
+                </>
+              ) : (
+                "Deploy Assignment"
+              )}
+            </button>
+          </div>
 
         </div>
       </div>
     </div>
+  );
+};
 
-    )
-}
-
-export default CreateAssignment
+export default CreateAssignment;

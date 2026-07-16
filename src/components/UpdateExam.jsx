@@ -7,7 +7,7 @@ const UpdateExam = () => {
     
   return (
     <div>
-        <CreateExam mode='update' examId={id}/>
+        <CreateExam mode='update' examId={examId}/>
     </div>
   )
 }

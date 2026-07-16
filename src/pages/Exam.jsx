@@ -8,6 +8,7 @@ import {
   CalendarDays,
   PlayCircle,
   Loader,
+  Plus,
 } from "lucide-react";
 import axios from "axios";
 
@@ -68,12 +69,12 @@ const Exam = () => {
   return (
     // Outer layout shell managing screen limits
     <div className="flex w-full min-h-screen bg-[#F8F6F2] overflow-hidden">
-      
-      
+
+
 
       {/* Main Content Area - min-w-0 holds structural columns true */}
       <main className="flex-1 min-w-0 p-6 overflow-y-auto">
-        
+
         {/* Header section */}
         <div className="bg-white shadow-sm rounded-2xl p-6 mb-6">
           <h1 className="text-3xl font-bold text-gray-800">
@@ -82,6 +83,22 @@ const Exam = () => {
           <p className="text-gray-500 mt-2">
             Join your scheduled exams and complete them on time.
           </p>
+
+          {
+            role!=="student"?(
+              <div className="flex justify-end mb-4">
+            <Link
+              to={`/create-exam/course/${courseId}`}
+              className="w-40 bg-[#8C3E1A] hover:bg-[#5e2004] text-white py-2.5 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2"
+            >
+              <Plus size={16} />
+              Create Exam
+            </Link>
+          </div>
+            ):null
+          }
+
+          
         </div>
 
         {/* Loading state handling */}
@@ -104,13 +121,12 @@ const Exam = () => {
                   {/* Status Badges Header */}
                   <div className="flex justify-between items-center mb-5">
                     <span
-                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        exam.status === "Live"
+                      className={`px-3 py-1 rounded-full text-xs font-semibold ${exam.status === "Live"
                           ? "bg-green-100 text-green-600"
                           : exam.status === "Scheduled"
-                          ? "bg-yellow-100 text-yellow-700"
-                          : "bg-gray-200 text-gray-600"
-                      }`}
+                            ? "bg-yellow-100 text-yellow-700"
+                            : "bg-gray-200 text-gray-600"
+                        }`}
                     >
                       {exam.status}
                     </span>
@@ -148,8 +164,8 @@ const Exam = () => {
 
                 {/* Grid UI Call To Actions */}
                 <div className="flex gap-2 flex-wrap pt-4 border-t border-gray-50 mt-auto">
-                  <Link 
-                    to={`/join-exam/${exam._id}`} 
+                  <Link
+                    to={`/join-exam/${exam._id}`}
                     className="flex-1 min-w-25 bg-[#8C3E1A] hover:bg-[#5e2004] text-white py-2.5 rounded-xl text-sm font-semibold transition flex items-center justify-center gap-2"
                   >
                     <PlayCircle size={16} />
@@ -172,8 +188,8 @@ const Exam = () => {
                         Edit
                       </Link>
 
-                      <button 
-                        onClick={() => handleDelete(exam._id)} 
+                      <button
+                        onClick={() => handleDelete(exam._id)}
                         className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 py-2 rounded-xl text-sm font-semibold transition"
                       >
                         Delete

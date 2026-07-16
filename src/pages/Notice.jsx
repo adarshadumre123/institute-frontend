@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { Link } from 'react-router-dom';
 import {
   Megaphone,
   Calendar,
   RefreshCw,
   Bell,
   Maximize2,
+  Plus,
 } from "lucide-react";
-
 const Notice = () => {
   const [notice, setNotice] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,7 +48,7 @@ const Notice = () => {
   return (
     <div className="min-h-screen bg-[#F8F6F2] text-[#2E1A11] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
-        
+
         {/* Top Header Section */}
         <div className="flex items-center justify-between border-b border-[#EFE9DF] pb-6 mb-10">
           <div className="flex items-center gap-3">
@@ -60,14 +61,12 @@ const Notice = () => {
             </div>
           </div>
 
-          <button
-            onClick={getNotice}
-            disabled={loading}
-            className="p-2.5 hover:bg-white border border-[#EFE9DF] rounded-xl text-[#65534A] transition-colors disabled:opacity-50 bg-white/50"
-            title="Refresh Updates"
-          >
-            <RefreshCw className={`w-5 h-5 ${loading ? "animate-spin text-[#8C3E1A]" : ""}`} />
-          </button>
+          <Link to={'/add-notice'}
+          className="p-2.5 flex hover:bg-white border border-[#EFE9DF] rounded-xl text-[#65534A] transition-colors disabled:opacity-50 bg-white/50">
+            <Plus className='w-5 h-5 '/>
+            <p>Add Notice</p>
+          </Link>
+
         </div>
 
         {/* Loading State */}
@@ -113,7 +112,7 @@ const Notice = () => {
 
                 {/* Content Text Segment */}
                 <div className="p-6 sm:p-8 flex flex-col flex-1">
-                  
+
                   {/* Subtle Sub-header Data */}
                   <div className="flex items-center gap-1.5 text-xs font-semibold text-[#8C3E1A] mb-3 uppercase tracking-wider">
                     <Calendar size={14} />

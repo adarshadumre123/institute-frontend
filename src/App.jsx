@@ -30,10 +30,12 @@ import Class from "./pages/Class";
 import GetClass from "./components/GetClass";
 import Note from "./components/Note";
 import GetNotes from "./components/GetNotes";
+import CreateNotice from './components/CreateNotice';
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
   { path: "/login", element: <Login /> },
+  { path: "/add-notice", element: <CreateNotice /> },
   { path: "/class/:id", element: <GetClass /> },
   { path: "/signup", element: <Signup /> },
   { path: "/exam/:courseId", element: <Exam/> },
@@ -44,9 +46,9 @@ const router = createBrowserRouter([
   { path: "/teachers", element: <Teachers/> },
   { path: "/course", element: <Courses/> },
   { path: "/create-course", element: <CreateCourses/> },
-  { path: "/create-assignment", element: <CreateAssignment/> },
+  { path: "/course/:courseId/create-assignment", element: <CreateAssignment/> },
   { path: "/database", element: <Database/> },
-  { path: "/createExam", element: <CreateExam/> },
+  { path: "/create-exam/course/:courseId", element: <CreateExam/> },
   { path: "/exam-details/:examId", element: <ExamDetails/> },
   { path: "/student/dashboard", element: < StudentDashboard/> },
   { path: "/admin/dashboard", element: < Admin/> },

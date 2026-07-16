@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import myImage from "../assets/book.png";
 
-// Added missing GraduationCap, BookOpen, and ClipboardList imports here
 import {
   User,
   Clock,
@@ -32,15 +31,22 @@ import Game from "./Game";
 import Profile from './Profile';
 import { SidebarItem } from "../components/SidebarItem";
 import Notice from "./Notice";
+import { toast } from "sonner";
 
 const StudentDashboard = () => {
   const [activeTab, setActiveTab] = useState("Dashboard");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    navigate('/login');
-  };
+  const handleLogout=()=>{
+        const confirm = window.confirm("Are you sure to log out?");
+
+    if(confirm){
+       localStorage.removeItem("token");
+    toast.success("Logout successfully");
+    navigate("/login");
+    }
+  }
 
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);

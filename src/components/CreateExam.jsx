@@ -4,7 +4,6 @@ import { Toaster, toast } from "sonner";
 import { useParams } from "react-router-dom";
 const CreateExam = ({ mode = "create", examId }) => {
   const [loading, setLoading] = useState(false);
-    const {id}=useParams();
     const{courseId}=useParams()
   
 
@@ -210,7 +209,7 @@ const CreateExam = ({ mode = "create", examId }) => {
           <button
             type="submit"
             disabled={loading}
-            className="md:col-span-2 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition font-semibold"
+            className="md:col-span-2 bg-yellow-900 text-white py-3 rounded-lg hover:bg-yellow-800 transition font-semibold"
           >
             {
   loading
