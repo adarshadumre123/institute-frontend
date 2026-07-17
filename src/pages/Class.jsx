@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import { useParams } from "react-router-dom";
 
 const Class = () => {
   const [classItem, setClassItem] = useState({
@@ -20,6 +21,7 @@ const Class = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  const{courseId}=useParams()
 
   const token = localStorage.getItem("token");
   const createClass = async (e) => {
@@ -30,7 +32,7 @@ const Class = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/class/create-class",
+        `http://localhost:8000/api/v1/class/create-class/${courseId}`,
         classItem,
         {
           headers: {
@@ -151,7 +153,7 @@ const Class = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md"
+          className="w-full bg-[#2E1A11] hover:bg-[#2d1912] text-white py-2 rounded-md"
         >
           {loading ? "Creating..." : "Create Class"}
         </button>

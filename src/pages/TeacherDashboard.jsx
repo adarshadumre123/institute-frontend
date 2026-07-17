@@ -254,12 +254,7 @@ export const TeacherComponent = () => {
               Welcome back. Here is your academic progress overhead mapping for today.
             </p>
           </div>
-          <div className="flex items-center gap-3 self-start md:self-center">
-            <span className="text-xs font-bold text-[#65534A] bg-white border border-[#EFE9DF] px-3.5 py-2 rounded-xl flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#8C3E1A] animate-pulse"></span>
-              Live Session Mode
-            </span>
-          </div>
+         
         </div>
 
         {/* Outer Split Layout - Grid to stack on small viewports */}

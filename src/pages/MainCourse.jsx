@@ -18,6 +18,7 @@ import Assignment from "./Assignment";
 import Notes from './Notice';
 import Exam from './Exam';
 import GetNotes from "../components/GetNotes";
+import GetClass from './../components/GetClass';
 
 
 
@@ -79,7 +80,7 @@ const MainCourse = () => {
 
 
             <div className="p-6 border-b">
-              <h2 className="text-2xl font-bold text-indigo-600">
+              <h2 className="text-2xl font-bold text-yellow-900">
                 {course?.subject}
               </h2>
             </div>
@@ -135,7 +136,7 @@ const MainCourse = () => {
       <main className="flex-1 p-8 overflow-y-auto">
         <div className="bg-white rounded-2xl shadow-sm p-6 min-h-[90vh]">
           {activeTab === "Overview" && <CourseDetails/>}
-        {activeTab === "Class" && <Class/>}
+        {activeTab === "Class" && <GetClass/>}
         {activeTab === "Exams" && <Exam/>}
         {activeTab === "notes" && <GetNotes/>}
         {activeTab === "Assigments" && <Assignment/>}

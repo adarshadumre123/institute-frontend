@@ -18,7 +18,7 @@ const Assignment = () => {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:8000/api/v1/assignment/get-assignment",
+        `http://localhost:8000/api/v1/assignment/get-assignment/${courseId}`,
         {
           headers: {
             authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ const Assignment = () => {
 
   useEffect(() => {
     getAssignment();
-  }, []);
+  }, [courseId]);
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-[#2E1A11] p-4 sm:p-6 lg:p-8 relative">
