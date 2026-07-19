@@ -28,8 +28,8 @@ const Courses = () => {
   
 
   const getAllCourses = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
       const token = localStorage.getItem("token");
       const res = await axios.get(
         "http://localhost:8000/api/v1/course/get-course",
@@ -73,10 +73,13 @@ const Courses = () => {
             },
           }
         );
+       const confirm = window.confirm("Are you sure to enrolled the course?")
+       if(confirm){
 
-        toast.success(data.message || "Enrolled successfully!");
-        navigate(`/main-course/${course._id}`);
-        return;
+         toast.success(data.message || "Enrolled successfully!");
+         navigate(`/main-course/${course._id}`);
+         return;
+        }
       }
 
       // Paid Course - eSewa Integration
@@ -289,6 +292,8 @@ const Courses = () => {
                         </Link>
                       )
                     }
+
+                  
 
 
                   </div>

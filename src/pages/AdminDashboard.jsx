@@ -47,8 +47,8 @@ const Admin = () => {
   
       if(confirm){
          localStorage.removeItem("token");
-      toast.success("Logout successfully");
-      navigate("/login");
+         navigate("/login");
+         toast.success("Logout successfully");
       }
     }
 

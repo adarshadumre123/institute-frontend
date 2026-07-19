@@ -43,9 +43,9 @@ const StudentDashboard = () => {
 
     if(confirm){
        localStorage.removeItem("token");
+       navigate("/login");
     toast.success("Logout successfully");
-    navigate("/login");
-    }
+  }
   }
 
   const handleTabChange = (tabName) => {
