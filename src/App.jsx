@@ -15,7 +15,7 @@ import Courses from "./pages/Courses";
 import Teachers from "./pages/Teachers";
 import Admin from "./pages/AdminDashboard";
 import Database from "./pages/Database";
-import UpdateExam from "./components/updateExam";
+import UpdateExam from "./components/UpdateExam";
 import CreateCourses from "./components/CreateCourses";
 import CreateAssignment from "./components/CreateAssignment";
 import MainCourse from "./pages/MainCourse";
