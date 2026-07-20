@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import api from "../utils/api";
 
 const Courses = () => {
   const navigate = useNavigate();
@@ -31,8 +32,8 @@ const Courses = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/course/get-course",
+      const res = await api.get(
+        "/api/v1/course/get-course",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -64,8 +65,8 @@ const Courses = () => {
 
       // Free Course Enrollment
       if (coursePrice === 0) {
-        const { data } = await axios.post(
-          "http://localhost:8000/api/v1/enrollment/enrolled",
+        const { data } = await api.post(
+          "/api/v1/enrollment/enrolled",
           { courseId: course._id },
           {
             headers: {
@@ -83,8 +84,8 @@ const Courses = () => {
       }
 
       // Paid Course - eSewa Integration
-      const { data } = await axios.post(
-        "http://localhost:8000/api/v1/payment/create-payment",
+      const { data } = await api.post(
+        "/api/v1/payment/create-payment",
         { courseId: course._id },
         {
           headers: {

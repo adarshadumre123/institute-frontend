@@ -11,6 +11,7 @@ import {
   Plus,
 } from "lucide-react";
 import axios from "axios";
+import api from "../utils/api";
 
 const Exam = () => {
   const { courseId } = useParams();
@@ -22,7 +23,7 @@ const Exam = () => {
   const deleteExam = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.delete(`http://localhost:8000/api/v1/exams/delete/${id}`, {
+      const res = await api.delete(`/api/v1/exams/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -46,8 +47,8 @@ const Exam = () => {
   const getAllExams = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/exams/get-Exam",
+      const res = await api.get(
+        "/api/v1/exams/get-Exam",
         {
           headers: {
             Authorization: `Bearer ${token}`,

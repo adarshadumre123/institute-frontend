@@ -204,6 +204,7 @@ import {
   Clock,
   Briefcase
 } from "lucide-react";
+import api from '../utils/api';
 
 const Database = () => {
   const [data, setData] = useState(null);
@@ -214,7 +215,7 @@ const Database = () => {
   const getDataForAdmin = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:8000/api/v1/database/get-database", {
+      const res = await api.get("/api/v1/database/get-database", {
         headers: {
           authorization: `Bearer ${token}`
         }

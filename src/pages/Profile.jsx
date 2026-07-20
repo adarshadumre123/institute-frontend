@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { User, Phone, Mail, ShieldAlert, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import api from "../utils/api";
 
 const Profile = () => {
   const [profile, setProfile] = useState({
@@ -24,8 +25,8 @@ const Profile = () => {
   const getProfile = async () => {
     try {
 
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/users/get-user",
+      const res = await api.get(
+        "/api/v1/users/get-user",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -70,8 +71,8 @@ const Profile = () => {
 
       const token = localStorage.getItem("token");
 
-      const res = await axios.put(
-        "http://localhost:8000/api/v1/users/update-profile",
+      const res = await api.put(
+        "/api/v1/users/update-profile",
         {
           firstName: profile.firstName,
           lastName: profile.lastName,

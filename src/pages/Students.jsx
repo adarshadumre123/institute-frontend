@@ -10,6 +10,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { toast } from "sonner";
+import api from "../utils/api";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -21,8 +22,8 @@ const Students = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/users/get",
+      const res = await api.get(
+        "/api/v1/users/get",
         {
           headers: {
             authorization: `Bearer ${token}`,

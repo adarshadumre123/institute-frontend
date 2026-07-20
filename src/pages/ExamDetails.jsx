@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { Loader, BookOpen, Clock3, FileText, Trophy, Pencil } from 'lucide-react';
+import api from '../utils/api';
 
 const ExamDetails = () => {
 
@@ -15,8 +16,8 @@ const ExamDetails = () => {
 
             const token = localStorage.getItem("token");
 
-            const res = await axios.get(
-                `http://localhost:8000/api/v1/exams/getExamsById/${examId}`,
+            const res = await api.get(
+                `/api/v1/exams/getExamsById/${examId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

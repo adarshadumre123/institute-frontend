@@ -10,6 +10,7 @@ import {
   Video,
   Plus
 } from "lucide-react";
+import api from "../utils/api";
 
 const GetClass = () => {
   const [classes, setClasses] = useState([]);
@@ -20,8 +21,8 @@ const GetClass = () => {
 
   const getAllClass = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:8000/api/v1/class/getAllClass/${courseId}`,
+      const res = await api.get(
+        `/api/v1/class/getAllClass/${courseId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

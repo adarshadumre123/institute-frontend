@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { useParams } from "react-router-dom";
+import api from "../utils/api";
 
 const Class = () => {
   const [classItem, setClassItem] = useState({
@@ -31,8 +32,8 @@ const Class = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        `http://localhost:8000/api/v1/class/create-class/${courseId}`,
+      const res = await api.post(
+        `/api/v1/class/create-class/${courseId}`,
         classItem,
         {
           headers: {

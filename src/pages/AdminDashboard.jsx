@@ -18,6 +18,7 @@ import {
   Menu,
   X
 } from "lucide-react";
+import api from "../utils/api"
 import { Link } from "react-router-dom";
 import { SidebarItem } from "../components/SidebarItem";
 
@@ -193,7 +194,7 @@ export const AdminComponent = () => {
       const token = localStorage.getItem("token");
       console.log(token);
   
-      const res = await axios.get("http://localhost:8000/api/v1/database/get-database",{
+      const res = await api.get("/api/v1/database/get-database",{
         headers:{
           authorization:`Bearer ${token}`
         }

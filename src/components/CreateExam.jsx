@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
 import { useParams } from "react-router-dom";
+import api from "../utils/api";
 const CreateExam = ({ mode = "create", examId }) => {
   const [loading, setLoading] = useState(false);
     const{courseId}=useParams()
@@ -33,7 +34,7 @@ const CreateExam = ({ mode = "create", examId }) => {
    
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.put(`http://localhost:8000/api/v1/exams/update/${examId}`, data, {
+      const res = await api.put(`/api/v1/exams/update/${examId}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
@@ -72,8 +73,8 @@ const CreateExam = ({ mode = "create", examId }) => {
 
       setLoading(true);
 
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/exams/create",
+      const res = await api.post(
+        "/api/v1/exams/create",
         data,
         {
           headers: {

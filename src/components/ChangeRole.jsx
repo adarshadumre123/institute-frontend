@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
+import api from "../utils/api";
 
 const ChangeUser = () => {
   const [users, setUsers] = useState([]);
@@ -13,8 +14,8 @@ const ChangeUser = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/users/get",
+      const res = await api.get(
+        "/api/v1/users/get",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -41,8 +42,8 @@ const ChangeUser = () => {
   // Change Role
   const updateRole = async (userId, role) => {
     try {
-      const res = await axios.put(
-        `http://localhost:8000/api/v1/user/change-role/${userId}`,
+      const res = await api.put(
+        `/api/v1/user/change-role/${userId}`,
         { role },
         {
           headers: {

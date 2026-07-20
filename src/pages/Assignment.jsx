@@ -2,6 +2,7 @@ import axios from "axios";
 import { Plus, BookOpen, Calendar, User, Mail, FileText, Loader2, X, Hash, Award, CornerDownRight } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import api from "../utils/api";
 
 const Assignment = () => {
   const [assignments, setAssignments] = useState([]);
@@ -17,8 +18,8 @@ const Assignment = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        `http://localhost:8000/api/v1/assignment/get-assignment/${courseId}`,
+      const res = await api.get(
+        `/api/v1/assignment/get-assignment/${courseId}`,
         {
           headers: {
             authorization: `Bearer ${token}`,

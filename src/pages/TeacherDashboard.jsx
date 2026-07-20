@@ -180,6 +180,7 @@ import {
   Calendar as CalendarIcon,
   BellRing
 } from "lucide-react";
+import api from "../utils/api";
 
 export const TeacherComponent = () => {
   const [dashboard, setDashboard] = useState({
@@ -198,8 +199,8 @@ export const TeacherComponent = () => {
 
   const getDashboard = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/dashboard/teacher-dashboard",
+      const res = await api.get(
+        "/api/v1/dashboard/teacher-dashboard",
         {
           headers: {
             Authorization: `Bearer ${token}`,

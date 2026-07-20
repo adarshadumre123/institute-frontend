@@ -3,6 +3,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import axios from 'axios';
 import { UploadCloud, FileText } from 'lucide-react'; // Added for a more premium file input look
+import api from '../utils/api';
 
 const Note = () => {
   const { courseId } = useParams()
@@ -47,7 +48,7 @@ const Note = () => {
       formData.append("description", note.description)
       formData.append("file", note.file)
 
-      const res = await axios.post(`http://localhost:8000/api/v1/note/course/${courseId}/note`, formData, {
+      const res = await api.post(`/api/v1/note/course/${courseId}/note`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

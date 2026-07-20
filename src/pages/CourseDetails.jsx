@@ -10,6 +10,7 @@ import {
   Award,
   CheckCircle,
 } from "lucide-react";
+import api from "../utils/api";
 
 
 const CourseDetails = () => {
@@ -21,8 +22,8 @@ const CourseDetails = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        `http://localhost:8000/api/v1/course/get-course-id/${courseId}`,
+      const res = await api.get(
+        `/api/v1/course/get-course-id/${courseId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -19,6 +19,7 @@ import Notes from './Notice';
 import Exam from './Exam';
 import GetNotes from "../components/GetNotes";
 import GetClass from './../components/GetClass';
+import api from "../utils/api";
 
 
 
@@ -39,8 +40,8 @@ const MainCourse = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        `http://localhost:8000/api/v1/course/get-course-id/${courseId}`,
+      const res = await api.get(
+        `/api/v1/course/get-course-id/${courseId}`,
 
         {
           headers: {

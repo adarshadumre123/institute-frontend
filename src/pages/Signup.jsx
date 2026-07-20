@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Login from './Login';
 import  axios  from 'axios';
 import { Toaster, toast } from "sonner";
+import api from "../utils/api";
 
 
 const SignupPage = () => {
@@ -30,7 +31,7 @@ const SignupPage = () => {
     // console.log(formData);
 
    try {
-    const res = await  axios.post("http://localhost:8000/api/v1/users/register", formData,{
+    const res = await  api.post("/api/v1/users/register", formData,{
        headers:{
          "Content-type":"application/json"
        }

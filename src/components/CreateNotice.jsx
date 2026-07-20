@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
+import api from '../utils/api';
 
 const CreateNotice = () => {
   const [notice, setNotice] = useState({
@@ -43,7 +44,7 @@ const CreateNotice = () => {
       formData.append("description", notice.description);
       formData.append("file", notice.file);
 
-      const res = await axios.post(`http://localhost:8000/api/v1/notice/upload-notice`, formData, {
+      const res = await api.post(`/api/v1/notice/upload-notice`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

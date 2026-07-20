@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import axios from 'axios';
 import { FileText, Calendar, Download, Search } from "lucide-react";
+import api from '../utils/api';
 
 const GetNotes = () => {
     const { courseId } = useParams();
@@ -17,8 +18,8 @@ const GetNotes = () => {
         try {
             const token = localStorage.getItem("token");
 
-            const res = await axios.get(
-                `http://localhost:8000/api/v1/note/course/${courseId}/get-note`,
+            const res = await api.get(
+                `/api/v1/note/course/${courseId}/get-note`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

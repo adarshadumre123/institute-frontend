@@ -10,6 +10,7 @@ import {
   Maximize2,
   Plus,
 } from "lucide-react";
+import api from "../utils/api";
 const Notice = () => {
   const [notice, setNotice] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,8 +21,8 @@ const Notice = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/notice/get-notice",
+      const res = await api.get(
+        "/api/v1/notice/get-notice",
         {
           headers: {
             Authorization: `Bearer ${token}`,

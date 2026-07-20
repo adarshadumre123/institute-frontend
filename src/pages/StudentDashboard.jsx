@@ -32,6 +32,7 @@ import Profile from './Profile';
 import { SidebarItem } from "../components/SidebarItem";
 import Notice from "./Notice";
 import { toast } from "sonner";
+import api from "../utils/api";
 
 const StudentDashboard = () => {
   const [activeTab, setActiveTab] = useState("Dashboard");
@@ -179,7 +180,7 @@ export const StudentComponent = () => {
   const getStudentDashboard = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await axios.get("http://localhost:8000/api/v1/dashboard/student-dashboard", {
+      const res = await api.get("/api/v1/dashboard/student-dashboard", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

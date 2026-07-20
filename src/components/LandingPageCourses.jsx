@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Loader2, FileText, User, Mail, GraduationCap, Sparkles } from "lucide-react";
+import api from "../utils/api";
 
 const LandingPageCourse = () => {
     const [courses, setCourses] = useState([]);
@@ -11,7 +12,7 @@ const LandingPageCourse = () => {
     const getAllCourses = async () => {
         setLoading(true);
         try {
-            const res = await axios.get("http://localhost:8000/api/v1/course/landing-page-course");
+            const res = await api.get("/api/v1/course/landing-page-course");
             setCourses(res.data.course || []);
         } catch (error) {
             console.error("Error fetching courses:", error);

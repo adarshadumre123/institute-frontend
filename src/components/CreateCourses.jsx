@@ -1,9 +1,9 @@
-// http://localhost:8000/api/v1/course/create-course
 
 import React, { useState } from 'react'
 import { toast } from 'sonner'
 import axios from "axios";
 import Courses from '../pages/Courses';
+import api from '../utils/api';
 
 
 const CreateCourses = () => {
@@ -30,7 +30,7 @@ const createCourses=async()=>{
   setLoading(true)
   try {
     let token = localStorage.getItem("token");
-    const res = await axios.post("http://localhost:8000/api/v1/course/create-course",courses,{
+    const res = await api.post("/api/v1/course/create-course",courses,{
        headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

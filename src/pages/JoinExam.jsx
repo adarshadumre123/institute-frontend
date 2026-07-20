@@ -5,6 +5,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
+import api from "../utils/api";
 
 const JoinExam = () => {
   const{id}=useParams()
@@ -15,8 +16,8 @@ const JoinExam = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await axios.get(
-        "http://localhost:8000/api/v1/question/getAllQuestion",
+      const res = await api.get(
+        "/api/v1/question/getAllQuestion",
         {
           headers: {
             Authorization: `Bearer ${token}`,

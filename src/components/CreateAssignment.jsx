@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { toast } from 'sonner';
 import { FileText, BookOpen, Hash, ArrowLeft, Loader2 } from "lucide-react";
 import { useParams, useNavigate } from 'react-router-dom';
+import api from '../utils/api';
 
 const CreateAssignment = () => {
   const { courseId } = useParams();
@@ -34,8 +35,8 @@ const CreateAssignment = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("token");
-      const res = await axios.post(
-        `http://localhost:8000/api/v1/assignment/generate-assignment/${courseId}`, 
+      const res = await api.post(
+        `/api/v1/assignment/generate-assignment/${courseId}`, 
         assignment, 
         {
           headers: {

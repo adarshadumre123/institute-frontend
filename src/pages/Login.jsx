@@ -4,6 +4,7 @@ import { Mail, Lock, GraduationCap } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Toaster, toast } from "sonner";
+import api from "../utils/api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -39,8 +40,8 @@ const Login = () => {
     if (!validate()) return;
 
     try {
-      const res = await axios.post(
-        "http://localhost:8000/api/v1/users/login",
+      const res = await api.post(
+        "/api/v1/users/login",
         formData,
         { headers: { "Content-Type": "application/json" } }
       );
