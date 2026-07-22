@@ -31,6 +31,8 @@ import GetClass from "./components/GetClass";
 import Note from "./components/Note";
 import GetNotes from "./components/GetNotes";
 import CreateNotice from './components/CreateNotice';
+import ForgetPassword from './components/ForgetPassword';
+import VerifyOtp from "./components/VerifyOtp";
 
 const router = createBrowserRouter([
   { path: "/", element: <Home /> },
@@ -63,7 +65,9 @@ const router = createBrowserRouter([
   // {path: "/main-course/:courseId",element: <MainCourse /> },
   {path:"/payment-success" ,element:<PaymentSuccess />},
   {path:"/courses-student" ,element:<StudentSidebar/>},
-  {path:"/payment-failed", element:<PaymentFailed />}
+  {path:"/payment-failed", element:<PaymentFailed />},
+  {path:"/forget-password", element:<ForgetPassword/>},
+  {path:"/verify-otp", element:<VerifyOtp/>}
 ]);
 
 

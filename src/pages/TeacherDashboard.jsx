@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
-import myImage from "../assets/book.png";
+import logo from "../assets/logo.png";
 
 import {
   User,
@@ -43,45 +43,49 @@ const TeacherDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogout=()=>{
-        const confirm = window.confirm("Are you sure to log out?");
+  const handleLogout = () => {
+    const confirm = window.confirm("Are you sure to log out?");
 
-    if(confirm){
-       localStorage.removeItem("token");
-       navigate("/login");
-       toast.success("Logout successfully");
+    if (confirm) {
+      localStorage.removeItem("token");
+      navigate("/login");
+      toast.success("Logout successfully");
     }
   }
 
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
-    setIsSidebarOpen(false); 
+    setIsSidebarOpen(false);
   };
 
   return (
     <div className="h-screen w-screen bg-[#F4EAD4] flex flex-col md:flex-row text-[#2B1810] font-sans overflow-hidden relative">
-      
+
       {/* --- MOBILE TOP HEADER NAVIGATION (Hidden on Desktop) --- */}
       <header className="md:hidden w-full h-16 bg-white border-b border-[#EFE9DF] px-4 flex items-center justify-between shrink-0 z-40 shadow-xs">
         <div className="flex items-center gap-3">
-          <button 
+          <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             className="p-2 text-neutral-700 hover:bg-[#FAF6F0] rounded-xl transition-colors cursor-pointer"
             aria-label="Toggle Menu"
           >
             {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          
-          <div className="flex items-center gap-2">
-            <GraduationCap size={24} className="text-[#8C3E1A]" />
-            <span className="font-serif font-black text-lg text-[#2E1A11] tracking-tight">EduPortal</span>
+
+          <div className="flex items-center gap-2.5">
+            <img
+              src={logo}
+              alt="Kanva Logo"
+              className="w-10 h-10 object-contain"
+            />
+            <span className="font-serif font-black text-lg text-[#2E1A11] tracking-tight">KANVA</span>
           </div>
         </div>
       </header>
 
       {/* --- BACKGROUND DIMMER OVERLAY (Mobile Drawer view mode only) --- */}
       {isSidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/40 z-40 backdrop-blur-xs transition-opacity duration-300 md:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
@@ -94,11 +98,15 @@ const TeacherDashboard = () => {
         ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
       `}>
         <div className="p-5 border-b border-neutral-100 flex items-center justify-between bg-[#FAF6F0]/50 h-16 shrink-0">
-          <div className="flex items-center gap-2.5">
-            <GraduationCap size={24} className="text-[#8C3E1A]" />
-            <span className="font-serif font-black text-lg text-[#2E1A11] tracking-tight">EduPortal</span>
+         <div className="flex items-center gap-2.5">
+            <img
+              src={logo}
+              alt="Kanva Logo"
+              className="w-10 h-10 object-contain"
+            />
+            <span className="font-serif font-black text-lg text-[#2E1A11] tracking-tight">KANVA</span>
           </div>
-          <button 
+          <button
             onClick={() => setIsSidebarOpen(false)}
             className="md:hidden p-1.5 text-neutral-400 hover:bg-neutral-100 rounded-lg transition-colors cursor-pointer"
           >
@@ -120,7 +128,7 @@ const TeacherDashboard = () => {
             active={activeTab === "Courses"}
             onClick={() => handleTabChange("Courses")}
           />
-          
+
           <SidebarItem
             icon={<Bell size={20} />}
             title="Notices"
@@ -134,7 +142,7 @@ const TeacherDashboard = () => {
             active={activeTab === "Students"}
             onClick={() => handleTabChange("Students")}
           />
-          
+
           <SidebarItem
             icon={<User size={20} />}
             title="Profile"
@@ -144,7 +152,7 @@ const TeacherDashboard = () => {
         </nav>
 
         <div className="p-4 border-t border-neutral-100 space-y-3 bg-[#FAF6F0]/30 shrink-0">
-          <button 
+          <button
             onClick={handleLogout}
             className="flex items-center gap-3 w-full p-2.5 rounded-xl text-xs font-bold text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer"
           >
@@ -175,8 +183,8 @@ const TeacherDashboard = () => {
 
 export default TeacherDashboard;
 
-import { 
-  Users, 
+import {
+  Users,
   Calendar as CalendarIcon,
   BellRing
 } from "lucide-react";
@@ -219,7 +227,7 @@ export const TeacherComponent = () => {
 
   // Calendar Generation Helpers
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  
+
   const getDaysInMonth = (date) => {
     const year = date.getFullYear();
     const month = date.getMonth();
@@ -246,7 +254,7 @@ export const TeacherComponent = () => {
   return (
     <div className="min-h-screen bg-[#FAF9F6] text-[#2E1A11] p-4 sm:p-6 lg:p-8">
       <div className="max-w-350 mx-auto space-y-6">
-        
+
         {/* Upper Brand Welcome Bar */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-[#EFE9DF]">
           <div>
@@ -255,18 +263,18 @@ export const TeacherComponent = () => {
               Welcome back. Here is your academic progress overhead mapping for today.
             </p>
           </div>
-         
+
         </div>
 
         {/* Outer Split Layout - Grid to stack on small viewports */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          
+
           {/* Main Dashboard Panel Metrics (Left Columns) */}
           <div className="lg:col-span-2 space-y-6">
             <h2 className="text-xs font-black uppercase tracking-widest text-[#65534A]">Academic Statistics</h2>
-            
+
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              
+
               {/* Courses Metric */}
               <div className="bg-white rounded-2xl border border-[#EFE9DF] p-5 shadow-xs hover:shadow-sm transition group">
                 <div className="w-10 h-10 rounded-xl bg-[#FAF6F0] border border-[#EFE9DF] flex items-center justify-center text-[#8C3E1A] mb-4 group-hover:scale-105 transition-transform">
@@ -336,20 +344,20 @@ export const TeacherComponent = () => {
             </h2>
 
             <div className="bg-white rounded-2xl border border-[#EFE9DF] p-5 shadow-xs">
-              
+
               {/* Calendar Month Selector Header */}
               <div className="flex items-center justify-between mb-5">
                 <span className="text-sm font-black text-[#2E1A11]">
                   {currentDate.toLocaleString("default", { month: "long", year: "numeric" })}
                 </span>
                 <div className="flex gap-1.5">
-                  <button 
+                  <button
                     onClick={prevMonth}
                     className="p-1.5 bg-white hover:bg-[#FAF6F0] border border-[#EFE9DF] text-[#2E1A11] rounded-lg transition"
                   >
                     <ChevronLeft size={16} />
                   </button>
-                  <button 
+                  <button
                     onClick={nextMonth}
                     className="p-1.5 bg-white hover:bg-[#FAF6F0] border border-[#EFE9DF] text-[#2E1A11] rounded-lg transition"
                   >
@@ -375,14 +383,14 @@ export const TeacherComponent = () => {
                 {/* Print month calendar numbers */}
                 {Array.from({ length: daysInMonth }).map((_, idx) => {
                   const dayNum = idx + 1;
-                  const isToday = 
-                    dayNum === new Date().getDate() && 
-                    currentDate.getMonth() === new Date().getMonth() && 
+                  const isToday =
+                    dayNum === new Date().getDate() &&
+                    currentDate.getMonth() === new Date().getMonth() &&
                     currentDate.getFullYear() === new Date().getFullYear();
-                    
-                  const isSelected = 
-                    dayNum === selectedDate.getDate() && 
-                    currentDate.getMonth() === selectedDate.getMonth() && 
+
+                  const isSelected =
+                    dayNum === selectedDate.getDate() &&
+                    currentDate.getMonth() === selectedDate.getMonth() &&
                     currentDate.getFullYear() === selectedDate.getFullYear();
 
                   return (
@@ -414,7 +422,7 @@ export const TeacherComponent = () => {
 
         </div>
       </div>
-      <Courses/>
+      <Courses />
     </div>
   );
 };

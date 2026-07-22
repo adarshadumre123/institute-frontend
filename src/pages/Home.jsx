@@ -276,8 +276,7 @@ export default function Home() {
               </h3>
 
               <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-                Continue your education seamlessly from desktop, tablet or
-                mobile whenever you want.
+                Students take timed online exams, and the system records their responses and results automatically.
               </p>
             </div>
 
@@ -291,8 +290,7 @@ export default function Home() {
               </h3>
 
               <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-                Continue your education seamlessly from desktop, tablet or
-                mobile whenever you want.
+            AI generates assignment questions based on the selected topic, saving teachers time and effort.
               </p>
             </div>
 
@@ -306,8 +304,7 @@ export default function Home() {
               </h3>
 
               <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-                Continue your education seamlessly from desktop, tablet or
-                mobile whenever you want.
+                Teachers upload study materials like PDFs and documents, which students can access anytime.
               </p>
             </div>
 
@@ -321,8 +318,7 @@ export default function Home() {
               </h3>
 
               <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-                Continue your education seamlessly from desktop, tablet or
-                mobile whenever you want.
+                Admins and teachers can create, update, and organize courses, while students can browse and enroll in them.
               </p>
             </div>
 
@@ -336,8 +332,7 @@ export default function Home() {
               </h3>
 
               <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-                Continue your education seamlessly from desktop, tablet or
-                mobile whenever you want.
+               Teachers schedule online classes with meeting links, allowing students to join sessions directly from the platform.
               </p>
             </div>
           </div>
@@ -584,10 +579,10 @@ export default function Home() {
 
               <div className="flex gap-2.5 pt-1">
                 {[
-                  { icon: <FaFacebookF size={16} />, href: "#" },
-                  { icon: <FaInstagram size={16} />, href: "#" },
-                  { icon: <FaLinkedinIn size={16} />, href: "#" },
-                  { icon: <FaTwitter size={16} />, href: "#" },
+                  { icon: <FaFacebookF size={16} />, href: "https://www.facebook.com/adarsha.dumre/" },
+                  { icon: <FaInstagram size={16} />, href: "https://www.instagram.com/aadarshadumre45/" },
+                  { icon: <FaLinkedinIn size={16} />, href: "https://www.linkedin.com/in/adarsha-dumre-4110902a0/" },
+                  
                 ].map((social, index) => (
                   <a
                     key={index}
@@ -609,7 +604,6 @@ export default function Home() {
                 {["Home", "Courses", "Features", "Contact"].map((item) => (
                   <li key={item}>
                     <a
-                      href={`#${item.toLowerCase()}`}
                       className="hover:text-white transition-colors duration-200 flex items-center gap-1 group"
                     >
                       <span className="w-0 h-0.5 bg-orange-300 transition-all duration-200 group-hover:w-2 inline-block" />

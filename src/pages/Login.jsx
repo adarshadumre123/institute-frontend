@@ -232,12 +232,12 @@ const Login = () => {
                 />
                 Remember me
               </label>
-              <a
-                href="#"
+              <Link to={'/forget-password'}
+                
                 className="text-[#B34E17] font-semibold hover:underline"
               >
                 Forgot Password?
-              </a>
+              </Link>
             </div>
 
             {/* Submit Button */}

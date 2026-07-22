@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import myImage from "../assets/book.png";
+import logo from "../assets/logo.png";
+
 
 import {
   User,
@@ -39,45 +41,49 @@ const StudentDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogout=()=>{
-        const confirm = window.confirm("Are you sure to log out?");
+  const handleLogout = () => {
+    const confirm = window.confirm("Are you sure to log out?");
 
-    if(confirm){
-       localStorage.removeItem("token");
-       navigate("/login");
-    toast.success("Logout successfully");
-  }
+    if (confirm) {
+      localStorage.removeItem("token");
+      navigate("/login");
+      toast.success("Logout successfully");
+    }
   }
 
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
-    setIsSidebarOpen(false); 
+    setIsSidebarOpen(false);
   };
 
   return (
     <div className="h-screen w-screen bg-[#F4EAD4] flex flex-col md:flex-row text-[#2B1810] font-sans overflow-hidden relative">
-      
+
       {/* --- MOBILE TOP HEADER NAVIGATION (Hidden on Desktop) --- */}
       <header className="md:hidden w-full h-16 bg-white border-b border-[#EFE9DF] px-4 flex items-center justify-between shrink-0 z-40 shadow-xs">
         <div className="flex items-center gap-3">
-          <button 
+          <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             className="p-2 text-neutral-700 hover:bg-[#FAF6F0] rounded-xl transition-colors cursor-pointer"
             aria-label="Toggle Menu"
           >
             {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-          
+
           <div className="flex items-center gap-2">
-            <GraduationCap size={24} className="text-[#8C3E1A]" />
-            <span className="font-serif font-black text-lg text-[#2E1A11] tracking-tight">EduPortal</span>
+            <img
+              src={logo}
+              alt="Kanva Logo"
+              className="w-10 h-10 object-contain"
+            />
+            <span className="font-serif font-black text-lg text-[#2E1A11] tracking-tight">KANVA</span>
           </div>
         </div>
       </header>
 
       {/* --- BACKGROUND DIMMER OVERLAY (Mobile Drawer view mode only) --- */}
       {isSidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/40 z-40 backdrop-blur-xs transition-opacity duration-300 md:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
@@ -91,10 +97,14 @@ const StudentDashboard = () => {
       `}>
         <div className="p-5 border-b border-neutral-100 flex items-center justify-between bg-[#FAF6F0]/50 h-16 shrink-0">
           <div className="flex items-center gap-2.5">
-            <GraduationCap size={24} className="text-[#8C3E1A]" />
-            <span className="font-serif font-black text-lg text-[#2E1A11] tracking-tight">EduPortal</span>
+            <img
+              src={logo}
+              alt="Kanva Logo"
+              className="w-10 h-10 object-contain"
+            />
+            <span className="font-serif font-black text-lg text-[#2E1A11] tracking-tight">KANVA</span>
           </div>
-          <button 
+          <button
             onClick={() => setIsSidebarOpen(false)}
             className="md:hidden p-1.5 text-neutral-400 hover:bg-neutral-100 rounded-lg transition-colors cursor-pointer"
           >
@@ -116,7 +126,7 @@ const StudentDashboard = () => {
             active={activeTab === "Courses"}
             onClick={() => handleTabChange("Courses")}
           />
-          
+
           <SidebarItem
             icon={<Bell size={20} />}
             title="Notices"
@@ -130,7 +140,7 @@ const StudentDashboard = () => {
             active={activeTab === "Games"}
             onClick={() => handleTabChange("Games")}
           />
-          
+
           <SidebarItem
             icon={<User size={20} />}
             title="Profile"
@@ -140,7 +150,7 @@ const StudentDashboard = () => {
         </nav>
 
         <div className="p-4 border-t border-neutral-100 space-y-3 bg-[#FAF6F0]/30 shrink-0">
-          <button 
+          <button
             onClick={handleLogout}
             className="flex items-center gap-3 w-full p-2.5 rounded-xl text-xs font-bold text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer"
           >
@@ -235,11 +245,10 @@ export const StudentComponent = () => {
     calendarCells.push(
       <div
         key={`day-${day}`}
-        className={`h-8 w-8 text-xs font-bold rounded-full flex items-center justify-center transition-all ${
-          isToday
-            ? "bg-[#8C3E1A] text-white shadow-md shadow-orange-100 scale-105"
-            : "text-neutral-800 hover:bg-neutral-100"
-        }`}
+        className={`h-8 w-8 text-xs font-bold rounded-full flex items-center justify-center transition-all ${isToday
+          ? "bg-[#8C3E1A] text-white shadow-md shadow-orange-100 scale-105"
+          : "text-neutral-800 hover:bg-neutral-100"
+          }`}
       >
         {day}
       </div>
