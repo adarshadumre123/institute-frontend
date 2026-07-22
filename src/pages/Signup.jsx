@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  GraduationCap,
   Mail,
   Lock,
   Phone,
@@ -14,6 +13,8 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import api from "../utils/api";
+
+import logo from "../assets/logo.png";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -57,7 +58,6 @@ const SignupPage = () => {
       if (res.data?.success) {
         toast.success(res.data.message || "Account registered successfully!");
 
-        // Route user according to selected role
         const userRole = res.data?.user?.role || formData.role;
         if (userRole === "student") return navigate("/student/dashboard");
         if (userRole === "teacher") return navigate("/teacher/dashboard");
@@ -82,20 +82,21 @@ const SignupPage = () => {
       <div className="w-full max-w-5xl bg-white border border-[#F3E7DE] rounded-3xl sm:rounded-[2.5rem] shadow-2xl shadow-[#8C3E1A]/10 overflow-hidden grid grid-cols-1 lg:grid-cols-2">
         
         {/* ── LEFT SIDE (BRAND PANEL) ── */}
-        <div className="hidden lg:flex flex-col justify-between bg-linear-to-br from-[#8C3E1A] via-[#823816] to-[#6F2F11] text-white p-10 sm:p-12 relative overflow-hidden">
+        <div className="hidden lg:flex flex-col justify-between bg-linear-to-br from-[#8e411e] via-[#793c1f] to-[#6F2F11] text-white p-10 sm:p-12 relative overflow-hidden">
           {/* Ambient Lighting FX */}
           <div className="absolute -top-16 -right-16 w-64 h-64 bg-orange-400/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10">
-            {/* Logo */}
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-2.5 bg-white/10 rounded-2xl backdrop-blur-md border border-white/20">
-                <GraduationCap size={32} className="text-orange-200" />
+            {/* Desktop Brand Header */}
+            <div className="flex items-center gap-3 mb-8 pb-4 border-b border-white/20">
+              <img src={logo} alt="Kanva Logo" className="w-10 h-10 object-contain" />
+              <div>
+                <h1 className="text-xl font-bold text-white tracking-tight leading-none">
+                  KANVA
+                </h1>
+                <span className="text-xs text-orange-200/90 font-medium">Digital Academy</span>
               </div>
-              <h1 className="text-3xl font-extrabold tracking-tight">
-                EduInstitute
-              </h1>
             </div>
 
             {/* Tagline & Copy */}
@@ -134,6 +135,18 @@ const SignupPage = () => {
 
         {/* ── RIGHT SIDE (FORM PANEL) ── */}
         <div className="p-6 sm:p-10 lg:p-12 flex flex-col justify-center bg-white">
+          
+          {/* Mobile Header (Shows logo on smaller screens) */}
+          <div className="flex lg:hidden items-center gap-3 mb-6 pb-4 border-b border-[#F5EBE4]">
+            <img src={logo} alt="Kanva Logo" className="w-10 h-10 object-contain" />
+            <div>
+              <h1 className="text-lg font-bold text-[#2D2D2D] tracking-tight leading-none">
+                KANVA
+              </h1>
+              <span className="text-xs text-gray-500 font-medium">Digital Academy</span>
+            </div>
+          </div>
+
           <div className="mb-6">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1A1A1A] tracking-tight">
               Create Account
@@ -144,10 +157,8 @@ const SignupPage = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-            
             {/* First Name & Last Name */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* First Name */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
                   First Name *
@@ -169,7 +180,6 @@ const SignupPage = () => {
                 </div>
               </div>
 
-              {/* Last Name */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
                   Last Name *
