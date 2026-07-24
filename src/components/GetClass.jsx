@@ -18,6 +18,7 @@ const GetClass = () => {
   const{courseId}=useParams()
 
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role").trim().toLowerCase();
 
   const getAllClass = async () => {
     try {
@@ -71,7 +72,10 @@ const GetClass = () => {
               Connect in real-time with scheduled live interactive lectures.
             </p>
           </div>
-          
+
+{
+  role==="student"?(null):(
+
           <Link
             to={`/class-create/${courseId}`}
             className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#A34F26] hover:bg-[#8C3E1A] text-white px-5 py-3 rounded-xl font-black uppercase tracking-wider text-xs shadow-xs transition-all duration-200 hover:scale-[1.01]"
@@ -79,6 +83,9 @@ const GetClass = () => {
             <Plus size={16} />
             Add Class
           </Link>
+  )
+}
+          
         </div>
 
         {classes.length === 0 ? (

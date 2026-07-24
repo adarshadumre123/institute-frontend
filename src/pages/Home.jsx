@@ -45,7 +45,7 @@ export default function Home() {
             <h1 className="text-lg sm:text-xl font-bold text-[#2D2D2D] tracking-tight leading-none">
               KANVA
             </h1>
-            <span className="text-xs text-gray-500 font-medium">LMS Platform</span>
+            <span className="text-xs text-gray-500 font-medium">DIGITAL ACADEMY</span>
           </div>
         </div>
 

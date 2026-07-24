@@ -99,21 +99,7 @@ const Footer = () => {
               </div>
 
               <div className="flex gap-4 pt-3">
-                {/* <a href="#">
-                  <Facebook className="hover:text-blue-500 transition" />
-                </a> */}
-
-                {/* <a href="#">
-                  <Instagram className="hover:text-pink-500 transition" />
-                </a>
-
-                <a href="#">
-                  <Linkedin className="hover:text-blue-400 transition" />
-                </a> */}
-
-                {/* <a href="#">
-                  <Github className="hover:text-white transition" />
-                </a> */}
+               
               </div>
             </div>
           </div>

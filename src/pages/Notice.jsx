@@ -14,6 +14,8 @@ import api from "../utils/api";
 const Notice = () => {
   const [notice, setNotice] = useState([]);
   const [loading, setLoading] = useState(true);
+  const role= localStorage.getItem("role").trim().toLowerCase()
+  
 
   const getNotice = async () => {
     const token = localStorage.getItem("token");
@@ -62,11 +64,17 @@ const Notice = () => {
             </div>
           </div>
 
-          <Link to={'/add-notice'}
+{
+  role==="student"?(null):(
+     <Link to={'/add-notice'}
           className="p-2.5 flex hover:bg-white border border-[#EFE9DF] rounded-xl text-[#65534A] transition-colors disabled:opacity-50 bg-white/50">
             <Plus className='w-5 h-5 '/>
             <p>Add Notice</p>
           </Link>
+  )
+}
+
+         
 
         </div>
 
@@ -74,7 +82,7 @@ const Notice = () => {
         {loading && (
           <div className="flex flex-col items-center justify-center py-24 gap-3">
             <div className="w-10 h-10 border-4 border-[#8C3E1A] border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-sm font-medium text-[#65534A]">Synchronizing feed channels...</p>
+            <p className="text-sm font-medium text-[#65534A]">loading...</p>
           </div>
         )}
 
@@ -98,10 +106,7 @@ const Notice = () => {
                 {/* LARGE TEXT-READABLE IMAGE PANEL */}
                 {item.image && (
                   <div className="w-full bg-[#FAF6F0] border-b border-[#EFE9DF]/60 relative p-2 sm:p-4 flex justify-center">
-                    <div className="absolute top-4 right-4 z-10 bg-[#2E1A11]/80 text-[#FAF6F0] backdrop-blur-xs p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 text-xs font-semibold">
-                      <Maximize2 size={14} className="text-[#8C3E1A]" />
-                      Document View
-                    </div>
+                    
                     <img
                       src={item.image}
                       alt={item.title}
@@ -130,11 +135,7 @@ const Notice = () => {
                     {item.description}
                   </p>
 
-                  {/* Grounded Base Accenting Label */}
-                  <div className="mt-auto pt-4 border-t border-[#EFE9DF]/60 text-xs font-mono text-[#65534A]/70 flex justify-between items-center">
-                    <span>Priority Bulletin Document System</span>
-                    <span className="bg-[#FAF6F0] px-2 py-0.5 rounded border border-[#EFE9DF]">Verified Archive</span>
-                  </div>
+                  
 
                 </div>
               </div>
