@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Mail, ArrowLeft, KeyRound, Loader2, GraduationCap } from "lucide-react";
 import api from "../utils/api";
+import axios from "axios";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
@@ -13,14 +14,13 @@ const ForgetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (loading) return;
 
     try {
       setLoading(true);
 
       console.log("Sending Email:", email);
 
-      const res = await api.post("/api/v1/users/recover-password", {
+      const res = await api.post(`/api/v1/users/recover-password`, {
         email: email.trim(),
       });
 
