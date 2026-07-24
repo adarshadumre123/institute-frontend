@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import { Mail, ArrowLeft, KeyRound, Loader2, GraduationCap } from "lucide-react";
 import api from "../utils/api";
-import axios from "axios";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
