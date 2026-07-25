@@ -19,7 +19,7 @@ const ForgetPassword = () => {
 
       console.log("Sending Email:", email);
 
-      const res = await api.post("/api/v1/users/recover-password", {
+      const res = await api.post(`/api/v1/users/recover-password`, {
         email: email.trim(),
       });
 
@@ -43,7 +43,7 @@ const ForgetPassword = () => {
         console.log("Status:", error.response.status);
         console.log("Data:", error.response.data);
 
-        toast.error("hello");
+        toast.error(error.response.data.message);
       } else if (error.request) {
         console.log("No response received");
         toast.error("Cannot connect to server.");
