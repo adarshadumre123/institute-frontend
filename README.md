@@ -1,16 +1,7 @@
-# React + Vite
+# Project Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Kanva Digital Academy** is a modern Learning Management System (LMS) frontend built with **React.js** and **Tailwind CSS** to provide a seamless and responsive online learning experience. The application offers dedicated interfaces for students, teachers, and administrators, enabling them to perform their respective tasks efficiently through an intuitive and user-friendly design.
 
-Currently, two official plugins are available:
+The frontend includes features such as secure authentication, course browsing, role-based dashboards, assignment and examination interfaces, study materials, live class access, and notice management. It communicates with the backend through REST APIs, ensuring secure data exchange and real-time updates.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Designed with a component-based architecture and responsive layouts, the application is easy to maintain, scalable, and optimized for use across desktop, tablet, and mobile devices. Kanva Digital Academy aims to simplify digital education by providing a clean, accessible, and engaging platform for effective teaching and learning.
