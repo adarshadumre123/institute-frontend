@@ -144,7 +144,7 @@ The frontend of **Kanva Digital Academy** was developed to provide a modern, res
 
 BSc CSIT Student | MERN Stack Developer
 
-* **GitHub:** https://github.com/your-github-username
+* **GitHub:**  https://github.com/adarshadumre123
 * **Email:** adarshadumre45@gmail.com
 
 If you find this project useful or have suggestions for improvement, feel free to open an issue or submit a pull request. Contributions and feedback are always welcome.
