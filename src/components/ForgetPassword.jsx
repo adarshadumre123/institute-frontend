@@ -21,7 +21,7 @@ const ForgetPassword = () => {
 
       const res = await api.post(`/api/v1/users/recover-password`, {
         email: email.trim(),
-      });
+      })
 
       console.log("Response:", res.data);
 

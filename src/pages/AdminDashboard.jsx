@@ -302,18 +302,18 @@ useEffect(() => {
                     </td>
 
                     <td className="p-3">
-                      {item.course.course}
+                      {item.course?.course ?? 'N/A'}
                     </td>
                     <td className="p-3">
                       {item.student.phone}
                     </td>
 
                     <td className="p-3">
-                      {item.course.subject}
+                      {item.course?.subject ?? 'N/A'}
                     </td>
 
                     <td className="p-3">
-                      Rs. {item.course.price || 0}
+                      Rs. {item.course?.price ?? 0}
                     </td>
                     
                     
@@ -339,15 +339,15 @@ useEffect(() => {
                 className="border rounded-lg p-4 hover:shadow-lg transition"
               >
                 <h3 className="text-lg font-bold">
-                  {course.course}
+                  {course.course ?? 'Untitled Course'}
                 </h3>
 
                 <p className="text-gray-500">
-                  {course.subject}
+                  {course.subject ?? 'No subject'}
                 </p>
 
                 <p className="mt-2 font-semibold text-green-600">
-                  Rs. {course.price || 0}
+                  Rs. {course.price ?? 0}
                 </p>
               </div>
             ))}
