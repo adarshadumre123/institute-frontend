@@ -26,8 +26,52 @@ import {
 import LandingPageCourse from "../components/LandingPageCourses";
 
 
-
 export default function Home() {
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      alert("Message sent successfully!");
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message.");
+    }
+  };
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const token = localStorage.getItem("token");
@@ -309,7 +353,7 @@ export default function Home() {
               </h3>
 
               <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-            AI generates assignment questions based on the selected topic, saving teachers time and effort.
+                AI generates assignment questions based on the selected topic, saving teachers time and effort.
               </p>
             </div>
 
@@ -351,7 +395,7 @@ export default function Home() {
               </h3>
 
               <p className="mt-3 text-sm text-gray-500 leading-relaxed">
-               Teachers schedule online classes with meeting links, allowing students to join sessions directly from the platform.
+                Teachers schedule online classes with meeting links, allowing students to join sessions directly from the platform.
               </p>
             </div>
           </div>
@@ -504,7 +548,7 @@ export default function Home() {
 
             {/* Contact Form */}
             <div className="bg-white rounded-3xl border border-[#EFE4DA] shadow-lg p-6 sm:p-10">
-              <form className="space-y-5 sm:space-y-6">
+              <form className="space-y-5 sm:space-y-6" onSubmit={sendEmail}>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block mb-2 font-medium text-gray-700 text-sm">
@@ -513,6 +557,9 @@ export default function Home() {
 
                     <input
                       type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       placeholder="John Doe"
                       className="w-full rounded-xl border border-[#E6D9CF] px-4 py-3 outline-none focus:border-[#8C3E1A] text-sm"
                     />
@@ -525,6 +572,9 @@ export default function Home() {
 
                     <input
                       type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       placeholder="john@example.com"
                       className="w-full rounded-xl border border-[#E6D9CF] px-4 py-3 outline-none focus:border-[#8C3E1A] text-sm"
                     />
@@ -538,6 +588,9 @@ export default function Home() {
 
                   <input
                     type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     placeholder="Enter subject"
                     className="w-full rounded-xl border border-[#E6D9CF] px-4 py-3 outline-none focus:border-[#8C3E1A] text-sm"
                   />
@@ -550,6 +603,9 @@ export default function Home() {
 
                   <textarea
                     rows={5}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     placeholder="Write your message..."
                     className="w-full rounded-xl border border-[#E6D9CF] px-4 py-3 resize-none outline-none focus:border-[#8C3E1A] text-sm"
                   />
@@ -601,7 +657,7 @@ export default function Home() {
                   { icon: <FaFacebookF size={16} />, href: "https://www.facebook.com/adarsha.dumre/" },
                   { icon: <FaInstagram size={16} />, href: "https://www.instagram.com/aadarshadumre45/" },
                   { icon: <FaLinkedinIn size={16} />, href: "https://www.linkedin.com/in/adarsha-dumre-4110902a0/" },
-                  
+
                 ].map((social, index) => (
                   <a
                     key={index}
