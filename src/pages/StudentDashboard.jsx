@@ -357,6 +357,7 @@ export const StudentComponent = () => {
         </div>
 
         <Courses />
+        <Notice/>
 
       </div>
     </div>

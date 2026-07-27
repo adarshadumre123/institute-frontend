@@ -68,7 +68,7 @@ const CourseDetails = () => {
             {courseDetails.course}
           </h1>
 
-          <p className="mt-5 text-lg text-[#FAF6F0]/80 max-w-3xl">
+          <p className="mt-5 text-lg text-[#9ea1a1] max-w-3xl">
             {courseDetails.shortDescription}
           </p>
         </div>

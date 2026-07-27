@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import React, { useState } from "react";
 import {
   ArrowRight,
@@ -25,8 +25,27 @@ import {
 } from "react-icons/fa";
 import LandingPageCourse from "../components/LandingPageCourses";
 
+
+
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+  if (token) {
+    if (role === "student") {
+      return <Navigate to="/student/dashboard" replace />;
+    }
+
+    if (role === "teacher") {
+      return <Navigate to="/teacher/dashboard" replace />;
+    }
+
+    if (role === "admin") {
+      return <Navigate to="/admin/dashboard" replace />;
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[#FFF9F5] font-sans text-[#2D2D2D] selection:bg-[#B34E17] selection:text-white">
@@ -51,7 +70,7 @@ export default function Home() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 font-medium text-sm text-gray-600">
-          <a href="#home" className="text-[#B34E17] border-b-2 border-[#B34E17] pb-1">
+          <a href="#home" className="hover:text-[#B34E17] transition-colors">
             Home
           </a>
           <a href="#courses" className="hover:text-[#B34E17] transition-colors">
