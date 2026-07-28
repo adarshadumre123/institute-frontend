@@ -92,7 +92,6 @@ The application is deployed on **Vercel** and showcases the complete frontend of
 | **Axios**                   | Sends HTTP requests and communicates with the backend REST API.                                          |
 | **React Hot Toast**         | Displays user-friendly notifications for success, error, and warning messages.                           |
 | **Lucide React**            | Provides lightweight and customizable icons for the user interface.                                      |
-| **Context API** *(if used)* | Manages shared application state across components.                                                      |
 | **JWT (JSON Web Token)**    | Supports secure authentication and protected routes by storing authentication tokens on the client side. |
 | **Vercel**                  | Hosts and deploys the frontend application with continuous deployment from GitHub.                       |
 
