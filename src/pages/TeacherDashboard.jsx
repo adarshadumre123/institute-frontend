@@ -25,7 +25,8 @@ import {
   Loader2,
   ChevronLeft,
   ChevronRight,
-  ArrowRight
+  ArrowRight,
+  University
 } from "lucide-react";
 
 import Courses from "./Courses";
@@ -137,7 +138,7 @@ const TeacherDashboard = () => {
           />
 
           <SidebarItem
-            icon={<Gamepad2 size={20} />}
+            icon={<University size={20} />}
             title="Students"
             active={activeTab === "Students"}
             onClick={() => handleTabChange("Students")}
