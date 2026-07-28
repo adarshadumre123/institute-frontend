@@ -22,6 +22,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
+  FaSleigh,
   FaTwitter,
 } from "react-icons/fa";
 import LandingPageCourse from "../components/LandingPageCourses";
@@ -37,6 +38,8 @@ export default function Home() {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false)
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -48,8 +51,8 @@ export default function Home() {
     e.preventDefault();
 
     try {
-
-      if(!name || !email || !subject || !message){
+      setLoading(true)
+      if (!formData.name || !formData.email || !formData.subject || !formData.message) {
         toast.error("all fields are required")
         return
       }
@@ -74,9 +77,11 @@ export default function Home() {
         message: "",
       });
     } catch (error) {
-  console.error("EmailJS Error:", error);
-  toast.error(error.text || error.message || "Failed to send message.");
-}
+      console.error("EmailJS Error:", error);
+      toast.error(error.text || error.message || "Failed to send message.");
+    } finally {
+      setLoading(false)
+    }
   };
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -620,10 +625,20 @@ export default function Home() {
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-[#8C3E1A] hover:bg-[#6E2E12] text-white font-semibold py-3.5 sm:py-4 rounded-xl transition duration-300 text-sm sm:text-base cursor-pointer"
+                  disabled={loading}
+                  className={`w-full flex items-center justify-center gap-2 font-semibold py-3.5 sm:py-4 rounded-xl transition duration-300 text-sm sm:text-base ${loading
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-[#8C3E1A] hover:bg-[#6E2E12] cursor-pointer text-white"
+                    }`}
                 >
-                  <Send size={18} />
-                  Send Message
+                  {loading ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      Send
+                      <Send size={18} />
+                    </>
+                  )}
                 </button>
               </form>
             </div>

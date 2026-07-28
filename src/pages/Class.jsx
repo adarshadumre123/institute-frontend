@@ -7,7 +7,6 @@ import api from "../utils/api";
 const Class = () => {
   const [classItem, setClassItem] = useState({
     title: "",
-    description: "",
     zoomLink: "",
     course: "",
     classDate: "",
@@ -48,7 +47,6 @@ const Class = () => {
 
         setClassItem({
           title: "",
-          description: "",
           zoomLink: "",
           course: "",
           classDate: "",
@@ -89,10 +87,8 @@ const Class = () => {
           />
         </div>
 
-        <div>
-          <label className="block mb-1 font-medium">
-            Description
-          </label>
+        {/* <div>
+        
 
           <textarea
             name="description"
@@ -102,11 +98,11 @@ const Class = () => {
             className="w-full border rounded-md p-2"
             rows="4"
           />
-        </div>
+        </div> */}
 
         <div>
           <label className="block mb-1 font-medium">
-            Zoom Link
+            Class Link
           </label>
 
           <input
@@ -114,7 +110,7 @@ const Class = () => {
             name="zoomLink"
             value={classItem.zoomLink}
             onChange={handleChange}
-            placeholder="https://zoom.us/..."
+            placeholder="https://class.us/..."
             className="w-full border rounded-md p-2"
             required
           />

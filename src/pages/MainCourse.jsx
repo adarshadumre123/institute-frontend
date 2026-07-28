@@ -148,7 +148,7 @@ const MainCourse = () => {
 
           {/* Sidebar Footer */}
           <div className="p-4 border-t text-sm text-gray-500">
-            Learning Management System
+            Kanva Digital Academy
           </div>
         </aside>
       )}

@@ -160,7 +160,7 @@ const TeacherDashboard = () => {
             <span>Sign Out Account</span>
           </button>
           <div className="text-[11px] font-medium text-neutral-400 tracking-wide text-center">
-            Learning Management System
+            Kanva Digital Academy
           </div>
         </div>
       </aside>

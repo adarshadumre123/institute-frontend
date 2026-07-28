@@ -72,13 +72,13 @@ const CreateNotice = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 md:p-8">
-      <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden transition-all duration-300 hover:shadow-2xl">
+    <div className="min-h-screen bg-[#FFF9F5] flex items-center justify-center p-4 md:p-8">
+      <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-[#F3E7DE] overflow-hidden transition-all duration-300 hover:shadow-2xl">
         
         {/* Header Block */}
-        <div className="bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-8 text-center text-white">
+        <div className="bg-[#8C3E1A] px-6 py-8 text-center text-white">
           <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Create New Notice</h2>
-          <p className="mt-2 text-blue-100 text-sm md:text-base">Publish information and attach relevant documents</p>
+          <p className="mt-2 text-orange-100/90 text-sm md:text-base">Publish information and attach relevant documents</p>
         </div>
 
         {/* Form Block */}
@@ -86,7 +86,7 @@ const CreateNotice = () => {
           
           {/* Title Input */}
           <div className="space-y-2">
-            <label htmlFor="title" className="block text-sm font-semibold text-slate-700">
+            <label htmlFor="title" className="block text-sm font-semibold text-gray-700">
               Notice Title <span className="text-rose-500">*</span>
             </label>
             <input
@@ -96,15 +96,15 @@ const CreateNotice = () => {
               value={notice.title}
               onChange={handleChange}
               placeholder="e.g., Annual Sports Meet 2026 Schedule"
-              className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-slate-800 placeholder-slate-400"
+              className="w-full px-4 py-3 rounded-lg border border-[#E6D9CF] bg-[#FFF9F5] focus:outline-none focus:ring-2 focus:ring-[#8C3E1A]/20 focus:border-[#8C3E1A] transition-all text-[#1A1A1A] placeholder-gray-400"
               disabled={loading}
             />
           </div>
 
           {/* Description Input */}
           <div className="space-y-2">
-            <label htmlFor="description" className="block text-sm font-semibold text-slate-700">
-              Description <span className="text-slate-400 font-normal">(Optional)</span>
+            <label htmlFor="description" className="block text-sm font-semibold text-gray-700">
+              Description <span className="text-gray-400 font-normal">(Optional)</span>
             </label>
             <textarea
               id="description"
@@ -113,14 +113,14 @@ const CreateNotice = () => {
               onChange={handleChange}
               placeholder="Provide a brief summary or additional details about the notice..."
               rows="4"
-              className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all text-slate-800 placeholder-slate-400 resize-none"
+              className="w-full px-4 py-3 rounded-lg border border-[#E6D9CF] bg-[#FFF9F5] focus:outline-none focus:ring-2 focus:ring-[#8C3E1A]/20 focus:border-[#8C3E1A] transition-all text-[#1A1A1A] placeholder-gray-400 resize-none"
               disabled={loading}
             />
           </div>
 
           {/* File Upload Zone */}
           <div className="space-y-2">
-            <label className="block text-sm font-semibold text-slate-700">
+            <label className="block text-sm font-semibold text-gray-700">
               Attachment <span className="text-rose-500">*</span>
             </label>
             
@@ -135,13 +135,13 @@ const CreateNotice = () => {
               
               <div className={`border-2 border-dashed rounded-xl p-6 text-center transition-all duration-200 ${
                 notice.file 
-                  ? 'border-emerald-400 bg-emerald-50/30' 
-                  : 'border-slate-300 hover:border-indigo-500 bg-slate-50/50 group-hover:bg-slate-50'
+                  ? 'border-[#8C3E1A] bg-[#FFF9F5]' 
+                  : 'border-[#E6D9CF] hover:border-[#8C3E1A] bg-[#FFF9F5]/50 group-hover:bg-[#FFF9F5]'
               }`}>
                 {/* Visual Icon indicator */}
-                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-white shadow-sm border border-slate-100 text-slate-500 mb-3 group-hover:text-indigo-600 transition-colors">
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-white shadow-sm border border-[#F3E7DE] text-gray-500 mb-3 group-hover:text-[#8C3E1A] transition-colors">
                   {notice.file ? (
-                    <svg className="h-6 w-6 text-emerald-500 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <svg className="h-6 w-6 text-[#8C3E1A] animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   ) : (
@@ -151,10 +151,10 @@ const CreateNotice = () => {
                   )}
                 </div>
                 
-                <p className="text-sm font-medium text-slate-700">
+                <p className="text-sm font-medium text-gray-700">
                   {notice.file ? notice.file.name : "Click to upload or drag & drop"}
                 </p>
-                <p className="text-xs text-slate-400 mt-1">
+                <p className="text-xs text-gray-400 mt-1">
                   {notice.file 
                     ? `Size: ${(notice.file.size / 1024 / 1024).toFixed(2)} MB` 
                     : "PDF, Word, Excel, Images up to 10MB"}
@@ -167,10 +167,10 @@ const CreateNotice = () => {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-3.5 px-4 rounded-lg text-white font-semibold shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 flex items-center justify-center space-x-2 ${
+            className={`w-full py-3.5 px-4 rounded-lg text-white font-semibold shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#8C3E1A] focus:ring-offset-2 flex items-center justify-center space-x-2 ${
               loading 
-                ? 'bg-slate-400 cursor-not-allowed' 
-                : 'bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 active:scale-[0.99]'
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-[#8C3E1A] hover:bg-[#6E2E12] active:scale-[0.99]'
             }`}
           >
             {loading ? (

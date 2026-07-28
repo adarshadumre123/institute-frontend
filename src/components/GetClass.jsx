@@ -113,9 +113,9 @@ const GetClass = () => {
                   </h2>
 
                   {/* Description */}
-                  <p className="text-sm text-[#65534A] font-medium mb-6 line-clamp-3">
+                  {/* <p className="text-sm text-[#65534A] font-medium mb-6 line-clamp-3">
                     {item.description || "No description provided."}
-                  </p>
+                  </p> */}
 
                   {/* Class Meta Data */}
                   <div className="space-y-3.5 pt-4 border-t border-[#FAF6F0] text-sm text-[#3D251A]/90">

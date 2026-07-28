@@ -216,7 +216,7 @@ const Assignment = () => {
               {/* Created By Author Info Card Block */}
               <div className="pt-4 border-t border-[#FAF6F0]">
                 <h3 className="text-xs font-black uppercase tracking-wider text-[#65534A] mb-3">
-                  Instructor Assignment Meta
+                  Instructor Assignment
                 </h3>
                 <div className="flex items-center gap-4 p-4 rounded-xl border border-[#EFE9DF]">
                   <div className="w-10 h-10 rounded-full bg-[#FAF6F0] border border-[#EFE9DF] flex items-center justify-center font-black text-[#8C3E1A] text-sm">
@@ -247,11 +247,11 @@ const Assignment = () => {
                 Close View
               </button>
               
-              {role === "student" && (
+              {/* {role === "student" && (
                 <button className="flex-1 bg-[#8C3E1A] hover:bg-[#733214] text-white font-bold text-sm py-3 px-4 rounded-xl shadow-sm transition">
                   Submit Homework Work
                 </button>
-              )}
+              )} */}
             </div>
 
           </div>

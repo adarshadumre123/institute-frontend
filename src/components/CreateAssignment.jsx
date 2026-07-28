@@ -27,7 +27,7 @@ const CreateAssignment = () => {
 
   const createAssignment = async () => {
     // Basic validation check
-    if (!assignment.title || !assignment.subject || !assignment.totalQuestions) {
+    if (!assignment.title || !assignment.subject || !assignment.description) {
       toast.error("Please fill in all mandatory fields.");
       return;
     }
@@ -57,7 +57,10 @@ const CreateAssignment = () => {
         });
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Something went wrong structuralizing the task");
+       console.log("FULL ERROR:", error);
+  console.log("RESPONSE:", error.response);
+  console.log("DATA:", error.response?.data)
+      toast.error(error.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -175,10 +178,10 @@ const CreateAssignment = () => {
               {loading ? (
                 <>
                   <Loader2 size={16} className="animate-spin" />
-                  Generating Structural Assignment...
+                  Generating  Assignment...
                 </>
               ) : (
-                "Deploy Assignment"
+                "Generate Assignment"
               )}
             </button>
           </div>
