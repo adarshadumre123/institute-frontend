@@ -173,7 +173,7 @@ const CreateCourses = () => {
               />
             </div>
           </div>
-
+// this is a long description 
           {/* Long Description */}
           <div>
             <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1.5">
